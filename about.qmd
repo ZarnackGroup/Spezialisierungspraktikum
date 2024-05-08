@@ -2,8 +2,11 @@
 title: "About"
 ---
 
-About this site
+**Autors:** Mario Keller, Melina Klostermann
 
-```{r}
-1 + 1
-```
+This site contains a walk through to the results of a splicing analysis performed with MAJIQ as part of the course material for the **Spezialisierungspraktikum RNA Biology**. 
+
+Zarnack group for Computational RNA Biology,
+Goethe Universität Frankfurt
+
+Visit us on our [webpage](https://zarnackgroup.github.io/webpage/) or on [GitHub](https://github.com/ZarnackGroup).

@@ -1,0 +1,92 @@
+---
+title: "Visualising splice events"
+editor: source
+---
+
+
+You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:
+
+- the VOILA GUI to visualise the splicing results
+- the IGV genome browser to make sashimi plots of some examples
+
+
+# Visualize the results of the splicing analysis with VOILA
+
+## Open your results in the VOILA GUI
+
+To visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).
+
+The Voila Launcher should open: 
+
+![](images/Picture 1.png)
+
+Enter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.
+
+
+The GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow). 
+
+![](images/Picture 2.png)
+
+
+You can do the same with a different port number for the second comparison.
+
+
+## Adjusting filters
+
+You can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:
+
+- On the top are options for **filtering for specific classes of splice events** ( e.g. alternative 5’ or 3’ splice sites, Exon Skipping or binary events). 
+
+- Below this you can apply a **deltaPSI and Confidence Threshold filter**. 
+
+![](images/Picture 3.png)
+
+By default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%). 
+
+Depending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9.
+
+## Overview of regulated LSVs
+
+Below the filters you can see a table with 5 columns. The first column tells us the **name of the gene** in which the LSV is located and the second column specifies a **unique ID** for the LSV. The last column offers a UCSC link (not important for us).
+
+![](images/Picture 4.png)
+
+The third column depicts a **simplified scheme of the LSV**: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3' or 5' splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.
+
+
+![](images/Picture 5.png)
+
+
+The fourth column the **deltaPSI values** of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information.
+
+## Genewise details on LSVs
+
+As an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample). 
+
+![](images/Picture 6.png)
+
+If we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.
+
+To get more details about this specific LSV you can click on the gene name. 
+![](images/Picture 7.png)
+
+In the upper part we can see **two splicegraphs** for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.
+
+In the lower part you can see **all detected LSVs of the gene**. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have **bar plots showing the PSI values** in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.
+
+Let’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.
+
+![](images/Picture 8.png)
+
+You now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein.
+
+
+# Visualize selected LSVs as Sashimi plots in IGV
+
+To verify the findings from your visual inspection in the GUI, open IGV and load from each of your conditions the BAM-File of one replicate. Next, navigate to the genomic region where your AS event is located. You can get the genome coordinates of the source/target exon from the LSV ID.
+
+![](images/Picture 9.png)
+
+We can already see that the coverage on the inner exon is quite low under control condition and much strong upon knockdown, which already confirms what we observed in the GUI. To further strengthen the observation we can create a sashimi plot by making a right click in one of the alignment tracks and selecting “Sashimi plot”. 
+
+![](images/Picture 10.png)

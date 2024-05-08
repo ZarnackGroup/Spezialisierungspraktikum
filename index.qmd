@@ -1,11 +1,27 @@
 ---
-title: "spezi_scripts_website"
+title: "Spezialisierungspraktikum RNA Biology"
 ---
 
-This is a Quarto website.
+On the following pages you can find the course materials for the splicing part of Spezialisierungspraktikum RNA Biology.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+In brief, we explore and visualize the output a splicing analysis done with MAJIQ.
 
-```{r}
-1 + 1
-```
+
+# You need to know:
+
+## What is splicing?
+
+
+## What are splice events and local splice variants (LSVs)?
+
+
+## What are PSI and dPSI?
+
+## What is the probability changing?
+
+## How does the majiq workflow look like?
+
+
+## What are the output files from majiq?
+
+

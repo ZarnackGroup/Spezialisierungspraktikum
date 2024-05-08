@@ -2,16 +2,20 @@ project:
   type: website
 
 website:
-  title: "spezi_scripts_website"
+  title: "Spezialisierungspraktikum RNA Biology"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: voila_gui.qmd
+        text: Visualisation
+      - href: tasks.qmd
+        text: Tasks
       - about.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: minty
     css: styles.css
     toc: true
 

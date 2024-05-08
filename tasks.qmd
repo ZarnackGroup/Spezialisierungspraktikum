@@ -1,0 +1,33 @@
+---
+title: "Tasks"
+editor: visual
+---
+
+Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.
+
+At the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.
+
+# Tasks for part 1 - Visualisation
+
+Instructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in *part1_GUI_and_SashimiPlots.pdf*.
+
+1.  For one of your comparisons search for binary LSVs with |deltaPSI| $\ge$ 0.1 and Confidence Threshold $\ge$ 0.9. If you can't find events lower the deltaPSI threshold. 
+  +   Take a screenshot of 1 LSV representing an exon skipping event.
+  +   Take a screenshot of 1 LSV representing an intron retention event.
+  +   Take a screenshot of 1 LSV representing an alternative 5' splice site event.
+  +   Take a screenshot of 1 LSV representing an alternative 3' splice site event.
+2.  Take for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).
+3.  Compare the regulation of the five LSVs between the two comparisons.
+4.  Take one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.
+  +   You need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.
+  +   If the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.
+5. Does the sashimi plot confirm what you have seen in the VOILA GUI?
+
+
+# Tasks for part 2 - Analyzing AS at the level of LSVs
+
+Repeat the analyses in part2_AS_at_LSV_level.pdf for your comparisons.
+
+# Tasks for part 3 - Analyzing AS at the level of AS events
+
+Repeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons.
