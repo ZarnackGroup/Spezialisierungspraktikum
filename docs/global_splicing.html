@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Spezialisierungspraktikum RNA Biology - Global characterisation of detected splice events</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Spezialisierungspraktikum RNA Biology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_processing_galaxy.html" rel="" target="">
+ <span class="menu-text">Processing</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-splicing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Splicing</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-splicing">    
+        <li>
+    <a class="dropdown-item" href="./voila_gui.html" rel="" target="">
+ <span class="dropdown-text">Visualisation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./global_splicing.html" rel="" target="">
+ <span class="dropdown-text">Global analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tasks.html" rel="" target="">
+ <span class="dropdown-text">Tasks</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./global_splicing.html">Global analysis</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./voila_gui.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./global_splicing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Global analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tasks</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages">Required packages</a></li>
+  <li><a href="#loading-the-tsv-files" id="toc-loading-the-tsv-files" class="nav-link" data-scroll-target="#loading-the-tsv-files">Loading the TSV-Files</a></li>
+  <li><a href="#cleaning-up-the-splicing-results-for-easier-usage" id="toc-cleaning-up-the-splicing-results-for-easier-usage" class="nav-link" data-scroll-target="#cleaning-up-the-splicing-results-for-easier-usage">Cleaning up the splicing results for easier usage</a>
+  <ul class="collapse">
+  <li><a href="#add-a-class-column" id="toc-add-a-class-column" class="nav-link" data-scroll-target="#add-a-class-column">Add a class column</a></li>
+  <li><a href="#select-only-the-most-important-columns" id="toc-select-only-the-most-important-columns" class="nav-link" data-scroll-target="#select-only-the-most-important-columns">Select only the most important columns</a></li>
+  <li><a href="#make-one-data.frame-combining-all-classes" id="toc-make-one-data.frame-combining-all-classes" class="nav-link" data-scroll-target="#make-one-data.frame-combining-all-classes">Make one data.frame combining all classes</a></li>
+  <li><a href="#removing-the-target-lsv-perspective" id="toc-removing-the-target-lsv-perspective" class="nav-link" data-scroll-target="#removing-the-target-lsv-perspective">Removing the target LSV perspective</a></li>
+  <li><a href="#removing-duplicated-lsv-junctions" id="toc-removing-duplicated-lsv-junctions" class="nav-link" data-scroll-target="#removing-duplicated-lsv-junctions">Removing duplicated LSV junctions</a></li>
+  <li><a href="#save-resulting-data.frame-for-comparison" id="toc-save-resulting-data.frame-for-comparison" class="nav-link" data-scroll-target="#save-resulting-data.frame-for-comparison">Save resulting data.frame for comparison</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#global-overview" id="toc-global-overview" class="nav-link" data-scroll-target="#global-overview">Global overview</a>
+  <ul class="collapse">
+  <li><a href="#number-of-detected-lsvs" id="toc-number-of-detected-lsvs" class="nav-link" data-scroll-target="#number-of-detected-lsvs">Number of detected LSVs</a></li>
+  <li><a href="#complexity-of-lsvs" id="toc-complexity-of-lsvs" class="nav-link" data-scroll-target="#complexity-of-lsvs">Complexity of LSVs</a>
+  <ul class="collapse">
+  <li><a href="#strength-of-splicing-changes" id="toc-strength-of-splicing-changes" class="nav-link" data-scroll-target="#strength-of-splicing-changes">Strength of splicing changes</a></li>
+  <li><a href="#significance-of-splicing-changes" id="toc-significance-of-splicing-changes" class="nav-link" data-scroll-target="#significance-of-splicing-changes">Significance of splicing changes</a></li>
+  </ul></li>
+  <li><a href="#regulated-lsvs" id="toc-regulated-lsvs" class="nav-link" data-scroll-target="#regulated-lsvs">Regulated LSVs</a>
+  <ul class="collapse">
+  <li><a href="#number-and-fraction-of-regulated-lsvs" id="toc-number-and-fraction-of-regulated-lsvs" class="nav-link" data-scroll-target="#number-and-fraction-of-regulated-lsvs">Number and fraction of regulated LSVs</a></li>
+  <li><a href="#colour-significant-changes" id="toc-colour-significant-changes" class="nav-link" data-scroll-target="#colour-significant-changes">Colour significant changes</a></li>
+  <li><a href="#top-10-spliced-lsvs" id="toc-top-10-spliced-lsvs" class="nav-link" data-scroll-target="#top-10-spliced-lsvs">Top 10 spliced LSVs</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#classes-of-lsvs" id="toc-classes-of-lsvs" class="nav-link" data-scroll-target="#classes-of-lsvs">Classes of LSVs</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information">Session Information</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Global characterisation of detected splice events</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>A splicing analysis of your RNA-seq data has been preformed with the <a href="./index.html#majiq-workflow">MAJIQ workflow</a>.</p>
+<p>The output is split by the <a href="./index.html#splicing-classes">splicing classes</a> and stored in .tsv files.</p>
+<p>This script only looks at one of the two data sets you have (e.g.&nbsp;only one cell line). You should therefore perform the analyses twice, once for each data set.</p>
+</section>
+<section id="preparation" class="level1">
+<h1>Preparation</h1>
+<section id="required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
+<p>Here you can find the packages we need. You can install them with the install.packages() command.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># to easily handle data.frames </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) <span class="co"># beautiful tables</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># nice plots</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># for even more nice plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loading-the-tsv-files" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-tsv-files">Loading the TSV-Files</h2>
+<p>First, we load the TSV-files as data.frames into R. We are only look at the most common classes of splicing. You can see in the output folder, that you get much more TSV-files, but we will ignore all others.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Input</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># path to the folder that contains the .tsv files</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>in_path <span class="ot">&lt;-</span> <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the splicing classes we want to look at.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We make a list with the file names, and give each object in the list a name</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># the syntax is object_name = "file_name.tsv"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>interesting_classes <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">alternative_3_prime_splice_site =</span> <span class="st">"alt3prime.tsv"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alternative_5_prime_splice_site =</span> <span class="st">"alt5prime.tsv"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">cassette_exons =</span> <span class="st">"cassette.tsv"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alternative_first_exon =</span> <span class="st">"alternate_first_exon.tsv"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                         <span class="at">alternative_last_exon =</span> <span class="st">"alternate_last_exon.tsv"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mutually_exclusive_exons =</span> <span class="st">"mutually_exclusive.tsv"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                         <span class="at">intron_retention =</span><span class="st">"alternative_intron.tsv"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>interesting_classes </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$alternative_3_prime_splice_site
+[1] "alt3prime.tsv"
+
+$alternative_5_prime_splice_site
+[1] "alt5prime.tsv"
+
+$cassette_exons
+[1] "cassette.tsv"
+
+$alternative_first_exon
+[1] "alternate_first_exon.tsv"
+
+$alternative_last_exon
+[1] "alternate_last_exon.tsv"
+
+$mutually_exclusive_exons
+[1] "mutually_exclusive.tsv"
+
+$intron_retention
+[1] "alternative_intron.tsv"</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Import tsvs</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load the content of the tsv files by looping over the interesting_classes list</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>splice_results_list <span class="ot">&lt;-</span> interesting_classes</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the tsv files with a loop over all tsv files</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(interesting_classes)){</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># we use the read_table function to import the tsv files</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  splice_results_list [[i]] <span class="ot">=</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(in_path, interesting_classes[[i]]),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">stringsAsFactors=</span><span class="cn">FALSE</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># the tsv files are now imported in the splice_results list</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># each object in the splice_results list are the results of one class of splicing (in data.frame format)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># have a closer look at the loop from above</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(interesting_classes) <span class="co"># the length of the list interesting_classes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(interesting_classes) <span class="co"># a vector from one until the length of the interesting_classes list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5 6 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>interesting_classes[[<span class="dv">3</span>]]  <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="co"># the third object in the interesting classes results list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cassette.tsv</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(in_path, interesting_classes[[<span class="dv">3</span>]]) <span class="co"># the path to the third tsv file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/cassette.tsv"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(splice_results_list[[<span class="dv">3</span>]])  <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="co"># the third object in the splice results list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">module_id</th>
+<th style="text-align: left;">gene_id</th>
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">event_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">denovo</th>
+<th style="text-align: left;">reference_exon_coord</th>
+<th style="text-align: left;">spliced_with</th>
+<th style="text-align: left;">spliced_with_coord</th>
+<th style="text-align: left;">junction_name</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">event_size</th>
+<th style="text-align: left;">event_non_changing</th>
+<th style="text-align: left;">event_changing</th>
+<th style="text-align: left;">junction_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000122557.11_1</td>
+<td style="text-align: left;">ENSG00000122557.11</td>
+<td style="text-align: left;">HERPUD2</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000122557.11:s:35694184-35694627</td>
+<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">C2</td>
+<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">C1_C2</td>
+<td style="text-align: left;">35670328-35694184</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">-0.015</td>
+<td style="text-align: right;">0.486</td>
+<td style="text-align: right;">0.212</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000122557.11_1</td>
+<td style="text-align: left;">ENSG00000122557.11</td>
+<td style="text-align: left;">HERPUD2</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000122557.11:s:35694184-35694627</td>
+<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">35673201-35673278</td>
+<td style="text-align: left;">C1_A</td>
+<td style="text-align: left;">35673278-35694184</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.862</td>
+<td style="text-align: right;">0.934</td>
+<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.644</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000122557.11_1</td>
+<td style="text-align: left;">ENSG00000122557.11</td>
+<td style="text-align: left;">HERPUD2</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000122557.11:t:35670215-35670328</td>
+<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">C1</td>
+<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">C2_C1</td>
+<td style="text-align: left;">35670328-35694184</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.032</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.280</td>
+<td style="text-align: right;">0.586</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000122557.11_1</td>
+<td style="text-align: left;">ENSG00000122557.11</td>
+<td style="text-align: left;">HERPUD2</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000122557.11:t:35670215-35670328</td>
+<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">35673201-35673278</td>
+<td style="text-align: left;">C2_A</td>
+<td style="text-align: left;">35670328-35673201</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.974</td>
+<td style="text-align: right;">0.968</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.280</td>
+<td style="text-align: right;">0.586</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000011426.11_1</td>
+<td style="text-align: left;">ENSG00000011426.11</td>
+<td style="text-align: left;">ANLN</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000011426.11:s:36415758-36415885</td>
+<td style="text-align: left;">ENSG00000011426.11_1_CE_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">36415758-36415884</td>
+<td style="text-align: left;">C2</td>
+<td style="text-align: left;">36419244-36419479</td>
+<td style="text-align: left;">C1_C2</td>
+<td style="text-align: left;">36415884-36419244</td>
+<td style="text-align: right;">111</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.237</td>
+<td style="text-align: right;">0.163</td>
+<td style="text-align: right;">-0.052</td>
+<td style="text-align: right;">0.707</td>
+<td style="text-align: right;">0.067</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000011426.11_1</td>
+<td style="text-align: left;">ENSG00000011426.11</td>
+<td style="text-align: left;">ANLN</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000011426.11:s:36415758-36415885</td>
+<td style="text-align: left;">ENSG00000011426.11_1_CE_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">36415758-36415884</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">36417080-36417190</td>
+<td style="text-align: left;">C1_A</td>
+<td style="text-align: left;">36415884-36417080</td>
+<td style="text-align: right;">111</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.763</td>
+<td style="text-align: right;">0.837</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.707</td>
+<td style="text-align: right;">0.067</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="cleaning-up-the-splicing-results-for-easier-usage" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-up-the-splicing-results-for-easier-usage">Cleaning up the splicing results for easier usage</h2>
+<p>We combine the data.frames in the list into one data.frame for easier handling.</p>
+<section id="add-a-class-column" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-class-column">Add a class column</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># combine all data frames in the list into one data.frame</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You can select a object from the list by its name</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site)  <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">module_id</th>
+<th style="text-align: left;">gene_id</th>
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">event_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">denovo</th>
+<th style="text-align: left;">reference_exon_coord</th>
+<th style="text-align: left;">spliced_with</th>
+<th style="text-align: left;">spliced_with_coord</th>
+<th style="text-align: left;">junction_name</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">event_size</th>
+<th style="text-align: left;">event_non_changing</th>
+<th style="text-align: left;">event_changing</th>
+<th style="text-align: left;">junction_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000159685.11_1</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">126733222-126852644</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.435</td>
+<td style="text-align: right;">0.283</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000159685.11_1</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">126733222-126852647</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.950</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.270</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000197841.15_1</td>
+<td style="text-align: left;">ENSG00000197841.15</td>
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">34739523-34739621</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">34739268-34739523</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.446</td>
+<td style="text-align: right;">0.451</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000197841.15_1</td>
+<td style="text-align: left;">ENSG00000197841.15</td>
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">34739523-34739621</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">34739268-34739526</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.554</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000076685.19_4</td>
+<td style="text-align: left;">ENSG00000076685.19</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">103101045-103101102</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">103100752-103100964</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">103100964-103101045</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.223</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000076685.19_4</td>
+<td style="text-align: left;">ENSG00000076685.19</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">103101045-103101102</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">103100752-103100964</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">103100943-103101045</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.148</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.096</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column with the class name</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">#####################################</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now you can add a new column to the object that has the object name</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"alternative_3_prime_splice_site"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site)  <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 1%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">module_id</th>
+<th style="text-align: left;">gene_id</th>
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">event_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">denovo</th>
+<th style="text-align: left;">reference_exon_coord</th>
+<th style="text-align: left;">spliced_with</th>
+<th style="text-align: left;">spliced_with_coord</th>
+<th style="text-align: left;">junction_name</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">event_size</th>
+<th style="text-align: left;">event_non_changing</th>
+<th style="text-align: left;">event_changing</th>
+<th style="text-align: left;">junction_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000159685.11_1</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">126733222-126852644</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.435</td>
+<td style="text-align: right;">0.283</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000159685.11_1</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">126733222-126852647</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.950</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.270</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000197841.15_1</td>
+<td style="text-align: left;">ENSG00000197841.15</td>
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">34739523-34739621</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">34739268-34739523</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.446</td>
+<td style="text-align: right;">0.451</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000197841.15_1</td>
+<td style="text-align: left;">ENSG00000197841.15</td>
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">34739523-34739621</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">34739268-34739526</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.554</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000076685.19_4</td>
+<td style="text-align: left;">ENSG00000076685.19</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">103101045-103101102</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">103100752-103100964</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">103100964-103101045</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.223</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000076685.19_4</td>
+<td style="text-align: left;">ENSG00000076685.19</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">103101045-103101102</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">103100752-103100964</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">103100943-103101045</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.148</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.096</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># do the same for all classes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>alternative_5_prime_splice_site <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>alternative_5_prime_splice_site,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"alternative_5_prime_splice_site"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>cassette_exons <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>cassette_exons,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"cassette_exons"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>alternative_first_exon <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>alternative_first_exon,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"alternative_first_exon"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>alternative_last_exon <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>alternative_last_exon,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"alternative_last_exon"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>mutually_exclusive_exons <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>mutually_exclusive_exons ,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                                                         <span class="at">class =</span> <span class="st">"mutually_exclusive_exons"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>splice_results_list<span class="sc">$</span>intron_retention <span class="ot">&lt;-</span> <span class="fu">mutate</span>(splice_results_list<span class="sc">$</span>intron_retention,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">class =</span> <span class="st">"intron_retention"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="select-only-the-most-important-columns" class="level3">
+<h3 class="anchored" data-anchor-id="select-only-the-most-important-columns">Select only the most important columns</h3>
+<p>We select the following columns:</p>
+<ol type="1">
+<li>Name of the gene in which the LSV is located</li>
+<li>Chromosome where the gene is located</li>
+<li>Strand of the gene</li>
+<li>Unique ID of the LSV</li>
+<li>PSI of the control samples (median of all samples)</li>
+<li>PSI of the condition samples (median of all samples, condition is for example knockout or knockdown)</li>
+<li>deltaPSI of condition vs control</li>
+<li>Probability that the change (|deltaPSI|) was <span class="math inline">\(\ge\)</span> 0.05 (change of 5% or more)</li>
+<li>class of splicing event</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select important columns</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "module_id"                                                   
+ [2] "gene_id"                                                     
+ [3] "gene_name"                                                   
+ [4] "seqid"                                                       
+ [5] "strand"                                                      
+ [6] "lsv_id"                                                      
+ [7] "event_id"                                                    
+ [8] "complex"                                                     
+ [9] "denovo"                                                      
+[10] "reference_exon_coord"                                        
+[11] "spliced_with"                                                
+[12] "spliced_with_coord"                                          
+[13] "junction_name"                                               
+[14] "junction_coord"                                              
+[15] "event_size"                                                  
+[16] "event_non_changing"                                          
+[17] "event_changing"                                              
+[18] "junction_changing"                                           
+[19] "SFPQ_HepG2_Control_median_psi"                               
+[20] "SFPQ_HepG2_shRNA_median_psi"                                 
+[21] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi"             
+[22] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing"    
+[23] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing"
+[24] "class"                                                       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene_name"</span>, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"seqid"</span>, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"strand"</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lsv_id"</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"complex"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"junction_coord"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_Control_median_psi"</span>, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA_median_psi"</span>, </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In order to do that to all objects in the list (all splicing classes), we use a <strong>for loop</strong> again.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(splice_results_list)){</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">names</span>(splice_results_list[i]))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  splice_results_list[[i]] <span class="ot">=</span>  <span class="fu">select</span>(splice_results_list[[i]], cols)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "alternative_3_prime_splice_site"
+[1] "alternative_5_prime_splice_site"
+[1] "cassette_exons"
+[1] "alternative_first_exon"
+[1] "alternative_last_exon"
+[1] "mutually_exclusive_exons"
+[1] "intron_retention"</code></pre>
+</div>
+</div>
+</section>
+<section id="make-one-data.frame-combining-all-classes" class="level3">
+<h3 class="anchored" data-anchor-id="make-one-data.frame-combining-all-classes">Make one data.frame combining all classes</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine all</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>splice_results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>alternative_5_prime_splice_site,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>cassette_exons,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>alternative_first_exon,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>alternative_last_exon,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>mutually_exclusive_exons,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                        splice_results_list<span class="sc">$</span>intron_retention)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(splice_results) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 14%">
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733222-126852644</td>
+<td style="text-align: right;">0.046</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.435</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">126733222-126852647</td>
+<td style="text-align: right;">0.950</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.445</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739268-34739523</td>
+<td style="text-align: right;">0.446</td>
+<td style="text-align: right;">0.451</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZNF181</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">34739268-34739526</td>
+<td style="text-align: right;">0.554</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">-0.011</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100964-103101045</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100943-103101045</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.148</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>splice_results <span class="sc">%&gt;%</span> <span class="fu">subset</span>(lsv_id <span class="sc">==</span> <span class="st">"ENSG00000076685.19:s:103101045-103101102"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 13%">
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100964-103101045</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100943-103101045</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.148</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12423</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100019-103101045</td>
+<td style="text-align: right;">0.877</td>
+<td style="text-align: right;">0.790</td>
+<td style="text-align: right;">-0.070</td>
+<td style="text-align: right;">0.756</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12424</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100943-103101045</td>
+<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.148</td>
+<td style="text-align: right;">0.040</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12427</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100019-103101045</td>
+<td style="text-align: right;">0.877</td>
+<td style="text-align: right;">0.790</td>
+<td style="text-align: right;">-0.070</td>
+<td style="text-align: right;">0.756</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12428</td>
+<td style="text-align: left;">NT5C2</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">103100964-103101045</td>
+<td style="text-align: right;">0.029</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.505</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename columns</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(splice_results) <span class="ot">&lt;-</span> cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene_name"</span>, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"seqid"</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"strand"</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lsv_id"</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"complex"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"junction_coord"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ctrl_median_psi"</span>, </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cond_median_psi"</span>, </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dpsi"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"probability_changing"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"class"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the list </span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#remove(splice_results_list)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="removing-the-target-lsv-perspective" class="level3">
+<h3 class="anchored" data-anchor-id="removing-the-target-lsv-perspective">Removing the target LSV perspective</h3>
+<p>If we now look at the lsv_ids we can see, that the same lsv_id always exists once with a “:s:” and once with a “:t:” in the middle. These are the quantification for the same LSV once from the source (:s:) and once from the target (:t:) perspective (We this also in the <a href="./voila_gui.html#fig-visualisation">VOILA visualisation part</a>).</p>
+<p>This information can be used in more advanced analyses. For simplicity we here only look at the source perspective and remove all rows with the target perspective.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select only rows with the source perspective (that contain :s: in te lsv_id)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>splice_results <span class="ot">&lt;-</span> <span class="fu">subset</span>(splice_results, <span class="fu">grepl</span>(lsv_id, <span class="at">pattern =</span> <span class="st">":s:"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="removing-duplicated-lsv-junctions" class="level3">
+<h3 class="anchored" data-anchor-id="removing-duplicated-lsv-junctions">Removing duplicated LSV junctions</h3>
+<p>If we look at the complex events, we can see that some rows are duplicated. To remove them we look for rows that have the same <em>lsv_id</em> and <em>junction_coord</em>. We combine both to a <em>unique_juction_id</em> and remove duplicates with negating(!) the <em>duplicated()</em> function</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at complex lsvs</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>splice_results <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(complex<span class="sc">==</span><span class="st">"True"</span>) <span class="sc">%&gt;%</span> <span class="co"># filter complex events</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(., lsv_id) <span class="sc">%&gt;%</span> <span class="co"># order by lsv_id </span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 23%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
+<col style="width: 12%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">ctrl_median_psi</th>
+<th style="text-align: right;">cond_median_psi</th>
+<th style="text-align: right;">dpsi</th>
+<th style="text-align: right;">probability_changing</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50936262-50942031</td>
+<td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">-0.051</td>
+<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50940933-50942031</td>
+<td style="text-align: right;">0.711</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.491</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50940933-50942031</td>
+<td style="text-align: right;">0.711</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.491</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50941209-50942031</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.676</td>
+<td style="text-align: left;">cassette_exons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANKIB1</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">92345067-92347946</td>
+<td style="text-align: right;">0.174</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.622</td>
+<td style="text-align: left;">intron_retention</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANKIB1</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">92345066-92350950</td>
+<td style="text-align: right;">0.819</td>
+<td style="text-align: right;">0.801</td>
+<td style="text-align: right;">-0.008</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: left;">intron_retention</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove duplicated rows</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>splice_results <span class="ot">=</span> splice_results <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unique_juction_id =</span> <span class="fu">paste0</span>(lsv_id, <span class="st">"_"</span>, junction_coord)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(., <span class="sc">!</span><span class="fu">duplicated</span>(unique_juction_id))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># look again</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>splice_results <span class="sc">%&gt;%</span> </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(complex<span class="sc">==</span><span class="st">"True"</span>) <span class="sc">%&gt;%</span> <span class="co"># filter complex events</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(., lsv_id) <span class="sc">%&gt;%</span> <span class="co"># order by lsv_id</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 17%">
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">ctrl_median_psi</th>
+<th style="text-align: right;">cond_median_psi</th>
+<th style="text-align: right;">dpsi</th>
+<th style="text-align: right;">probability_changing</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">unique_juction_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50936262-50942031</td>
+<td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">-0.051</td>
+<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50940933-50942031</td>
+<td style="text-align: right;">0.711</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.491</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50940933-50942031</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50941209-50942031</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">0.676</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50941209-50942031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ANKIB1</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">92345067-92347946</td>
+<td style="text-align: right;">0.174</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">-0.003</td>
+<td style="text-align: right;">0.622</td>
+<td style="text-align: left;">intron_retention</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066_92345067-92347946</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ANKIB1</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">92345066-92350950</td>
+<td style="text-align: right;">0.819</td>
+<td style="text-align: right;">0.801</td>
+<td style="text-align: right;">-0.008</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: left;">intron_retention</td>
+<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066_92345066-92350950</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KRIT1</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000001631.17:s:92234808-92234923</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">92226682-92234808</td>
+<td style="text-align: right;">0.077</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">-0.026</td>
+<td style="text-align: right;">0.509</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000001631.17:s:92234808-92234923_92226682-92234808</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="save-resulting-data.frame-for-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="save-resulting-data.frame-for-comparison">Save resulting data.frame for comparison</h3>
+<p>Here we save the cleaned data.frame of the splicing results for the comparison in the next session.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(splice_results, <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="global-overview" class="level1">
+<h1>Global overview</h1>
+<section id="number-of-detected-lsvs" class="level2">
+<h2 class="anchored" data-anchor-id="number-of-detected-lsvs">Number of detected LSVs</h2>
+<p>First we want to know how many LSVs were detected and in how many genes these LSVs are positioned.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of LSVs</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>splice_results<span class="sc">$</span>lsv_id <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11306</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of splcied genes</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>splice_results<span class="sc">$</span>gene_name <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6166</code></pre>
+</div>
+</div>
+</section>
+<section id="complexity-of-lsvs" class="level2">
+<h2 class="anchored" data-anchor-id="complexity-of-lsvs">Complexity of LSVs</h2>
+<p>We already learned that LSVs consist of a set of exons and a set of junctions connected to them. We call LSVs binary if they contain only two junctions and complex if they contain more than two junctions.</p>
+<p>You can check how many events where complex with</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of junctions per lsv</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(splice_results<span class="sc">$</span>lsv_id) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  ENSG00000000419.14:s:50942031-50943273 
+                                       3 
+  ENSG00000000419.14:s:50945847-50945923 
+                                       2 
+ENSG00000000457.14:s:169870255-169870357 
+                                       2 
+ENSG00000000460.17:s:169798857-169798958 
+                                       2 
+ENSG00000000460.17:s:169850265-169850345 
+                                       2 
+ENSG00000001036.14:s:143503913-143504252 
+                                       2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of lsvs with n junctions</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>n_junctions <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">table</span>(splice_results<span class="sc">$</span>lsv_id))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>n_junctions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   2    3    4    5    6    7    9 
+9612 1366  272   41   11    3    1 </code></pre>
+</div>
+</div>
+<p>And show these numbers in a bar plot:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>n_junctions <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(n_junctions)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(n_junctions, <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Freq))<span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that the vast majority of LSVs contains only two junctions.</p>
+<p>Here are some possibilities to make the plot look nicer: - add up all LSVs with 5 or more junctions in the 5 bar - add numbers in the barchart - add axis labels - add a nice theme</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only focus the plot on 2-5junctions</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --&gt; set all values bigger than 8 to 8</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>n_junctions <span class="ot">&lt;-</span> <span class="fu">mutate</span>(n_junctions, <span class="at">Var1_plot =</span> <span class="fu">case_when</span>(<span class="fu">as.numeric</span>(Var1) <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                                                         T <span class="sc">~</span> <span class="fu">as.numeric</span>(Var1) ))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(n_junctions, <span class="fu">aes</span>(<span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq))<span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>( <span class="at">width =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some adjustments for nice plots:</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="do">###################################</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add numbers over bars</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(n_junctions, <span class="fu">aes</span>(<span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq))<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> n_junctions <span class="sc">%&gt;%</span> <span class="fu">subset</span>(Var1 <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span>Freq, <span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq), </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position=</span><span class="fu">position_dodge</span>(<span class="at">width=</span><span class="fl">0.9</span>), <span class="at">vjust=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change axis labels</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(n_junctions, <span class="fu">aes</span>(<span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq))<span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> n_junctions <span class="sc">%&gt;%</span> <span class="fu">subset</span>(Var1 <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span>Freq, <span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq), </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">position=</span><span class="fu">position_dodge</span>(<span class="at">width=</span><span class="fl">0.9</span>), <span class="at">vjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Complex LSV"</span>)<span class="sc">+</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of LSVs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-15-3.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cool theme</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(n_junctions, <span class="fu">aes</span>(<span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq))<span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> n_junctions <span class="sc">%&gt;%</span> <span class="fu">subset</span>(Var1 <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), </span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span>Freq, <span class="at">x =</span> Var1_plot, <span class="at">y =</span> Freq), </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">position=</span><span class="fu">position_dodge</span>(<span class="at">width=</span><span class="fl">0.9</span>), <span class="at">vjust=</span><span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Complex LSV"</span>)<span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number of LSVs"</span>)<span class="sc">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_pubr</span>()  <span class="co"># try some others theme_dark(), theme_bw(), theme_minimal and chose you favorite</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-15-4.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="strength-of-splicing-changes" class="level3">
+<h3 class="anchored" data-anchor-id="strength-of-splicing-changes">Strength of splicing changes</h3>
+<p>Splicing changes for each junction are indicated in the column <strong>mean_dpsi_per_lsv_junction</strong>. For a first overview about the global splicing changes, we extract the maximum deltaPSI value from each LSV and plot this information. The direction of the splicing change is ingored by using the absolut value with <em>abs()</em>.</p>
+<p>We can select the maximum value by grouping the data frame (<em>group_by()</em>), arranging each group by the dpsi value in descending order (<em>arrange()</em>, <em>desc()</em>) and then slicing out the first per group (<em>slice()</em>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>highest_junction_per_lsv <span class="ot">&lt;-</span> splice_results <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(lsv_id) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(dpsi)), <span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>highest_junction_per_lsv <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 16%">
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">ctrl_median_psi</th>
+<th style="text-align: right;">cond_median_psi</th>
+<th style="text-align: right;">dpsi</th>
+<th style="text-align: right;">probability_changing</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">unique_juction_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50936262-50942031</td>
+<td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">-0.051</td>
+<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">50942126-50945847</td>
+<td style="text-align: right;">0.126</td>
+<td style="text-align: right;">0.109</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923_50942126-50945847</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCYL3</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169869128-169870255</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">-0.031</td>
+<td style="text-align: right;">0.502</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357_169869128-169870255</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169798958-169802621</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.150</td>
+<td style="text-align: right;">-0.081</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958_169798958-169802621</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169850345-169850438</td>
+<td style="text-align: right;">0.230</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">-0.154</td>
+<td style="text-align: right;">0.898</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345_169850345-169850438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FUCA2</td>
+<td style="text-align: left;">chr6</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">143502565-143503913</td>
+<td style="text-align: right;">0.961</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">-0.073</td>
+<td style="text-align: right;">0.896</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252_143502565-143503913</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>From this we can easily get the number of detected LSVs</p>
+<p>Now that we have for each LSV the maximum deltaPSI as a column in the data.frame, we can create a histogram to get an overview about the splicing changes.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi))) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">025</span>) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see for both comparisons that the majority of LSVs does not show strong changes. As the first bars are so high we can not see really what is happening beyond 0.1. One way to have a better view in this region is to log10-transform the y-axis using the <em>scale_y_log10()</em> function of the ggplot2 package.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi))) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">025</span>) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>)<span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A second alternative offers the xlim() function of the ggplot2 package, which automatically filters for maxDeltaPSI values between 0.075 and 0.5. You can change the range depending what you see in your data.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi))) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span>.<span class="dv">025</span>) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>)<span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.075</span>,<span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/strengthOfSplicingChangesPlotCoordCartesian-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="significance-of-splicing-changes" class="level3">
+<h3 class="anchored" data-anchor-id="significance-of-splicing-changes">Significance of splicing changes</h3>
+<p>The probability we can see in the column <em>probability_changing</em> is based on a deltaPSI threshold that was defined in the voila tsv step. I used here a threshold of 0.05. If we see a probability of 0.9 for a junction this means that there is a 90% probability that the deltaPSI value of the junction was greater than 0.05.</p>
+<p>We could also plot a histogram for the probabilities, but what is more interesting is the relationship between the maximal deltaPSI and maximal probability of the LSVs. Note that typically the maximal deltaPSI and maximal probability belong to the same junction.</p>
+<p>We now create a scatter plot in which we plot for each LSV the maximal deltaPSI against the maximal probability. With <em>geom_hline()</em> from the ggplot2 package we can also plot a probability treshold of 0.9 (which we typically use), which will be used to define regulated LSVs later. Note that in <em>geom_point()</em> we use the alpha parameter that controls the transparency of the points. If we set it to a lower value, we can better see where a lot of points are plotted on top of each other.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi), <span class="at">y=</span>probability_changing)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Maximum probability per LSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/maxDeltaPSIagainstMaxProbability-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that that in the HepG2 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.</p>
+</section>
+</section>
+<section id="regulated-lsvs" class="level2">
+<h2 class="anchored" data-anchor-id="regulated-lsvs">Regulated LSVs</h2>
+<p>Now it is time to determine the <strong>significantly changing LSVs</strong>.</p>
+<section id="number-and-fraction-of-regulated-lsvs" class="level3">
+<h3 class="anchored" data-anchor-id="number-and-fraction-of-regulated-lsvs">Number and fraction of regulated LSVs</h3>
+<p>We check for each of the LSVs if the maximal probability is <span class="math inline">\(\ge\)</span> our threshold of 0.9 and store this information with TRUE or FALSE in a new column called <em>sign</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column sig that tells us whether the change was significant</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>highest_junction_per_lsv<span class="sc">$</span>sign <span class="ot">&lt;-</span> highest_junction_per_lsv<span class="sc">$</span>probability_changing <span class="sc">&gt;=</span> <span class="fl">0.9</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(highest_junction_per_lsv) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 16%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 24%">
+<col style="width: 2%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">ctrl_median_psi</th>
+<th style="text-align: right;">cond_median_psi</th>
+<th style="text-align: right;">dpsi</th>
+<th style="text-align: right;">probability_changing</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">unique_juction_id</th>
+<th style="text-align: left;">sign</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50936262-50942031</td>
+<td style="text-align: right;">0.235</td>
+<td style="text-align: right;">0.170</td>
+<td style="text-align: right;">-0.051</td>
+<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">50942126-50945847</td>
+<td style="text-align: right;">0.126</td>
+<td style="text-align: right;">0.109</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923_50942126-50945847</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCYL3</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169869128-169870255</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">-0.031</td>
+<td style="text-align: right;">0.502</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357_169869128-169870255</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169798958-169802621</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.150</td>
+<td style="text-align: right;">-0.081</td>
+<td style="text-align: right;">0.721</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958_169798958-169802621</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">169850345-169850438</td>
+<td style="text-align: right;">0.230</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">-0.154</td>
+<td style="text-align: right;">0.898</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345_169850345-169850438</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FUCA2</td>
+<td style="text-align: left;">chr6</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">143502565-143503913</td>
+<td style="text-align: right;">0.961</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">-0.073</td>
+<td style="text-align: right;">0.896</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252_143502565-143503913</td>
+<td style="text-align: left;">FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at how many are significant and how many not</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>sign)  <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Var1</th>
+<th style="text-align: right;">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">9932</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">1374</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percentages</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>sign) </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>(t<span class="sc">/</span><span class="fu">sum</span>(t)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Var1</th>
+<th style="text-align: right;">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">0.8784716</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">0.1215284</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can also plot this information with a stacked bar chart.We add the <em>coord_cartesian()</em> function of ggplot2 to zoom-in the y-axis (0 to 2000), as we do not have so many regulated events. You can adjust the ylim input if you want.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gg_df <span class="ot">&lt;-</span> <span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>sign) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#coord_cartesian(ylim=(c(0,2000))) +</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">label=</span>Freq), <span class="at">vjust=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/significantLSVsPlotAbsolute-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this plot we can see the absolute number of significant LSVs among all LSVs. Next to the absolute number we could also plot the fraction of significant LSVs among all LSVs. Fraction is similar to percentage when you multiply it by 100. This makes the comparison between comparisons with different number of LSVs more fair.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/significantLSVsPlotFraction-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="colour-significant-changes" class="level3">
+<h3 class="anchored" data-anchor-id="colour-significant-changes">Colour significant changes</h3>
+<p>We can also color the significant LSVs in the scatterplot from above:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi), <span class="at">y=</span>probability_changing, <span class="at">color =</span> sign)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>))<span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Maximum probability per LSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="top-10-spliced-lsvs" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-spliced-lsvs">Top 10 spliced LSVs</h3>
+<p>If we want to know the LSVs with the highest changes. We can <em>arrange()</em> the data.frame by the dpsi values and look at the top 10.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> highest_junction_per_lsv <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(dpsi))) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>top10 <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 16%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 1%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">gene_name</th>
+<th style="text-align: left;">seqid</th>
+<th style="text-align: left;">strand</th>
+<th style="text-align: left;">lsv_id</th>
+<th style="text-align: left;">complex</th>
+<th style="text-align: left;">junction_coord</th>
+<th style="text-align: right;">ctrl_median_psi</th>
+<th style="text-align: right;">cond_median_psi</th>
+<th style="text-align: right;">dpsi</th>
+<th style="text-align: right;">probability_changing</th>
+<th style="text-align: left;">class</th>
+<th style="text-align: left;">unique_juction_id</th>
+<th style="text-align: left;">sign</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SNX27</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000143376.14:s:151693424-151693483</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">151693483-151693593</td>
+<td style="text-align: right;">0.853</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">-0.821</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000143376.14:s:151693424-151693483_151693483-151693593</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AGTRAP</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000177674.16:s:11745801-11745837</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">11745837-11745988</td>
+<td style="text-align: right;">0.807</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">-0.774</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000177674.16:s:11745801-11745837_11745837-11745988</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000291203</td>
+<td style="text-align: left;">chr4</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000291203.1:s:119497662-119498292</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">119497903-119512351</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.220</td>
+<td style="text-align: right;">-0.706</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000291203.1:s:119497662-119498292_119497903-119512351</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BCAS3</td>
+<td style="text-align: left;">chr17</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000141376.23:s:61380506-61380572</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">61380571-61391977</td>
+<td style="text-align: right;">0.873</td>
+<td style="text-align: right;">0.186</td>
+<td style="text-align: right;">-0.694</td>
+<td style="text-align: right;">0.999</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000141376.23:s:61380506-61380572_61380571-61391977</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GDPD5</td>
+<td style="text-align: left;">chr11</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000158555.15:s:75490237-75490320</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">75477795-75490237</td>
+<td style="text-align: right;">0.754</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: right;">-0.680</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000158555.15:s:75490237-75490320_75477795-75490237</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SVIL-AS1</td>
+<td style="text-align: left;">chr10</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000291093.1:s:29415357-29415412</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">29415412-29420491</td>
+<td style="text-align: right;">0.310</td>
+<td style="text-align: right;">0.944</td>
+<td style="text-align: right;">0.656</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000291093.1:s:29415357-29415412_29415412-29420491</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RAPGEF2</td>
+<td style="text-align: left;">chr4</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000109756.10:s:159241201-159241368</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">159241368-159304342</td>
+<td style="text-align: right;">0.769</td>
+<td style="text-align: right;">0.112</td>
+<td style="text-align: right;">-0.652</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000109756.10:s:159241201-159241368_159241368-159304342</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ADAM22</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000008277.15:s:88181958-88183554</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">88182024-88193116</td>
+<td style="text-align: right;">0.250</td>
+<td style="text-align: right;">0.911</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000008277.15:s:88181958-88183554_88182024-88193116</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLAGL1</td>
+<td style="text-align: left;">chr6</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000118495.21:s:143960469-143961412</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">143942663-143960469</td>
+<td style="text-align: right;">0.792</td>
+<td style="text-align: right;">0.144</td>
+<td style="text-align: right;">-0.637</td>
+<td style="text-align: right;">0.984</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000118495.21:s:143960469-143961412_143942663-143960469</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BRD9</td>
+<td style="text-align: left;">chr5</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000028310.18:s:869245-869404</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">865581-869245</td>
+<td style="text-align: right;">0.881</td>
+<td style="text-align: right;">0.241</td>
+<td style="text-align: right;">-0.634</td>
+<td style="text-align: right;">0.995</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000028310.18:s:869245-869404_865581-869245</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="classes-of-lsvs" class="level1">
+<h1>Classes of LSVs</h1>
+<p>We now want to know which classes of splicing the significant LSVs belong to. For this we can make a barplot on the class column.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+alternative_3_prime_splice_site alternative_5_prime_splice_site 
+                           1879                             847 
+          alternative_last_exon                  cassette_exons 
+                           1911                            4330 
+               intron_retention        mutually_exclusive_exons 
+                           2307                              32 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x =</span> class))<span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()<span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span> <span class="co"># we flip x and y axis, to make the labels better readable</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="global_splicing_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="session-information" class="level1">
+<h1>Session Information</h1>
+<p>It is always good practice to add the session information in the end of any script to improve reproducibility.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

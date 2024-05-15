@@ -1,6 +1,16 @@
 ---
 title: "Visualising splice events"
-editor: source
+format: 
+  html: 
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    toc-expand: false
+    toc-fold: true
+    number-sections: false
+    toc-title: Contents
+    smooth-scroll: true
+    lightbox: true
 ---
 
 
@@ -54,7 +64,7 @@ Below the filters you can see a table with 5 columns. The first column tells us 
 The third column depicts a **simplified scheme of the LSV**: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3' or 5' splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.
 
 
-![](images/Picture 5.png)
+![](images/Picture 5.png){fig-visualisation}
 
 
 The fourth column the **deltaPSI values** of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information.

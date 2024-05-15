@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -86,13 +86,28 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./voila_gui.html" rel="" target="">
- <span class="menu-text">Visualisation</span></a>
+    <a class="nav-link" href="./data_processing_galaxy.html" rel="" target="">
+ <span class="menu-text">Processing</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./tasks.html" rel="" target="">
- <span class="menu-text">Tasks</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-splicing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Splicing</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-splicing">    
+        <li>
+    <a class="dropdown-item" href="./voila_gui.html" rel="" target="">
+ <span class="dropdown-text">Visualisation</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./global_splicing.html" rel="" target="">
+ <span class="dropdown-text">Global analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tasks.html" rel="" target="">
+ <span class="dropdown-text">Tasks</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
@@ -103,25 +118,52 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Spezialisierungspraktikum RNA Biology</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./voila_gui.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualisation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./global_splicing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Global analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tasks</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#you-need-to-know" id="toc-you-need-to-know" class="nav-link active" data-scroll-target="#you-need-to-know">You need to know:</a>
   <ul class="collapse">
-  <li><a href="#what-is-splicing" id="toc-what-is-splicing" class="nav-link" data-scroll-target="#what-is-splicing">What is splicing?</a></li>
-  <li><a href="#what-are-splice-events-and-local-splice-variants-lsvs" id="toc-what-are-splice-events-and-local-splice-variants-lsvs" class="nav-link" data-scroll-target="#what-are-splice-events-and-local-splice-variants-lsvs">What are splice events and local splice variants (LSVs)?</a></li>
-  <li><a href="#what-are-psi-and-dpsi" id="toc-what-are-psi-and-dpsi" class="nav-link" data-scroll-target="#what-are-psi-and-dpsi">What are PSI and dPSI?</a></li>
-  <li><a href="#what-is-the-probability-changing" id="toc-what-is-the-probability-changing" class="nav-link" data-scroll-target="#what-is-the-probability-changing">What is the probability changing?</a></li>
-  <li><a href="#how-does-the-majiq-workflow-look-like" id="toc-how-does-the-majiq-workflow-look-like" class="nav-link" data-scroll-target="#how-does-the-majiq-workflow-look-like">How does the majiq workflow look like?</a></li>
-  <li><a href="#what-are-the-output-files-from-majiq" id="toc-what-are-the-output-files-from-majiq" class="nav-link" data-scroll-target="#what-are-the-output-files-from-majiq">What are the output files from majiq?</a></li>
-  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
@@ -145,30 +187,17 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>On the following pages you can find the course materials for the splicing part of Spezialisierungspraktikum RNA Biology.</p>
-<p>In brief, we explore and visualize the output a splicing analysis done with MAJIQ.</p>
-<section id="you-need-to-know" class="level1">
-<h1>You need to know:</h1>
-<section id="what-is-splicing" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-splicing">What is splicing?</h2>
-</section>
-<section id="what-are-splice-events-and-local-splice-variants-lsvs" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-splice-events-and-local-splice-variants-lsvs">What are splice events and local splice variants (LSVs)?</h2>
-</section>
-<section id="what-are-psi-and-dpsi" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-psi-and-dpsi">What are PSI and dPSI?</h2>
-</section>
-<section id="what-is-the-probability-changing" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-probability-changing">What is the probability changing?</h2>
-</section>
-<section id="how-does-the-majiq-workflow-look-like" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-the-majiq-workflow-look-like">How does the majiq workflow look like?</h2>
-</section>
-<section id="what-are-the-output-files-from-majiq" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-the-output-files-from-majiq">What are the output files from majiq?</h2>
+<p>On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology.</p>
+<section id="section" class="level2 bigger">
+<h2 class="bigger anchored" data-anchor-id="section"></h2>
+<p>In this Praktikum we look at the following topics:</p>
+<ul>
+<li><p>Processing of RNAseq data</p></li>
+<li><p>Differential Gene Expression Analysis</p></li>
+<li><p>Differential analysis of local splice variants</p></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

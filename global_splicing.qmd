@@ -1,0 +1,568 @@
+---
+title: "Global characterisation of detected splice events"
+format: 
+  html: 
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    toc-fold: true
+    number-sections: false
+    toc-title: Contents
+    smooth-scroll: true
+    lightbox: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, results = TRUE, fig.pos = 'h', fig.align = "center", fig.width = 4, fig.height=4)
+```
+
+# Introduction
+
+A splicing analysis of your RNA-seq data has been preformed with the [MAJIQ workflow](index.qmd#majiq-workflow). 
+
+The output is split by the [splicing classes](index.qmd#splicing-classes) and stored in .tsv files.
+
+This script only looks at one of the two data sets you have (e.g. only one cell line). You should therefore perform the analyses twice, once for each data set.
+
+
+
+
+# Preparation
+
+## Required packages
+
+Here you can find the packages we need. You can install them with the install.packages() command.
+
+```{r}
+library(dplyr) # to easily handle data.frames 
+library(knitr) # beautiful tables
+
+library(ggplot2) # nice plots
+library(ggpubr) # for even more nice plots
+
+```
+
+## Loading the TSV-Files
+
+First, we load the TSV-files as data.frames into R. We are only look at the most common classes of splicing. You can see in the output folder, that you get much more TSV-files, but we will ignore all others.
+
+```{r}
+# --------------------
+# Input
+# --------------------
+
+# path to the folder that contains the .tsv files
+in_path <- "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/"
+
+# These are the splicing classes we want to look at.
+# We make a list with the file names, and give each object in the list a name
+# the syntax is object_name = "file_name.tsv"
+
+interesting_classes <- list(alternative_3_prime_splice_site = "alt3prime.tsv",
+                         alternative_5_prime_splice_site = "alt5prime.tsv",
+                         cassette_exons = "cassette.tsv",
+                         alternative_first_exon = "alternate_first_exon.tsv",
+                         alternative_last_exon = "alternate_last_exon.tsv",
+                         mutually_exclusive_exons = "mutually_exclusive.tsv",
+                         intron_retention ="alternative_intron.tsv")
+
+interesting_classes 
+```
+
+
+```{r}
+# --------------------
+# Import tsvs
+# --------------------
+
+# load the content of the tsv files by looping over the interesting_classes list
+splice_results_list <- interesting_classes
+
+# read in the tsv files with a loop over all tsv files
+for(i in 1:length(interesting_classes)){
+  
+  # we use the read_table function to import the tsv files
+  splice_results_list [[i]] = read.table(paste0(in_path, interesting_classes[[i]]),
+                       header=TRUE,
+                       sep="\t",
+                       stringsAsFactors=FALSE)
+}
+
+# the tsv files are now imported in the splice_results list
+# each object in the splice_results list are the results of one class of splicing (in data.frame format)
+
+
+```
+
+
+```{r}
+# --------------------
+# have a closer look at the loop from above
+# --------------------
+
+length(interesting_classes) # the length of the list interesting_classes
+1:length(interesting_classes) # a vector from one until the length of the interesting_classes list
+interesting_classes[[3]]  %>% kable() # the third object in the interesting classes results list
+paste0(in_path, interesting_classes[[3]]) # the path to the third tsv file
+head(splice_results_list[[3]])  %>% kable() # the third object in the splice results list
+
+
+```
+
+## Cleaning up the splicing results for easier usage
+
+We combine the data.frames in the list into one data.frame for easier handling.
+
+
+### Add a class column
+
+```{r}
+# --------------------
+# combine all data frames in the list into one data.frame
+# --------------------
+
+# You can select a object from the list by its name
+head(splice_results_list$alternative_3_prime_splice_site)  %>% kable()
+
+# Add a new column with the class name
+#####################################
+
+# now you can add a new column to the object that has the object name
+splice_results_list$alternative_3_prime_splice_site <- mutate(splice_results_list$alternative_3_prime_splice_site,
+                                                         class = "alternative_3_prime_splice_site")
+
+head(splice_results_list$alternative_3_prime_splice_site)  %>% kable()
+
+# do the same for all classes
+splice_results_list$alternative_5_prime_splice_site <- mutate(splice_results_list$alternative_5_prime_splice_site,
+                                                         class = "alternative_5_prime_splice_site")
+splice_results_list$cassette_exons <- mutate(splice_results_list$cassette_exons,
+                                                         class = "cassette_exons")
+splice_results_list$alternative_first_exon <- mutate(splice_results_list$alternative_first_exon,
+                                                         class = "alternative_first_exon")
+splice_results_list$alternative_last_exon <- mutate(splice_results_list$alternative_last_exon,
+                                                         class = "alternative_last_exon")
+splice_results_list$mutually_exclusive_exons <- mutate(splice_results_list$mutually_exclusive_exons ,
+                                                         class = "mutually_exclusive_exons")
+splice_results_list$intron_retention <- mutate(splice_results_list$intron_retention,
+                                               class = "intron_retention")
+```
+
+### Select only the most important columns
+
+We select the following columns:
+
+1. Name of the gene in which the LSV is located
+2. Chromosome where the gene is located
+3. Strand of the gene
+4. Unique ID of the LSV
+5. PSI of the control samples (median of all samples)
+6. PSI of the condition samples (median of all samples, condition is for example knockout or knockdown)
+7. deltaPSI of condition vs control
+8. Probability that the change (|deltaPSI|) was $\ge$ 0.05 (change of 5% or more)
+9. class of splicing event
+
+
+```{r}
+
+# select important columns
+##########################
+colnames(splice_results_list$alternative_3_prime_splice_site)
+
+cols <- c("gene_name", 
+  "seqid", 
+  "strand", 
+  "lsv_id", 
+  "complex",
+  "junction_coord",
+  "SFPQ_HepG2_Control_median_psi", 
+  "SFPQ_HepG2_shRNA_median_psi", 
+  "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi",
+  "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing",
+  "class")
+```
+
+In order to do that to all objects in the list (all splicing classes), we use a **for loop** again. 
+```{r}
+
+for(i in 1:length(splice_results_list)){
+  print(names(splice_results_list[i]))
+  splice_results_list[[i]] =  select(splice_results_list[[i]], cols)
+}
+
+```
+
+
+
+
+### Make one data.frame combining all classes
+
+```{r}
+# Combine all
+splice_results <- rbind(splice_results_list$alternative_3_prime_splice_site,
+                        splice_results_list$alternative_5_prime_splice_site,
+                        splice_results_list$cassette_exons,
+                        splice_results_list$alternative_first_exon,
+                        splice_results_list$alternative_last_exon,
+                        splice_results_list$mutually_exclusive_exons,
+                        splice_results_list$intron_retention)
+head(splice_results) %>% kable()
+
+splice_results %>% subset(lsv_id == "ENSG00000076685.19:s:103101045-103101102") %>% kable()
+
+# rename columns
+colnames(splice_results) <- cols <- c("gene_name", 
+  "seqid", 
+  "strand", 
+  "lsv_id", 
+  "complex",
+  "junction_coord",
+  "ctrl_median_psi", 
+  "cond_median_psi", 
+  "dpsi",
+  "probability_changing",
+  "class")
+
+
+# remove the list 
+#remove(splice_results_list)
+
+
+```
+
+### Removing the target LSV perspective
+
+If we now look at the lsv_ids we can see, that the same lsv_id always exists once with a ":s:" and once with a ":t:" in the middle. These are the quantification for the same LSV once from the source (:s:) and once from the target (:t:) perspective (We this also in the [VOILA visualisation part](voila_gui.qmd#fig-visualisation)). 
+
+This information can be used in more advanced analyses. For simplicity we here only look at the source perspective and remove all rows with the target perspective.
+
+
+```{r}
+# select only rows with the source perspective (that contain :s: in te lsv_id)
+splice_results <- subset(splice_results, grepl(lsv_id, pattern = ":s:")) 
+
+```
+
+### Removing duplicated LSV junctions
+
+If we look at the complex events, we can see that some rows are duplicated. To remove them we look for rows that have the same *lsv_id* and *junction_coord*. We combine both to a *unique_juction_id* and remove duplicates with negating(!) the *duplicated()* function
+
+ 
+```{r}
+# Look at complex lsvs
+splice_results %>% 
+  subset(complex=="True") %>% # filter complex events
+  arrange(., lsv_id) %>% # order by lsv_id 
+  head() %>%
+  kable()
+
+
+# remove duplicated rows
+splice_results = splice_results %>% 
+  rowwise() %>%
+  mutate(unique_juction_id = paste0(lsv_id, "_", junction_coord)) %>% 
+  subset(., !duplicated(unique_juction_id))
+
+# look again
+splice_results %>% 
+  subset(complex=="True") %>% # filter complex events
+  arrange(., lsv_id) %>% # order by lsv_id
+  head() %>%
+  kable()
+
+
+
+```
+
+### Save resulting data.frame for comparison
+
+Here we save the cleaned data.frame of the splicing results for the comparison in the next session.
+
+```{r eval=F}
+saveRDS(splice_results, "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds")
+
+```
+
+
+
+# Global overview
+
+## Number of detected LSVs
+
+First we want to know how many LSVs were detected and in how many genes these LSVs are positioned.
+
+```{r}
+# Number of LSVs
+splice_results$lsv_id %>% 
+  unique() %>% 
+  length()
+
+# Number of splcied genes
+splice_results$gene_name %>% 
+  unique() %>% 
+  length()
+
+```
+
+
+
+## Complexity of LSVs
+
+We already learned that LSVs consist of a set of exons and a set of junctions connected to them. We call LSVs binary if they contain only two junctions and complex if they contain more than two junctions.
+
+You can check how many events where complex with
+
+```{r}
+# number of junctions per lsv
+table(splice_results$lsv_id) %>% head()
+
+# number of lsvs with n junctions
+n_junctions <- table(table(splice_results$lsv_id))
+n_junctions
+```
+And show these numbers in a bar plot:
+
+```{r}
+n_junctions <- as.data.frame(n_junctions)
+
+# plot
+ggplot(n_junctions, aes(x = Var1, y = Freq))+
+  geom_col()
+```
+
+We can see that the vast majority of LSVs contains only two junctions.
+
+Here are some possibilities to make the plot look nicer:
+ - add up all LSVs with 5 or more junctions in the 5 bar
+ - add numbers in the barchart
+ - add axis labels
+ - add a nice theme
+
+```{r}
+# Only focus the plot on 2-5junctions
+# --> set all values bigger than 8 to 8
+
+n_junctions <- mutate(n_junctions, Var1_plot = case_when(as.numeric(Var1) >= 5 ~ 5,
+                                                         T ~ as.numeric(Var1) ))
+
+ggplot(n_junctions, aes(x = Var1_plot, y = Freq))+
+  geom_col( width = 1)
+
+
+
+# some adjustments for nice plots:
+###################################
+
+# add numbers over bars
+ggplot(n_junctions, aes(x = Var1_plot, y = Freq))+
+  geom_col()+
+  geom_text(data = n_junctions %>% subset(Var1 %in% 1:5), 
+            aes(label=Freq, x = Var1_plot, y = Freq), 
+            position=position_dodge(width=0.9), vjust=0)
+
+
+# change axis labels
+ggplot(n_junctions, aes(x = Var1_plot, y = Freq))+
+  geom_col()+
+  geom_text(data = n_junctions %>% subset(Var1 %in% 1:5), 
+            aes(label=Freq, x = Var1_plot, y = Freq), 
+            position=position_dodge(width=0.9), vjust=0)+
+  xlab("Complex LSV")+
+  ylab("Number of LSVs")
+
+
+# cool theme
+ggplot(n_junctions, aes(x = Var1_plot, y = Freq))+
+  geom_col()+
+  geom_text(data = n_junctions %>% subset(Var1 %in% 1:5), 
+            aes(label=Freq, x = Var1_plot, y = Freq), 
+            position=position_dodge(width=0.9), vjust=0)+
+  xlab("Complex LSV")+
+  ylab("Number of LSVs")+
+  theme_pubr()  # try some others theme_dark(), theme_bw(), theme_minimal and chose you favorite
+
+
+```
+
+
+
+
+### Strength of splicing changes
+
+Splicing changes for each junction are indicated in the column **mean_dpsi_per_lsv_junction**. For a first overview about the global splicing changes, we extract the maximum deltaPSI value from each LSV and plot this information. The direction of the splicing change is ingored by using the absolut value with *abs()*. 
+
+We can select the maximum value by grouping the data frame (*group_by()*), arranging each group by the dpsi value in descending order (*arrange()*, *desc()*) and then slicing out the first per group (*slice()*).
+
+```{r}
+highest_junction_per_lsv <- splice_results %>%
+  group_by(lsv_id) %>%
+  arrange(desc(abs(dpsi)), .by_group = T) %>%
+  slice(1) %>% 
+  ungroup()
+
+highest_junction_per_lsv %>% head() %>% kable()
+```
+From this we can easily get the number of detected LSVs
+
+
+Now that we have for each LSV the maximum deltaPSI as a column in the data.frame, we can create a histogram to get an overview about the splicing changes.
+
+```{r}
+
+ggplot(data=highest_junction_per_lsv, aes(x=abs(dpsi))) +
+  geom_histogram(binwidth=.025) +
+  theme_bw() +
+  labs(x="Maximum deltaPSI per LSV", y="Frequency")
+  
+
+```
+
+We can see for both comparisons that the majority of LSVs does not show strong changes. 
+As the first bars are so high we can not see really what is happening beyond 0.1. One way to have a better view in this region is to log10-transform the y-axis using the *scale_y_log10()* function of the ggplot2 package.
+
+```{r strengthOfSplicingChangesPlotLog10, eval=F}
+ggplot(data=highest_junction_per_lsv, aes(x=abs(dpsi))) +
+  geom_histogram(binwidth=.025) +
+  theme_bw() +
+  labs(x="Maximum deltaPSI per LSV", y="Frequency")+
+  scale_y_log10()
+```
+
+A second alternative offers the xlim() function of the ggplot2 package, which automatically filters for maxDeltaPSI values between 0.075 and 0.5. You can change the range depending what you see in your data.
+
+```{r strengthOfSplicingChangesPlotCoordCartesian}
+
+ggplot(data=highest_junction_per_lsv, aes(x=abs(dpsi))) +
+  geom_histogram(binwidth=.025) +
+  theme_bw() +
+  labs(x="Maximum deltaPSI per LSV", y="Frequency")+
+  theme_bw() +
+  xlim(0.075,0.5) 
+
+```
+
+### Significance of splicing changes
+
+The probability we can see in the column *probability_changing* is based on a deltaPSI threshold that was defined in the voila tsv step. I used here a threshold of 0.05. If we see a probability of 0.9 for a junction this means that there is a 90% probability that the deltaPSI value of the junction was greater than 0.05. 
+
+We could also plot a histogram for the probabilities, but what is more interesting is the relationship between the maximal deltaPSI and maximal probability of the LSVs. Note that typically the maximal deltaPSI and maximal probability belong to the same junction. 
+
+We now create a scatter plot in which we plot for each LSV the maximal deltaPSI against the maximal probability. With *geom_hline()* from the ggplot2 package we can also plot a probability treshold of 0.9 (which we typically use), which will be used to define regulated LSVs later. Note that in *geom_point()* we use the alpha parameter that controls the transparency of the points. If we set it to a lower value, we can better see where a lot of points are plotted on top of each other.
+
+```{r maxDeltaPSIagainstMaxProbability}
+  ggplot(highest_junction_per_lsv, aes(x=abs(dpsi), y=probability_changing)) +
+    geom_point(alpha=.25) +
+    geom_hline(yintercept=0.9, col="red", linetype="dashed") +
+    theme_bw() +
+    labs(x="Maximum deltaPSI per LSV", y="Maximum probability per LSV")
+  
+```
+
+We can see that that in the HepG2 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.
+
+## Regulated LSVs
+
+Now it is time to determine the **significantly changing LSVs**.
+
+### Number and fraction of regulated LSVs
+
+We check for each of the LSVs if the maximal probability is $\ge$ our threshold of 0.9 and store this information with TRUE or FALSE in a new column called *sign*.
+
+```{r}
+# add a column sig that tells us whether the change was significant
+highest_junction_per_lsv$sign <- highest_junction_per_lsv$probability_changing >= 0.9
+head(highest_junction_per_lsv) %>% kable()
+
+# Look at how many are significant and how many not
+table(highest_junction_per_lsv$sign)  %>% kable()
+
+# calculate percentages
+t <- table(highest_junction_per_lsv$sign) 
+
+(t/sum(t)) %>% kable()
+
+```
+
+We can also plot this information with a stacked bar chart.We add the *coord_cartesian()* function of ggplot2 to zoom-in the y-axis (0 to 2000), as we do not have so many regulated events. You can adjust the ylim input if you want.
+
+```{r significantLSVsPlotAbsolute, fig.width=3}
+gg_df <- table(highest_junction_per_lsv$sign) %>% 
+  as.data.frame()
+
+ggplot(gg_df, aes( x = 1, y = Freq, fill=Var1))+
+  geom_col() +
+  #coord_cartesian(ylim=(c(0,2000))) +
+  labs(x="Comparison", y="Frequency") +
+  theme_bw()+
+  geom_text(aes(x = 1, label=Freq), vjust=2, col = "white")
+
+```
+
+In this plot we can see the absolute number of significant LSVs among all LSVs. Next to the absolute number we could also plot the fraction of significant LSVs among all LSVs. Fraction is similar to percentage when you multiply it by 100. This makes the comparison between comparisons with different number of LSVs more fair. 
+
+```{r significantLSVsPlotFraction, fig.width=3}
+
+ggplot(gg_df, aes( x = 1, y = Freq, fill=Var1))+
+  geom_col(position = "fill") +
+  labs(x="Comparison", y="Frequency") +
+  theme_bw()
+
+```
+
+### Colour significant changes
+
+We can also color the significant LSVs in the scatterplot from above:
+
+```{r}
+  ggplot(highest_junction_per_lsv, aes(x=abs(dpsi), y=probability_changing, color = sign)) +
+    geom_point(alpha=.25) +
+    geom_hline(yintercept=0.9, col="red", linetype="dashed") +
+    theme_bw() +
+  scale_color_manual(values = c("black", "blue"))+
+    labs(x="Maximum deltaPSI per LSV", y="Maximum probability per LSV")
+
+```
+
+
+
+### Top 10 spliced LSVs
+
+If we want to know the LSVs with the highest changes. We can *arrange()* the data.frame by the dpsi values and look at the top 10.
+
+```{r}
+top10 <- highest_junction_per_lsv %>% 
+  arrange(desc(abs(dpsi))) %>% 
+  head(n = 10)
+
+top10 %>% kable()
+
+```
+
+# Classes of LSVs
+
+We now want to know which classes of splicing the significant LSVs belong to. For this we can make a barplot on the class column.
+
+
+```{r}
+
+table(highest_junction_per_lsv$class)
+
+ggplot(highest_junction_per_lsv, aes(x = class))+
+  geom_bar()+
+  coord_flip()+ # we flip x and y axis, to make the labels better readable
+  theme_bw()
+
+```
+
+
+
+
+
+# Session Information   
+
+It is always good practice to add the session information in the end of any script to improve reproducibility.
+
+```{r, eval=F}
+sessionInfo()
+```
+

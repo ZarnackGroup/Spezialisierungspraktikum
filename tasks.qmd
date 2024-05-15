@@ -1,11 +1,33 @@
 ---
 title: "Tasks"
-editor: visual
+format: 
+  html: 
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    toc-expand: false
+    toc-fold: true
+    number-sections: false
+    toc-title: Contents
+    smooth-scroll: true
+    lightbox: true
+
 ---
 
 Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.
 
 At the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.
+
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+
+
 
 # Tasks for part 1 - Visualisation
 
@@ -26,7 +48,7 @@ Instructions for screening AS events in the VOILA GUI and verification via Sashi
 
 # Tasks for part 2 - Analyzing AS at the level of LSVs
 
-Repeat the analyses in part2_AS_at_LSV_level.pdf for your comparisons.
+Do the global analysis part for both your data sets.
 
 # Tasks for part 3 - Analyzing AS at the level of AS events
 

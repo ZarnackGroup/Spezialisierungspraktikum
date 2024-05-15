@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spezialisierungspraktikum RNA Biology - Visualising splice events</title>
+<title>Spezialisierungspraktikum RNA Biology - Processing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -87,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data_processing_galaxy.html" rel="" target="">
+    <a class="nav-link active" href="./data_processing_galaxy.html" rel="" target="" aria-current="page">
  <span class="menu-text">Processing</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -124,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./voila_gui.html">Visualisation</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Processing</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -138,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./voila_gui.html" class="sidebar-item-text sidebar-link active">
+  <a href="./voila_gui.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualisation</span></a>
   </div>
 </li>
@@ -160,27 +159,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#visualize-the-results-of-the-splicing-analysis-with-voila" id="toc-visualize-the-results-of-the-splicing-analysis-with-voila" class="nav-link active" data-scroll-target="#visualize-the-results-of-the-splicing-analysis-with-voila">Visualize the results of the splicing analysis with VOILA</a>
-  <ul class="collapse">
-  <li><a href="#open-your-results-in-the-voila-gui" id="toc-open-your-results-in-the-voila-gui" class="nav-link" data-scroll-target="#open-your-results-in-the-voila-gui">Open your results in the VOILA GUI</a></li>
-  <li><a href="#adjusting-filters" id="toc-adjusting-filters" class="nav-link" data-scroll-target="#adjusting-filters">Adjusting filters</a></li>
-  <li><a href="#overview-of-regulated-lsvs" id="toc-overview-of-regulated-lsvs" class="nav-link" data-scroll-target="#overview-of-regulated-lsvs">Overview of regulated LSVs</a></li>
-  <li><a href="#genewise-details-on-lsvs" id="toc-genewise-details-on-lsvs" class="nav-link" data-scroll-target="#genewise-details-on-lsvs">Genewise details on LSVs</a></li>
-  </ul></li>
-  <li><a href="#visualize-selected-lsvs-as-sashimi-plots-in-igv" id="toc-visualize-selected-lsvs-as-sashimi-plots-in-igv" class="nav-link" data-scroll-target="#visualize-selected-lsvs-as-sashimi-plots-in-igv">Visualize selected LSVs as Sashimi plots in IGV</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Visualising splice events</h1>
+<h1 class="title">Processing</h1>
 </div>
 
 
@@ -195,64 +181,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:</p>
-<ul>
-<li>the VOILA GUI to visualise the splicing results</li>
-<li>the IGV genome browser to make sashimi plots of some examples</li>
-</ul>
-<section id="visualize-the-results-of-the-splicing-analysis-with-voila" class="level1">
-<h1>Visualize the results of the splicing analysis with VOILA</h1>
-<section id="open-your-results-in-the-voila-gui" class="level2">
-<h2 class="anchored" data-anchor-id="open-your-results-in-the-voila-gui">Open your results in the VOILA GUI</h2>
-<p>To visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).</p>
-<p>The Voila Launcher should open:</p>
-<p><img src="images/Picture 1.png" class="img-fluid"></p>
-<p>Enter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.</p>
-<p>The GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow).</p>
-<p><img src="images/Picture 2.png" class="img-fluid"></p>
-<p>You can do the same with a different port number for the second comparison.</p>
-</section>
-<section id="adjusting-filters" class="level2">
-<h2 class="anchored" data-anchor-id="adjusting-filters">Adjusting filters</h2>
-<p>You can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:</p>
-<ul>
-<li><p>On the top are options for <strong>filtering for specific classes of splice events</strong> ( e.g.&nbsp;alternative 5’ or 3’ splice sites, Exon Skipping or binary events).</p></li>
-<li><p>Below this you can apply a <strong>deltaPSI and Confidence Threshold filter</strong>.</p></li>
-</ul>
-<p><img src="images/Picture 3.png" class="img-fluid"></p>
-<p>By default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%).</p>
-<p>Depending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9.</p>
-</section>
-<section id="overview-of-regulated-lsvs" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-regulated-lsvs">Overview of regulated LSVs</h2>
-<p>Below the filters you can see a table with 5 columns. The first column tells us the <strong>name of the gene</strong> in which the LSV is located and the second column specifies a <strong>unique ID</strong> for the LSV. The last column offers a UCSC link (not important for us).</p>
-<p><img src="images/Picture 4.png" class="img-fluid"></p>
-<p>The third column depicts a <strong>simplified scheme of the LSV</strong>: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3’ or 5’ splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.</p>
-<p><img src="images/Picture 5.png" class="img-fluid">{fig-visualisation}</p>
-<p>The fourth column the <strong>deltaPSI values</strong> of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information.</p>
-</section>
-<section id="genewise-details-on-lsvs" class="level2">
-<h2 class="anchored" data-anchor-id="genewise-details-on-lsvs">Genewise details on LSVs</h2>
-<p>As an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample).</p>
-<p><img src="images/Picture 6.png" class="img-fluid"></p>
-<p>If we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.</p>
-<p>To get more details about this specific LSV you can click on the gene name. <img src="images/Picture 7.png" class="img-fluid"></p>
-<p>In the upper part we can see <strong>two splicegraphs</strong> for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.</p>
-<p>In the lower part you can see <strong>all detected LSVs of the gene</strong>. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have <strong>bar plots showing the PSI values</strong> in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.</p>
-<p>Let’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.</p>
-<p><img src="images/Picture 8.png" class="img-fluid"></p>
-<p>You now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein.</p>
-</section>
-</section>
-<section id="visualize-selected-lsvs-as-sashimi-plots-in-igv" class="level1">
-<h1>Visualize selected LSVs as Sashimi plots in IGV</h1>
-<p>To verify the findings from your visual inspection in the GUI, open IGV and load from each of your conditions the BAM-File of one replicate. Next, navigate to the genomic region where your AS event is located. You can get the genome coordinates of the source/target exon from the LSV ID.</p>
-<p><img src="images/Picture 9.png" class="img-fluid"></p>
-<p>We can already see that the coverage on the inner exon is quite low under control condition and much strong upon knockdown, which already confirms what we observed in the GUI. To further strengthen the observation we can create a sashimi plot by making a right click in one of the alignment tracks and selecting “Sashimi plot”.</p>
-<p><img src="images/Picture 10.png" class="img-fluid"></p>
+<p>Coming soon!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -492,5 +423,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
