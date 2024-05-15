@@ -165,7 +165,7 @@
     "href": "useful_R.html",
     "title": "Some useful R",
     "section": "",
-    "text": "select & subset mutate group_by for loops grepl"
+    "text": "select & subset mutate group_by for loops grepl\nBefore we start with the actual analysis I want to introduce some important functions and operators that will help us to process the splicing output.\nlibrary(knitr)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union"
   },
   {
     "objectID": "useful_R.html#the-pipe-operator",
@@ -193,7 +193,7 @@
     "href": "useful_R.html#count-the-number-of-occurences-with-the-table-function",
     "title": "Some useful R",
     "section": "Count the number of occurences with the table function",
-    "text": "Count the number of occurences with the table function\nOften we have a data.frame column with some specific information that we want to summarize. Here the table() function is helpful as it counts how often a certain string or value is found in the column.\nAssume we have a data.frame that stores the regulation of eight genes (A to H) and we want to know how many genes are upregulated, not regulated or downregulated. We can easily solve this task with table().\n\nregulationDataFrame &lt;- data.frame(\n  gene=c(\"A\", \"B\", \"C\", \"D\",\"E\", \"F\", \"G\", \"H\"),\n  regulation=c(\"up\", \"down\", \"up\", \"no\", \"no\", \"down\", \"up\", \"up\")\n)\ntable(regulationDataFrame$regulation)\n\n\ndown   no   up \n   2    2    4 \n\n\nAs you can see we now have a nice overview about the regulation. One nice feature of table() is that you can provide more than one column as input.\nFor instance we could also have information about the gene type and want to summarize the regulation across the different gene types. Here is an easy example, where we have 3 gene types, namely protein-coding, miRNA and rRNA.\n\nregulationDataFrame$type = c(\"protein-coding\", \"rRNA\", \"protein-coding\", \"miRNA\",\n           \"miRNA\", \"rRNA\", \"protein-coding\", \"protein-coding\")\n\ntable(regulationDataFrame$type, regulationDataFrame$regulation)\n\n                \n                 down no up\n  miRNA             0  2  0\n  protein-coding    0  0  4\n  rRNA              2  0  0\n\n\nWe can see that the upregulated genes are encoding for proteins, while the downregulated genes encode rRNAs and the non-regulated ones miRNAs.\nWith the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output."
+    "text": "Count the number of occurences with the table function\nOften we have a data.frame column with some specific information that we want to summarize. Here the table() function is helpful as it counts how often a certain string or value is found in the column.\nAssume we have a data.frame that stores the regulation of eight genes (A to H) and we want to know how many genes are upregulated, not regulated or downregulated. We can easily solve this task with table().\n\nregulationDataFrame &lt;- data.frame(\n  gene=c(\"A\", \"B\", \"C\", \"D\",\"E\", \"F\", \"G\", \"H\"),\n  regulation=c(\"up\", \"down\", \"up\", \"no\", \"no\", \"down\", \"up\", \"up\")\n)\ntable(regulationDataFrame$regulation)\n\n\ndown   no   up \n   2    2    4 \n\n\nAs you can see we now have a nice overview about the regulation. One nice feature of table() is that you can provide more than one column as input.\nFor instance we could also have information about the gene type and want to summarize the regulation across the different gene types. Here is an easy example, where we have 3 gene types, namely protein-coding, miRNA and rRNA.\n\nregulationDataFrame$type = c(\"protein-coding\", \"rRNA\", \"protein-coding\", \"miRNA\",\n           \"miRNA\", \"rRNA\", \"protein-coding\", \"protein-coding\")\n\ntable(regulationDataFrame$type, regulationDataFrame$regulation)\n\n                \n                 down no up\n  miRNA             0  2  0\n  protein-coding    0  0  4\n  rRNA              2  0  0\n\n\nWe can see that the upregulated genes are encoding for proteins, while the downregulated genes encode rRNAs and the non-regulated ones miRNAs."
   },
   {
     "objectID": "splicing_index.html",
@@ -263,6 +263,48 @@
     "href": "index.html#section",
     "title": "Spezialisierungspraktikum RNA Biology",
     "section": "",
+    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology.\nIn this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
+  },
+  {
+    "objectID": "index.html#about-us",
+    "href": "index.html#about-us",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "About us",
+    "text": "About us\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nAutors: Melina Klostermann, Mario Keller, Kathi Zarnack\nVisit us on our webpage or on GitHub."
+  },
+  {
+    "objectID": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "href": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "In this Praktikum we look at the following topics:",
     "text": "In this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
+  },
+  {
+    "objectID": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
+    "href": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
+    "title": "Some useful R",
+    "section": "Use kable to make a table or data.frame output look nicer",
+    "text": "Use kable to make a table or data.frame output look nicer"
+  },
+  {
+    "objectID": "useful_R.html#extract-certain-patterns-with-grepl",
+    "href": "useful_R.html#extract-certain-patterns-with-grepl",
+    "title": "Some useful R",
+    "section": "Extract certain patterns with grepl()",
+    "text": "Extract certain patterns with grepl()"
+  },
+  {
+    "objectID": "useful_R.html#for-loops",
+    "href": "useful_R.html#for-loops",
+    "title": "Some useful R",
+    "section": "for loops",
+    "text": "for loops"
+  },
+  {
+    "objectID": "useful_R.html#handling-of-data.frames",
+    "href": "useful_R.html#handling-of-data.frames",
+    "title": "Some useful R",
+    "section": "Handling of data.frames",
+    "text": "Handling of data.frames\n\nAdding new columns with mutate\n\n\nUsing case_when to mutate conditionally\n\n\nPicking only certain rows (subset) or columns (select)\n\n\nArranging data.frames\n\n\nGrouping data.frames\nWith the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output."
   }
 ]

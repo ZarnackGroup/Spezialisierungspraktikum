@@ -10,15 +10,11 @@ for loops
 grepl
 
 
-# Important functions and operators
-
-Before we start with the actual analysis I want to introduce some important functions and operators that will help us to process the MAJIQ output. These are the *%\>% operator* of the dplyr package, the *str_count()* and *str_split()* function of the stringr package as well as the *sapply()* and the *table()* function of the base package.
-
-Let's load the dplyr and stringr package so that we can use the operator and the functions. *sapply()* and *table()* are automatically loaded.
+Before we start with the actual analysis I want to introduce some important functions and operators that will help us to process the splicing output.
 
 ```{r}
+library(knitr)
 library(dplyr)
-library(stringr)
 ```
 
 ## The pipe operator %\>%
@@ -48,67 +44,6 @@ decimals %>% round %>% sum
 
 As you can see we can directly pipe the the vector called decimals to *round()* and the output to *sum()*.
 
-## Character string operations with stringr functions
-
-The package stringr provides a set of functions that allows us to obtain information about character strings (e.g. `r c("a", "b", "c")`) and to process them. Two of these functions are *str_count()* and *str_split()*, which we will use in the processing of the MAJIQ output. Assume we have a vector with character strings that contain integers separated by a semicolon and we want to count the number of integers within the each string. With *str_count()* we can simply count the number of semicolons in each character string and add 1 afterwards.
-
-```{r}
-characterStrings <- c("5;1", "3;2;1", "1", "5;4;3;6")
-characterStrings %>% str_count(pattern=";") + 1
-```
-
-As you can see it is super easy and we also used the %\>% operator, which makes it look nicer.
-
-But what if we want to create a list where each entry is a vector with the integers of each character string? Here *str_split()* comes into play, which splits each character string based on a defined pattern (e.g. ;). For each original character string the function creates a list entry.
-
-```{r}
-characterStrings <- c("5;1", "3;2;1", "1", "5;4;3;6")
-characterStrings %>% str_split(pattern=";")
-```
-
-This list can afterwards be further processed. We will use it in the next section and determine the maximal value in each list entry.
-
-## sapply an alternative to for-loops
-
-As mentioned above we want to determine the maximal value in each list entry.
-
-One intuitive way is to loop over the list with a for-loop and store the maximal value of each entry in a vector. Note that the integers in the list entries are still character strings and need to be turned into integers via the *as.integer()* function.
-
-```{r}
-integerList <- characterStrings %>% str_split(pattern=";")
-maxValues <- c() # create empty vector
-for(integers in integerList){
-  maxValue <- integers %>% as.integer %>% max
-  maxValues <- c(maxValues, maxValue) # add the maxValue to the vector
-}
-maxValues
-```
-
-What we do here is that we iterate over each list entry, determine the maximal value and and store this value in a vector called maxValues.
-
-A nicer solution is *sapply()*, which looks quite complicated in the beginning but as soon as you get used to it, you will prefer it over for-loops.
-
-```{r}
-integerList <- characterStrings %>% str_split(pattern=";")
-maxValues <- integerList %>% sapply(FUN=function(integers){
-  return(
-    integers %>% as.integer %>% max
-  )
-})
-maxValues
-```
-
-What happens is that *sapply()* take the integer list as first argument and applies the function provided via FUN on each entry in the list. You can either use pre-defined functions (e.g. *sum()*, *mean()* or *max()*) or define your own function, which is what I did. Our function takes the character string vector with the integers as input, transforms them from character strings into integers, determines the maximal value and returns it.
-
-If the values in the list would already have been integers (and not character strings) it would be even easier. Here is an example:
-
-```{r}
-integerList <- list(c(5,1), c(3,2,1), c(1), c(5,4,3,6))
-maxValues <- integerList %>% sapply(FUN=max)
-maxValues
-```
-
-In this case we do not need to write our own function but can directly use the buit-in *max()* function.
 
 ## Count the number of occurences with the table function
 
@@ -138,6 +73,28 @@ table(regulationDataFrame$type, regulationDataFrame$regulation)
 
 We can see that the upregulated genes are encoding for proteins, while the downregulated genes encode rRNAs and the non-regulated ones miRNAs.
 
+## Use kable to make a table or data.frame output look nicer
+
+
+## Extract certain patterns with grepl()
+
+## for loops
+
+## Handling of data.frames
+
+### Adding new columns with mutate
+
+### Using case_when to mutate conditionally
+
+### Picking only certain rows (subset) or columns (select)
+
+### Arranging data.frames
+
+### Grouping data.frames
+
+
+
+
 With the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output.
 
-\pagebreak
+

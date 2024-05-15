@@ -4,12 +4,22 @@ title: "Spezialisierungspraktikum RNA Biology"
 
 On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology.
 
-## {.bigger}
 
-In this Praktikum we look at the following topics: 
+## In this Praktikum we look at the following topics: 
 
--   Processing of RNAseq data
+-   **Processing of RNAseq data**
 
--   Differential Gene Expression Analysis
+-   **Differential Gene Expression Analysis**
 
--   Differential analysis of local splice variants
+-   **Differential analysis of local splice variants**
+
+\newline
+\newline
+
+## About us
+
+**Zarnack group for Computational RNA Biology**, Goethe Universität Frankfurt
+
+Autors: Melina Klostermann, Mario Keller, Kathi Zarnack
+
+Visit us on our [webpage](https://zarnackgroup.github.io/webpage/) or on [GitHub](https://github.com/ZarnackGroup).
