@@ -1,117 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "",
-    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology."
-  },
-  {
-    "objectID": "index.html#what-is-splicing",
-    "href": "index.html#what-is-splicing",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What is splicing?",
-    "text": "What is splicing?"
-  },
-  {
-    "objectID": "index.html#what-are-splice-events-and-local-splice-variants-lsvs",
-    "href": "index.html#what-are-splice-events-and-local-splice-variants-lsvs",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What are splice events and local splice variants (LSVs)?",
-    "text": "What are splice events and local splice variants (LSVs)?"
-  },
-  {
-    "objectID": "index.html#what-are-psi-and-dpsi",
-    "href": "index.html#what-are-psi-and-dpsi",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What are PSI and dPSI?",
-    "text": "What are PSI and dPSI?"
-  },
-  {
-    "objectID": "index.html#what-is-the-probability-changing",
-    "href": "index.html#what-is-the-probability-changing",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What is the probability changing?",
-    "text": "What is the probability changing?"
-  },
-  {
-    "objectID": "index.html#how-does-the-majiq-workflow-look-like",
-    "href": "index.html#how-does-the-majiq-workflow-look-like",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "How does the majiq workflow look like?",
-    "text": "How does the majiq workflow look like?"
-  },
-  {
-    "objectID": "index.html#what-are-the-output-files-from-majiq",
-    "href": "index.html#what-are-the-output-files-from-majiq",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What are the output files from majiq?",
-    "text": "What are the output files from majiq?"
-  },
-  {
-    "objectID": "voila_gui.html",
-    "href": "voila_gui.html",
-    "title": "Visualising splice events",
-    "section": "",
-    "text": "You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:"
-  },
-  {
-    "objectID": "voila_gui.html#open-your-results-in-the-voila-gui",
-    "href": "voila_gui.html#open-your-results-in-the-voila-gui",
-    "title": "Visualising splice events",
-    "section": "Open your results in the VOILA GUI",
-    "text": "Open your results in the VOILA GUI\nTo visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).\nThe Voila Launcher should open:\n\nEnter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.\nThe GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow).\n\nYou can do the same with a different port number for the second comparison."
-  },
-  {
-    "objectID": "voila_gui.html#adjusting-filters",
-    "href": "voila_gui.html#adjusting-filters",
-    "title": "Visualising splice events",
-    "section": "Adjusting filters",
-    "text": "Adjusting filters\nYou can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:\n\nOn the top are options for filtering for specific classes of splice events ( e.g. alternative 5’ or 3’ splice sites, Exon Skipping or binary events).\nBelow this you can apply a deltaPSI and Confidence Threshold filter.\n\n\nBy default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%).\nDepending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9."
-  },
-  {
-    "objectID": "voila_gui.html#overview-of-regulated-lsvs",
-    "href": "voila_gui.html#overview-of-regulated-lsvs",
-    "title": "Visualising splice events",
-    "section": "Overview of regulated LSVs",
-    "text": "Overview of regulated LSVs\nBelow the filters you can see a table with 5 columns. The first column tells us the name of the gene in which the LSV is located and the second column specifies a unique ID for the LSV. The last column offers a UCSC link (not important for us).\n\nThe third column depicts a simplified scheme of the LSV: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3’ or 5’ splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.\n{fig-visualisation}\nThe fourth column the deltaPSI values of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information."
-  },
-  {
-    "objectID": "voila_gui.html#genewise-details-on-lsvs",
-    "href": "voila_gui.html#genewise-details-on-lsvs",
-    "title": "Visualising splice events",
-    "section": "Genewise details on LSVs",
-    "text": "Genewise details on LSVs\nAs an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample).\n\nIf we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.\nTo get more details about this specific LSV you can click on the gene name. \nIn the upper part we can see two splicegraphs for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.\nIn the lower part you can see all detected LSVs of the gene. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have bar plots showing the PSI values in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.\nLet’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.\n\nYou now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein."
-  },
-  {
-    "objectID": "tasks.html",
-    "href": "tasks.html",
-    "title": "Tasks",
-    "section": "",
-    "text": "Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.\nAt the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.\n\nTasks for part 1 - Visualisation\nInstructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in part1_GUI_and_SashimiPlots.pdf.\n\nFor one of your comparisons search for binary LSVs with |deltaPSI| \\(\\ge\\) 0.1 and Confidence Threshold \\(\\ge\\) 0.9. If you can’t find events lower the deltaPSI threshold.\n\n\nTake a screenshot of 1 LSV representing an exon skipping event.\nTake a screenshot of 1 LSV representing an intron retention event.\nTake a screenshot of 1 LSV representing an alternative 5’ splice site event.\nTake a screenshot of 1 LSV representing an alternative 3’ splice site event.\n\n\nTake for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).\nCompare the regulation of the five LSVs between the two comparisons.\nTake one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.\n\n\nYou need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.\nIf the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.\n\n\nDoes the sashimi plot confirm what you have seen in the VOILA GUI?\n\n\n\nTasks for part 2 - Analyzing AS at the level of LSVs\nDo the global analysis part for both your data sets.\n\n\nTasks for part 3 - Analyzing AS at the level of AS events\nRepeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Autors: Mario Keller, Melina Klostermann\nThis site contains a walk through to the results of a splicing analysis performed with MAJIQ as part of the course material for the Spezialisierungspraktikum RNA Biology.\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nVisit us on our webpage or on GitHub."
-  },
-  {
-    "objectID": "index.html#splicing-classes",
-    "href": "index.html#splicing-classes",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "What are the most common classes of splicing?",
-    "text": "What are the most common classes of splicing?"
-  },
-  {
-    "objectID": "index.html#majiq-workflow",
-    "href": "index.html#majiq-workflow",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "How does the majiq workflow look like?",
-    "text": "How does the majiq workflow look like?"
-  },
-  {
     "objectID": "global_splicing.html",
     "href": "global_splicing.html",
     "title": "Global characterisation of detected splice events",
@@ -175,20 +63,6 @@
     "text": "The pipe operator %&gt;%\nLet’s start with the %&gt;% operator. This operator allows the piping of a function’s output to another function, where it is used as input.\nAssume we have a vector with decimal numbers and want to round them to integers and subsequently calculate the sum. One way to do this is the following.\n\ndecimals &lt;- c(2.5, 1.2, 3.6, 4.1, 4.6, 7.3, 9.2, 3.1, 5.3)\nsum(round(decimals))\n\n[1] 40\n\n\nAs you can see the command is quite hard to read and it becomes harder if you apply more than two functions. One nice alternative is the mentioned %&gt;% operator. Note that most of the time it is not nessary to add () behind a function’s name.\n\ndecimals &lt;- c(2.5, 1.2, 3.6, 4.1, 4.6, 7.3, 9.2, 3.1, 5.3)\nround(decimals) %&gt;% sum\n\n[1] 40\n\n\nThis helps already a lot. But we can make it even more easier to read.\n\ndecimals &lt;- c(2.5, 1.2, 3.6, 4.1, 4.6, 7.3, 9.2, 3.1, 5.3)\ndecimals %&gt;% round %&gt;% sum\n\n[1] 40\n\n\nAs you can see we can directly pipe the the vector called decimals to round() and the output to sum()."
   },
   {
-    "objectID": "useful_R.html#character-string-operations-with-stringr-functions",
-    "href": "useful_R.html#character-string-operations-with-stringr-functions",
-    "title": "Some useful R",
-    "section": "Character string operations with stringr functions",
-    "text": "Character string operations with stringr functions\nThe package stringr provides a set of functions that allows us to obtain information about character strings (e.g. a, b, c) and to process them. Two of these functions are str_count() and str_split(), which we will use in the processing of the MAJIQ output. Assume we have a vector with character strings that contain integers separated by a semicolon and we want to count the number of integers within the each string. With str_count() we can simply count the number of semicolons in each character string and add 1 afterwards.\n\ncharacterStrings &lt;- c(\"5;1\", \"3;2;1\", \"1\", \"5;4;3;6\")\ncharacterStrings %&gt;% str_count(pattern=\";\") + 1\n\n[1] 2 3 1 4\n\n\nAs you can see it is super easy and we also used the %&gt;% operator, which makes it look nicer.\nBut what if we want to create a list where each entry is a vector with the integers of each character string? Here str_split() comes into play, which splits each character string based on a defined pattern (e.g. ;). For each original character string the function creates a list entry.\n\ncharacterStrings &lt;- c(\"5;1\", \"3;2;1\", \"1\", \"5;4;3;6\")\ncharacterStrings %&gt;% str_split(pattern=\";\")\n\n[[1]]\n[1] \"5\" \"1\"\n\n[[2]]\n[1] \"3\" \"2\" \"1\"\n\n[[3]]\n[1] \"1\"\n\n[[4]]\n[1] \"5\" \"4\" \"3\" \"6\"\n\n\nThis list can afterwards be further processed. We will use it in the next section and determine the maximal value in each list entry."
-  },
-  {
-    "objectID": "useful_R.html#sapply-an-alternative-to-for-loops",
-    "href": "useful_R.html#sapply-an-alternative-to-for-loops",
-    "title": "Some useful R",
-    "section": "sapply an alternative to for-loops",
-    "text": "sapply an alternative to for-loops\nAs mentioned above we want to determine the maximal value in each list entry.\nOne intuitive way is to loop over the list with a for-loop and store the maximal value of each entry in a vector. Note that the integers in the list entries are still character strings and need to be turned into integers via the as.integer() function.\n\nintegerList &lt;- characterStrings %&gt;% str_split(pattern=\";\")\nmaxValues &lt;- c() # create empty vector\nfor(integers in integerList){\n  maxValue &lt;- integers %&gt;% as.integer %&gt;% max\n  maxValues &lt;- c(maxValues, maxValue) # add the maxValue to the vector\n}\nmaxValues\n\n[1] 5 3 1 6\n\n\nWhat we do here is that we iterate over each list entry, determine the maximal value and and store this value in a vector called maxValues.\nA nicer solution is sapply(), which looks quite complicated in the beginning but as soon as you get used to it, you will prefer it over for-loops.\n\nintegerList &lt;- characterStrings %&gt;% str_split(pattern=\";\")\nmaxValues &lt;- integerList %&gt;% sapply(FUN=function(integers){\n  return(\n    integers %&gt;% as.integer %&gt;% max\n  )\n})\nmaxValues\n\n[1] 5 3 1 6\n\n\nWhat happens is that sapply() take the integer list as first argument and applies the function provided via FUN on each entry in the list. You can either use pre-defined functions (e.g. sum(), mean() or max()) or define your own function, which is what I did. Our function takes the character string vector with the integers as input, transforms them from character strings into integers, determines the maximal value and returns it.\nIf the values in the list would already have been integers (and not character strings) it would be even easier. Here is an example:\n\nintegerList &lt;- list(c(5,1), c(3,2,1), c(1), c(5,4,3,6))\nmaxValues &lt;- integerList %&gt;% sapply(FUN=max)\nmaxValues\n\n[1] 5 3 1 6\n\n\nIn this case we do not need to write our own function but can directly use the buit-in max() function."
-  },
-  {
     "objectID": "useful_R.html#count-the-number-of-occurences-with-the-table-function",
     "href": "useful_R.html#count-the-number-of-occurences-with-the-table-function",
     "title": "Some useful R",
@@ -196,11 +70,32 @@
     "text": "Count the number of occurences with the table function\nOften we have a data.frame column with some specific information that we want to summarize. Here the table() function is helpful as it counts how often a certain string or value is found in the column.\nAssume we have a data.frame that stores the regulation of eight genes (A to H) and we want to know how many genes are upregulated, not regulated or downregulated. We can easily solve this task with table().\n\nregulationDataFrame &lt;- data.frame(\n  gene=c(\"A\", \"B\", \"C\", \"D\",\"E\", \"F\", \"G\", \"H\"),\n  regulation=c(\"up\", \"down\", \"up\", \"no\", \"no\", \"down\", \"up\", \"up\")\n)\ntable(regulationDataFrame$regulation)\n\n\ndown   no   up \n   2    2    4 \n\n\nAs you can see we now have a nice overview about the regulation. One nice feature of table() is that you can provide more than one column as input.\nFor instance we could also have information about the gene type and want to summarize the regulation across the different gene types. Here is an easy example, where we have 3 gene types, namely protein-coding, miRNA and rRNA.\n\nregulationDataFrame$type = c(\"protein-coding\", \"rRNA\", \"protein-coding\", \"miRNA\",\n           \"miRNA\", \"rRNA\", \"protein-coding\", \"protein-coding\")\n\ntable(regulationDataFrame$type, regulationDataFrame$regulation)\n\n                \n                 down no up\n  miRNA             0  2  0\n  protein-coding    0  0  4\n  rRNA              2  0  0\n\n\nWe can see that the upregulated genes are encoding for proteins, while the downregulated genes encode rRNAs and the non-regulated ones miRNAs."
   },
   {
-    "objectID": "splicing_index.html",
-    "href": "splicing_index.html",
-    "title": "Differential Splicing Analysis",
-    "section": "",
-    "text": "This is the splicing part of Spezialisierungspraktikum RNA Biology.\nIn brief, we visualize and explore the output a splicing analysis done with MAJIQ."
+    "objectID": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
+    "href": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
+    "title": "Some useful R",
+    "section": "Use kable to make a table or data.frame output look nicer",
+    "text": "Use kable to make a table or data.frame output look nicer"
+  },
+  {
+    "objectID": "useful_R.html#extract-certain-patterns-with-grepl",
+    "href": "useful_R.html#extract-certain-patterns-with-grepl",
+    "title": "Some useful R",
+    "section": "Extract certain patterns with grepl()",
+    "text": "Extract certain patterns with grepl()"
+  },
+  {
+    "objectID": "useful_R.html#for-loops",
+    "href": "useful_R.html#for-loops",
+    "title": "Some useful R",
+    "section": "for loops",
+    "text": "for loops"
+  },
+  {
+    "objectID": "useful_R.html#handling-of-data.frames",
+    "href": "useful_R.html#handling-of-data.frames",
+    "title": "Some useful R",
+    "section": "Handling of data.frames",
+    "text": "Handling of data.frames\n\nAdding new columns with mutate\n\n\nUsing case_when to mutate conditionally\n\n\nPicking only certain rows (subset) or columns (select)\n\n\nArranging data.frames\n\n\nGrouping data.frames\nWith the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output."
   },
   {
     "objectID": "data_processing_galaxy.html",
@@ -208,6 +103,76 @@
     "title": "Processing",
     "section": "",
     "text": "Coming soon!"
+  },
+  {
+    "objectID": "tasks.html",
+    "href": "tasks.html",
+    "title": "Tasks",
+    "section": "",
+    "text": "Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.\nAt the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.\n\nTasks for part 1 - Visualisation\nInstructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in part1_GUI_and_SashimiPlots.pdf.\n\nFor one of your comparisons search for binary LSVs with |deltaPSI| \\(\\ge\\) 0.1 and Confidence Threshold \\(\\ge\\) 0.9. If you can’t find events lower the deltaPSI threshold.\n\n\nTake a screenshot of 1 LSV representing an exon skipping event.\nTake a screenshot of 1 LSV representing an intron retention event.\nTake a screenshot of 1 LSV representing an alternative 5’ splice site event.\nTake a screenshot of 1 LSV representing an alternative 3’ splice site event.\n\n\nTake for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).\nCompare the regulation of the five LSVs between the two comparisons.\nTake one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.\n\n\nYou need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.\nIf the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.\n\n\nDoes the sashimi plot confirm what you have seen in the VOILA GUI?\n\n\n\nTasks for part 2 - Analyzing AS at the level of LSVs\nDo the global analysis part for both your data sets.\n\n\nTasks for part 3 - Analyzing AS at the level of AS events\nRepeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "",
+    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology."
+  },
+  {
+    "objectID": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "href": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "In this Praktikum we look at the following topics:",
+    "text": "In this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
+  },
+  {
+    "objectID": "index.html#about-us",
+    "href": "index.html#about-us",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "About us",
+    "text": "About us\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nAutors: Melina Klostermann, Mario Keller, Kathi Zarnack\nVisit us on our webpage or on GitHub."
+  },
+  {
+    "objectID": "voila_gui.html",
+    "href": "voila_gui.html",
+    "title": "Visualising splice events",
+    "section": "",
+    "text": "You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:"
+  },
+  {
+    "objectID": "voila_gui.html#open-your-results-in-the-voila-gui",
+    "href": "voila_gui.html#open-your-results-in-the-voila-gui",
+    "title": "Visualising splice events",
+    "section": "Open your results in the VOILA GUI",
+    "text": "Open your results in the VOILA GUI\nTo visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).\nThe Voila Launcher should open:\n\nEnter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.\nThe GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow).\n\nYou can do the same with a different port number for the second comparison."
+  },
+  {
+    "objectID": "voila_gui.html#adjusting-filters",
+    "href": "voila_gui.html#adjusting-filters",
+    "title": "Visualising splice events",
+    "section": "Adjusting filters",
+    "text": "Adjusting filters\nYou can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:\n\nOn the top are options for filtering for specific classes of splice events ( e.g. alternative 5’ or 3’ splice sites, Exon Skipping or binary events).\nBelow this you can apply a deltaPSI and Confidence Threshold filter.\n\n\nBy default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%).\nDepending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9."
+  },
+  {
+    "objectID": "voila_gui.html#overview-of-regulated-lsvs",
+    "href": "voila_gui.html#overview-of-regulated-lsvs",
+    "title": "Visualising splice events",
+    "section": "Overview of regulated LSVs",
+    "text": "Overview of regulated LSVs\nBelow the filters you can see a table with 5 columns. The first column tells us the name of the gene in which the LSV is located and the second column specifies a unique ID for the LSV. The last column offers a UCSC link (not important for us).\n\nThe third column depicts a simplified scheme of the LSV: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3’ or 5’ splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.\n{fig-visualisation}\nThe fourth column the deltaPSI values of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information."
+  },
+  {
+    "objectID": "voila_gui.html#genewise-details-on-lsvs",
+    "href": "voila_gui.html#genewise-details-on-lsvs",
+    "title": "Visualising splice events",
+    "section": "Genewise details on LSVs",
+    "text": "Genewise details on LSVs\nAs an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample).\n\nIf we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.\nTo get more details about this specific LSV you can click on the gene name. \nIn the upper part we can see two splicegraphs for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.\nIn the lower part you can see all detected LSVs of the gene. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have bar plots showing the PSI values in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.\nLet’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.\n\nYou now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein."
+  },
+  {
+    "objectID": "splicing_index.html",
+    "href": "splicing_index.html",
+    "title": "Differential Splicing Analysis",
+    "section": "",
+    "text": "This is the splicing part of Spezialisierungspraktikum RNA Biology.\nIn brief, we visualize and explore the output a splicing analysis done with MAJIQ."
   },
   {
     "objectID": "splicing_index.html#what-is-splicing",
@@ -257,54 +222,5 @@
     "title": "Differential Splicing Analysis",
     "section": "What are the output files from majiq?",
     "text": "What are the output files from majiq?"
-  },
-  {
-    "objectID": "index.html#section",
-    "href": "index.html#section",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "",
-    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology.\nIn this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
-  },
-  {
-    "objectID": "index.html#about-us",
-    "href": "index.html#about-us",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "About us",
-    "text": "About us\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nAutors: Melina Klostermann, Mario Keller, Kathi Zarnack\nVisit us on our webpage or on GitHub."
-  },
-  {
-    "objectID": "index.html#in-this-praktikum-we-look-at-the-following-topics",
-    "href": "index.html#in-this-praktikum-we-look-at-the-following-topics",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "In this Praktikum we look at the following topics:",
-    "text": "In this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
-  },
-  {
-    "objectID": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
-    "href": "useful_R.html#use-kable-to-make-a-table-or-data.frame-output-look-nicer",
-    "title": "Some useful R",
-    "section": "Use kable to make a table or data.frame output look nicer",
-    "text": "Use kable to make a table or data.frame output look nicer"
-  },
-  {
-    "objectID": "useful_R.html#extract-certain-patterns-with-grepl",
-    "href": "useful_R.html#extract-certain-patterns-with-grepl",
-    "title": "Some useful R",
-    "section": "Extract certain patterns with grepl()",
-    "text": "Extract certain patterns with grepl()"
-  },
-  {
-    "objectID": "useful_R.html#for-loops",
-    "href": "useful_R.html#for-loops",
-    "title": "Some useful R",
-    "section": "for loops",
-    "text": "for loops"
-  },
-  {
-    "objectID": "useful_R.html#handling-of-data.frames",
-    "href": "useful_R.html#handling-of-data.frames",
-    "title": "Some useful R",
-    "section": "Handling of data.frames",
-    "text": "Handling of data.frames\n\nAdding new columns with mutate\n\n\nUsing case_when to mutate conditionally\n\n\nPicking only certain rows (subset) or columns (select)\n\n\nArranging data.frames\n\n\nGrouping data.frames\nWith the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output."
   }
 ]
