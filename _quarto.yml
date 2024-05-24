@@ -24,7 +24,7 @@ website:
       - href: splicing_index.qmd
         text: Intro
       - href: voila_gui.qmd
-        text: Visualisation
+        text: Visualize
       - href: useful_R.qmd
         text: Useful R functions
       - href: global_splicing.qmd
