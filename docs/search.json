@@ -49,6 +49,83 @@
     "text": "Regulated LSVs\nNow it is time to determine the significantly changing LSVs.\n\nNumber and fraction of regulated LSVs\nWe check for each of the LSVs if the maximal probability is \\(\\ge\\) our threshold of 0.9 and store this information with TRUE or FALSE in a new column called sign.\n\n# add a column sig that tells us whether the change was significant\nhighest_junction_per_lsv$sign &lt;- highest_junction_per_lsv$probability_changing &gt;= 0.9\nhead(highest_junction_per_lsv) %&gt;% kable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngene_name\nseqid\nstrand\nlsv_id\ncomplex\njunction_coord\nctrl_median_psi\ncond_median_psi\ndpsi\nprobability_changing\nclass\nunique_juction_id\nsign\n\n\n\n\nDPM1\nchr20\n-\nENSG00000000419.14:s:50942031-50943273\nTrue\n50936262-50942031\n0.235\n0.170\n-0.051\n0.772\ncassette_exons\nENSG00000000419.14:s:50942031-50943273_50936262-50942031\nFALSE\n\n\nDPM1\nchr20\n-\nENSG00000000419.14:s:50945847-50945923\nFalse\n50942126-50945847\n0.126\n0.109\n-0.007\n0.485\ncassette_exons\nENSG00000000419.14:s:50945847-50945923_50942126-50945847\nFALSE\n\n\nSCYL3\nchr1\n-\nENSG00000000457.14:s:169870255-169870357\nFalse\n169869128-169870255\n0.083\n0.012\n-0.031\n0.502\nalternative_3_prime_splice_site\nENSG00000000457.14:s:169870255-169870357_169869128-169870255\nFALSE\n\n\nC1orf112\nchr1\n+\nENSG00000000460.17:s:169798857-169798958\nFalse\n169798958-169802621\n0.269\n0.150\n-0.081\n0.721\ncassette_exons\nENSG00000000460.17:s:169798857-169798958_169798958-169802621\nFALSE\n\n\nC1orf112\nchr1\n+\nENSG00000000460.17:s:169850265-169850345\nFalse\n169850345-169850438\n0.230\n0.048\n-0.154\n0.898\ncassette_exons\nENSG00000000460.17:s:169850265-169850345_169850345-169850438\nFALSE\n\n\nFUCA2\nchr6\n-\nENSG00000001036.14:s:143503913-143504252\nFalse\n143502565-143503913\n0.961\n0.882\n-0.073\n0.896\ncassette_exons\nENSG00000001036.14:s:143503913-143504252_143502565-143503913\nFALSE\n\n\n\n\n# Look at how many are significant and how many not\ntable(highest_junction_per_lsv$sign)  %&gt;% kable()\n\n\n\n\nVar1\nFreq\n\n\n\n\nFALSE\n9932\n\n\nTRUE\n1374\n\n\n\n\n# calculate percentages\nt &lt;- table(highest_junction_per_lsv$sign) \n\n(t/sum(t)) %&gt;% kable()\n\n\n\n\nVar1\nFreq\n\n\n\n\nFALSE\n0.8784716\n\n\nTRUE\n0.1215284\n\n\n\n\n\nWe can also plot this information with a stacked bar chart.We add the coord_cartesian() function of ggplot2 to zoom-in the y-axis (0 to 2000), as we do not have so many regulated events. You can adjust the ylim input if you want.\n\ngg_df &lt;- table(highest_junction_per_lsv$sign) %&gt;% \n  as.data.frame()\n\nggplot(gg_df, aes( x = 1, y = Freq, fill=Var1))+\n  geom_col() +\n  #coord_cartesian(ylim=(c(0,2000))) +\n  labs(x=\"Comparison\", y=\"Frequency\") +\n  theme_bw()+\n  geom_text(aes(x = 1, label=Freq), vjust=2, col = \"white\")\n\n\n\n\n\n\n\n\nIn this plot we can see the absolute number of significant LSVs among all LSVs. Next to the absolute number we could also plot the fraction of significant LSVs among all LSVs. Fraction is similar to percentage when you multiply it by 100. This makes the comparison between comparisons with different number of LSVs more fair.\n\nggplot(gg_df, aes( x = 1, y = Freq, fill=Var1))+\n  geom_col(position = \"fill\") +\n  labs(x=\"Comparison\", y=\"Frequency\") +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\nColour significant changes\nWe can also color the significant LSVs in the scatterplot from above:\n\n  ggplot(highest_junction_per_lsv, aes(x=abs(dpsi), y=probability_changing, color = sign)) +\n    geom_point(alpha=.25) +\n    geom_hline(yintercept=0.9, col=\"red\", linetype=\"dashed\") +\n    theme_bw() +\n  scale_color_manual(values = c(\"black\", \"blue\"))+\n    labs(x=\"Maximum deltaPSI per LSV\", y=\"Maximum probability per LSV\")\n\n\n\n\n\n\n\n\n\n\nTop 10 spliced LSVs\nIf we want to know the LSVs with the highest changes. We can arrange() the data.frame by the dpsi values and look at the top 10.\n\ntop10 &lt;- highest_junction_per_lsv %&gt;% \n  arrange(desc(abs(dpsi))) %&gt;% \n  head(n = 10)\n\ntop10 %&gt;% kable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngene_name\nseqid\nstrand\nlsv_id\ncomplex\njunction_coord\nctrl_median_psi\ncond_median_psi\ndpsi\nprobability_changing\nclass\nunique_juction_id\nsign\n\n\n\n\nSNX27\nchr1\n+\nENSG00000143376.14:s:151693424-151693483\nFalse\n151693483-151693593\n0.853\n0.030\n-0.821\n1.000\nalternative_last_exon\nENSG00000143376.14:s:151693424-151693483_151693483-151693593\nTRUE\n\n\nAGTRAP\nchr1\n+\nENSG00000177674.16:s:11745801-11745837\nTrue\n11745837-11745988\n0.807\n0.030\n-0.774\n1.000\nalternative_3_prime_splice_site\nENSG00000177674.16:s:11745801-11745837_11745837-11745988\nTRUE\n\n\nENSG00000291203\nchr4\n+\nENSG00000291203.1:s:119497662-119498292\nFalse\n119497903-119512351\n0.917\n0.220\n-0.706\n1.000\nalternative_last_exon\nENSG00000291203.1:s:119497662-119498292_119497903-119512351\nTRUE\n\n\nBCAS3\nchr17\n+\nENSG00000141376.23:s:61380506-61380572\nFalse\n61380571-61391977\n0.873\n0.186\n-0.694\n0.999\nalternative_last_exon\nENSG00000141376.23:s:61380506-61380572_61380571-61391977\nTRUE\n\n\nGDPD5\nchr11\n-\nENSG00000158555.15:s:75490237-75490320\nTrue\n75477795-75490237\n0.754\n0.080\n-0.680\n1.000\ncassette_exons\nENSG00000158555.15:s:75490237-75490320_75477795-75490237\nTRUE\n\n\nSVIL-AS1\nchr10\n+\nENSG00000291093.1:s:29415357-29415412\nTrue\n29415412-29420491\n0.310\n0.944\n0.656\n1.000\nalternative_last_exon\nENSG00000291093.1:s:29415357-29415412_29415412-29420491\nTRUE\n\n\nRAPGEF2\nchr4\n+\nENSG00000109756.10:s:159241201-159241368\nFalse\n159241368-159304342\n0.769\n0.112\n-0.652\n1.000\ncassette_exons\nENSG00000109756.10:s:159241201-159241368_159241368-159304342\nTRUE\n\n\nADAM22\nchr7\n+\nENSG00000008277.15:s:88181958-88183554\nFalse\n88182024-88193116\n0.250\n0.911\n0.643\n0.996\nalternative_last_exon\nENSG00000008277.15:s:88181958-88183554_88182024-88193116\nTRUE\n\n\nPLAGL1\nchr6\n-\nENSG00000118495.21:s:143960469-143961412\nFalse\n143942663-143960469\n0.792\n0.144\n-0.637\n0.984\ncassette_exons\nENSG00000118495.21:s:143960469-143961412_143942663-143960469\nTRUE\n\n\nBRD9\nchr5\n-\nENSG00000028310.18:s:869245-869404\nTrue\n865581-869245\n0.881\n0.241\n-0.634\n0.995\ncassette_exons\nENSG00000028310.18:s:869245-869404_865581-869245\nTRUE"
   },
   {
+    "objectID": "DGE.html",
+    "href": "DGE.html",
+    "title": "Differential gene expression analysis",
+    "section": "",
+    "text": "Coming soon!"
+  },
+  {
+    "objectID": "voila_gui.html",
+    "href": "voila_gui.html",
+    "title": "Visualising splice events",
+    "section": "",
+    "text": "You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:"
+  },
+  {
+    "objectID": "voila_gui.html#open-your-results-in-the-voila-gui",
+    "href": "voila_gui.html#open-your-results-in-the-voila-gui",
+    "title": "Visualising splice events",
+    "section": "Open your results in the VOILA GUI",
+    "text": "Open your results in the VOILA GUI\nTo visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).\nThe Voila Launcher should open:\n\nEnter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.\nThe GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow).\n\nYou can do the same with a different port number for the second comparison."
+  },
+  {
+    "objectID": "voila_gui.html#adjusting-filters",
+    "href": "voila_gui.html#adjusting-filters",
+    "title": "Visualising splice events",
+    "section": "Adjusting filters",
+    "text": "Adjusting filters\nYou can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:\n\nOn the top are options for filtering for specific classes of splice events ( e.g. alternative 5’ or 3’ splice sites, Exon Skipping or binary events).\nBelow this you can apply a deltaPSI and Confidence Threshold filter.\n\n\nBy default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%).\nDepending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9."
+  },
+  {
+    "objectID": "voila_gui.html#overview-of-regulated-lsvs",
+    "href": "voila_gui.html#overview-of-regulated-lsvs",
+    "title": "Visualising splice events",
+    "section": "Overview of regulated LSVs",
+    "text": "Overview of regulated LSVs\nBelow the filters you can see a table with 5 columns. The first column tells us the name of the gene in which the LSV is located and the second column specifies a unique ID for the LSV. The last column offers a UCSC link (not important for us).\n\nThe third column depicts a simplified scheme of the LSV: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3’ or 5’ splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.\n{fig-visualisation}\nThe fourth column the deltaPSI values of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information."
+  },
+  {
+    "objectID": "voila_gui.html#genewise-details-on-lsvs",
+    "href": "voila_gui.html#genewise-details-on-lsvs",
+    "title": "Visualising splice events",
+    "section": "Genewise details on LSVs",
+    "text": "Genewise details on LSVs\nAs an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample).\n\nIf we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.\nTo get more details about this specific LSV you can click on the gene name. \nIn the upper part we can see two splicegraphs for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.\nIn the lower part you can see all detected LSVs of the gene. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have bar plots showing the PSI values in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.\nLet’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.\n\nYou now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "",
+    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology."
+  },
+  {
+    "objectID": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "href": "index.html#in-this-praktikum-we-look-at-the-following-topics",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "In this Praktikum we look at the following topics:",
+    "text": "In this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
+  },
+  {
+    "objectID": "index.html#about-us",
+    "href": "index.html#about-us",
+    "title": "Spezialisierungspraktikum RNA Biology",
+    "section": "About us",
+    "text": "About us\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nAutors: Melina Klostermann, Mario Keller, Kathi Zarnack\nVisit us on our webpage or on GitHub."
+  },
+  {
+    "objectID": "tasks.html",
+    "href": "tasks.html",
+    "title": "Tasks",
+    "section": "",
+    "text": "Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.\nAt the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.\n\nTasks for part 1 - Visualisation\nInstructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in part1_GUI_and_SashimiPlots.pdf.\n\nFor one of your comparisons search for binary LSVs with |deltaPSI| \\(\\ge\\) 0.1 and Confidence Threshold \\(\\ge\\) 0.9. If you can’t find events lower the deltaPSI threshold.\n\n\nTake a screenshot of 1 LSV representing an exon skipping event.\nTake a screenshot of 1 LSV representing an intron retention event.\nTake a screenshot of 1 LSV representing an alternative 5’ splice site event.\nTake a screenshot of 1 LSV representing an alternative 3’ splice site event.\n\n\nTake for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).\nCompare the regulation of the five LSVs between the two comparisons.\nTake one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.\n\n\nYou need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.\nIf the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.\n\n\nDoes the sashimi plot confirm what you have seen in the VOILA GUI?\n\n\n\nTasks for part 2 - Analyzing AS at the level of LSVs\nDo the global analysis part for both your data sets.\n\n\nTasks for part 3 - Analyzing AS at the level of AS events\nRepeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons."
+  },
+  {
+    "objectID": "data_processing_galaxy.html",
+    "href": "data_processing_galaxy.html",
+    "title": "Processing",
+    "section": "",
+    "text": "Coming soon!"
+  },
+  {
     "objectID": "useful_R.html",
     "href": "useful_R.html",
     "title": "Some useful R",
@@ -96,76 +173,6 @@
     "title": "Some useful R",
     "section": "Handling of data.frames",
     "text": "Handling of data.frames\n\nAdding new columns with mutate\n\n\nUsing case_when to mutate conditionally\n\n\nPicking only certain rows (subset) or columns (select)\n\n\nArranging data.frames\n\n\nGrouping data.frames\nWith the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output."
-  },
-  {
-    "objectID": "data_processing_galaxy.html",
-    "href": "data_processing_galaxy.html",
-    "title": "Processing",
-    "section": "",
-    "text": "Coming soon!"
-  },
-  {
-    "objectID": "tasks.html",
-    "href": "tasks.html",
-    "title": "Tasks",
-    "section": "",
-    "text": "Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.\nAt the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.\n\nTasks for part 1 - Visualisation\nInstructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in part1_GUI_and_SashimiPlots.pdf.\n\nFor one of your comparisons search for binary LSVs with |deltaPSI| \\(\\ge\\) 0.1 and Confidence Threshold \\(\\ge\\) 0.9. If you can’t find events lower the deltaPSI threshold.\n\n\nTake a screenshot of 1 LSV representing an exon skipping event.\nTake a screenshot of 1 LSV representing an intron retention event.\nTake a screenshot of 1 LSV representing an alternative 5’ splice site event.\nTake a screenshot of 1 LSV representing an alternative 3’ splice site event.\n\n\nTake for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).\nCompare the regulation of the five LSVs between the two comparisons.\nTake one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.\n\n\nYou need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.\nIf the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.\n\n\nDoes the sashimi plot confirm what you have seen in the VOILA GUI?\n\n\n\nTasks for part 2 - Analyzing AS at the level of LSVs\nDo the global analysis part for both your data sets.\n\n\nTasks for part 3 - Analyzing AS at the level of AS events\nRepeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "",
-    "text": "On the following pages you can find the course materials for the Spezialisierungspraktikum RNA Biology."
-  },
-  {
-    "objectID": "index.html#in-this-praktikum-we-look-at-the-following-topics",
-    "href": "index.html#in-this-praktikum-we-look-at-the-following-topics",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "In this Praktikum we look at the following topics:",
-    "text": "In this Praktikum we look at the following topics:\n\nProcessing of RNAseq data\nDifferential Gene Expression Analysis\nDifferential analysis of local splice variants"
-  },
-  {
-    "objectID": "index.html#about-us",
-    "href": "index.html#about-us",
-    "title": "Spezialisierungspraktikum RNA Biology",
-    "section": "About us",
-    "text": "About us\nZarnack group for Computational RNA Biology, Goethe Universität Frankfurt\nAutors: Melina Klostermann, Mario Keller, Kathi Zarnack\nVisit us on our webpage or on GitHub."
-  },
-  {
-    "objectID": "voila_gui.html",
-    "href": "voila_gui.html",
-    "title": "Visualising splice events",
-    "section": "",
-    "text": "You received the results of the MAJIQ analysis from your data set. First we want to visualize some of the results you obtained. For this we use two methods:"
-  },
-  {
-    "objectID": "voila_gui.html#open-your-results-in-the-voila-gui",
-    "href": "voila_gui.html#open-your-results-in-the-voila-gui",
-    "title": "Visualising splice events",
-    "section": "Open your results in the VOILA GUI",
-    "text": "Open your results in the VOILA GUI\nTo visualize your splicing results, navigate to the folder where the VOILA GUI is located and double click on voila_app (MAC OS and Linux) or Voila App.lnk (Windows).\nThe Voila Launcher should open:\n\nEnter the path to the folder containing the VOILA-File of your first comparison (.voila), the path to the splicegraph.sql and a port number (any number) and click “Voila View”. If you do it the first time, it may take up to 5 minutes (the program is indexing a lot of stuff). If you run it a second time it will only take some seconds.\nThe GUI might open automatically. If not open a browser window and enter “localhost:5005” (or your defined port number) into the address bar (red arrow).\n\nYou can do the same with a different port number for the second comparison."
-  },
-  {
-    "objectID": "voila_gui.html#adjusting-filters",
-    "href": "voila_gui.html#adjusting-filters",
-    "title": "Visualising splice events",
-    "section": "Adjusting filters",
-    "text": "Adjusting filters\nYou can now see the results of the MAJIQ splice analysis. On the top of the page, there are several options to filter your results:\n\nOn the top are options for filtering for specific classes of splice events ( e.g. alternative 5’ or 3’ splice sites, Exon Skipping or binary events).\nBelow this you can apply a deltaPSI and Confidence Threshold filter.\n\n\nBy default the two filters are set to 0.2 (deltaPSI) and 0.95 (Confidence Threshold) filter, which means that only LSVs are shown that have at least one junction that has a 95% probability changing and a |deltaPSI| value ≥ 0.2 (20%).\nDepending on your data set, you might see very few splicing events with these filters. In this case turn down the filters to a deltaPSI of 0.05 and a Confidence Threshold of 0.9."
-  },
-  {
-    "objectID": "voila_gui.html#overview-of-regulated-lsvs",
-    "href": "voila_gui.html#overview-of-regulated-lsvs",
-    "title": "Visualising splice events",
-    "section": "Overview of regulated LSVs",
-    "text": "Overview of regulated LSVs\nBelow the filters you can see a table with 5 columns. The first column tells us the name of the gene in which the LSV is located and the second column specifies a unique ID for the LSV. The last column offers a UCSC link (not important for us).\n\nThe third column depicts a simplified scheme of the LSV: The yellow box is the source or target exon of the LSV and the number in it tell you that it is the nth exon in the gene. The grey boxes are all other exons connected to the source or target exon and the colored lines stand for the splice-junctions. Intron retention are denoted by colored smaller boxes between two exons. Alternative 3’ or 5’ splice sites are depicted as doted lines inside the exons. An LSV with only two junctions is called binary LSV, LSVs with more than two junctions is called complex LSV.\n{fig-visualisation}\nThe fourth column the deltaPSI values of the involved junctions. The color of the bar corresponds to the color of the junction in the LSV scheme. If you click on a plot in the fourth column, the bar plot changes into a violin plot giving us more detailed information."
-  },
-  {
-    "objectID": "voila_gui.html#genewise-details-on-lsvs",
-    "href": "voila_gui.html#genewise-details-on-lsvs",
-    "title": "Visualising splice events",
-    "section": "Genewise details on LSVs",
-    "text": "Genewise details on LSVs\nAs an example we click on the plot of the LSV located in the TNRC6A gene (from a comparison between an HNRNPH1 knockdown and a corresponding control sample).\n\nIf we now have a closer look on this exon skipping event, we can see that the red junction supports the inclusion of the inner exon, while the blue junction skips it. In the violin plot we can see that upon knockdown of HNRNPH1 the usage of the red junction is upregulated by 48.1% and the usage of the blue junction is downregulated by 48.1%.\nTo get more details about this specific LSV you can click on the gene name. \nIn the upper part we can see two splicegraphs for TNR6CA. The upper one belongs to the control experiment and the lower one to the knockdown experiment. The numbers at the splice junctions are indicating the number of reads supporting the junction. This is the sum over the replicates. The splicegraph is interactive, meaning you can go with the mouse on the splice junctions or exons and get information about the genomic coordinates and the length.\nIn the lower part you can see all detected LSVs of the gene. You can click the Highlight checkbox to highlight the LSV in the splicegraph. In contrast to the previous page, we now also have bar plots showing the PSI values in the control and knockdown experiments (column 4 and 6). Reminder dPSI = PSI(condition) - PSI(control). You can also click these to get a violin plot.\nLet’s have a look on the strongly regulated exon skipping event in this gene (red arrow). As we can see, this LSV is from a source exon perspective as only junctions going out of this exon are quantified. If you look closely, you can see that there is a second LSV from a target exon perspective supporting the same event (green arrow). As we can see from the deltaPSI values the two LSVs are in agreement about the regulation. The upper LSV claims that the first inclusion junction is going up by 48.1% and the lower LSV is showing an upregulation of the second inclusion junction by 53%. Such small fluctuations are expected.\n\nYou now can continue to screen for interesting events in your data. It might be helpful to check in the literature for alternative splicing events that are known to be regulated by your protein."
   },
   {
     "objectID": "splicing_index.html",

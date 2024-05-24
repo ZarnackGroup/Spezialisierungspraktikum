@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spezialisierungspraktikum RNA Biology - Tasks</title>
+<title>Spezialisierungspraktikum RNA Biology - Differential gene expression analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,10 +59,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -93,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Processing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DGE.html" rel="" target="">
+    <a class="nav-link active" href="./DGE.html" rel="" target="" aria-current="page">
  <span class="menu-text">Gene expression</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -134,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tasks.html">Tasks</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Differential gene expression analysis</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -172,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tasks.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tasks</span></a>
   </div>
 </li>
@@ -182,22 +179,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#tasks-for-part-1---visualisation" id="toc-tasks-for-part-1---visualisation" class="nav-link active" data-scroll-target="#tasks-for-part-1---visualisation">Tasks for part 1 - Visualisation</a></li>
-  <li><a href="#tasks-for-part-2---analyzing-as-at-the-level-of-lsvs" id="toc-tasks-for-part-2---analyzing-as-at-the-level-of-lsvs" class="nav-link" data-scroll-target="#tasks-for-part-2---analyzing-as-at-the-level-of-lsvs">Tasks for part 2 - Analyzing AS at the level of LSVs</a></li>
-  <li><a href="#tasks-for-part-3---analyzing-as-at-the-level-of-as-events" id="toc-tasks-for-part-3---analyzing-as-at-the-level-of-as-events" class="nav-link" data-scroll-target="#tasks-for-part-3---analyzing-as-at-the-level-of-as-events">Tasks for part 3 - Analyzing AS at the level of AS events</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tasks</h1>
+<h1 class="title">Differential gene expression analysis</h1>
 </div>
 
 
@@ -212,43 +201,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.</p>
-<p>At the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.</p>
-<section id="tasks-for-part-1---visualisation" class="level1">
-<h1>Tasks for part 1 - Visualisation</h1>
-<p>Instructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in <em>part1_GUI_and_SashimiPlots.pdf</em>.</p>
-<ol type="1">
-<li>For one of your comparisons search for binary LSVs with |deltaPSI| <span class="math inline">\(\ge\)</span> 0.1 and Confidence Threshold <span class="math inline">\(\ge\)</span> 0.9. If you can’t find events lower the deltaPSI threshold.</li>
-</ol>
-<ul>
-<li>Take a screenshot of 1 LSV representing an exon skipping event.</li>
-<li>Take a screenshot of 1 LSV representing an intron retention event.</li>
-<li>Take a screenshot of 1 LSV representing an alternative 5’ splice site event.</li>
-<li>Take a screenshot of 1 LSV representing an alternative 3’ splice site event.</li>
-</ul>
-<ol start="2" type="1">
-<li>Take for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).</li>
-<li>Compare the regulation of the five LSVs between the two comparisons.</li>
-<li>Take one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.</li>
-</ol>
-<ul>
-<li>You need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.</li>
-<li>If the BAM-Files are too huge for your computer subset them in Galaxy to the chromosome on which the LSV is located.</li>
-</ul>
-<ol start="5" type="1">
-<li>Does the sashimi plot confirm what you have seen in the VOILA GUI?</li>
-</ol>
-</section>
-<section id="tasks-for-part-2---analyzing-as-at-the-level-of-lsvs" class="level1">
-<h1>Tasks for part 2 - Analyzing AS at the level of LSVs</h1>
-<p>Do the global analysis part for both your data sets.</p>
-</section>
-<section id="tasks-for-part-3---analyzing-as-at-the-level-of-as-events" class="level1">
-<h1>Tasks for part 3 - Analyzing AS at the level of AS events</h1>
-<p>Repeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons.</p>
+<p>Coming soon!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -488,5 +443,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
