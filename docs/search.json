@@ -165,7 +165,7 @@
     "href": "useful_R.html",
     "title": "Some useful R",
     "section": "",
-    "text": "select & subset mutate group_by for loops grepl\nBefore we start with the actual analysis I want to introduce some important functions and operators that will help us to process the splicing output.\nlibrary(knitr)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union"
+    "text": "Before we start with the splicing analysis in R I want to introduce some important functions and operators that will help us to process the splicing output.\nlibrary(knitr)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union"
   },
   {
     "objectID": "useful_R.html#the-pipe-operator",
