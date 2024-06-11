@@ -33,12 +33,12 @@ At the end of the course make a protocol of all your splicing analyses in form o
 
 Instructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in *part1_GUI_and_SashimiPlots.pdf*.
 
-1.  For one of your comparisons search for binary LSVs with |deltaPSI| $\ge$ 0.1 and Confidence Threshold $\ge$ 0.9. If you can't find events lower the deltaPSI threshold. 
+1.  For one of your comparisons search for binary LSVs with |deltaPSI| $\ge$ 0.1 and Confidence Threshold $\ge$ 0.9. If you can't find events lower the deltaPSI threshold. The screenshots should include the Gene Name the LSV ID the LSV Schema and the violin plot of the dPSI values.
   +   Take a screenshot of 1 LSV representing an exon skipping event.
   +   Take a screenshot of 1 LSV representing an intron retention event.
   +   Take a screenshot of 1 LSV representing an alternative 5' splice site event.
   +   Take a screenshot of 1 LSV representing an alternative 3' splice site event.
-2.  Take for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).
+2.  Take for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier). If you can't find the same events lower the deltaPSI threshold. If you still cannot find them use take screenshots of other events.
 3.  Compare the regulation of the five LSVs between the two comparisons.
 4.  Take one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.
   +   You need to load the BAM-Files into IGV and navigate to the region where the LSV is located. It is sufficient if you use the BAM-File of one replicate per condition.
