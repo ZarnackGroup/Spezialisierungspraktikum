@@ -68,26 +68,125 @@ We can see that the upregulated genes are encoding for proteins, while the downr
 
 ## Use kable to make a table or data.frame output look nicer
 
+The *kable()* function from the knitr package makes tables look nicer in the html/pdf reports.
 
-## Extract certain patterns with grepl()
+```{r}
+table(regulationDataFrame$type, regulationDataFrame$regulation) %>% kable()
+```
+
+
+
 
 ## for loops
 
+*For* loops are the basic loop function in R. We will use it to loop over lists.
+
+```{r}
+for(i in 1:5){
+  print(i)
+}
+
+
+for(i in 1:5){
+  y = i + 3
+  print(paste(i, "+ 3 =", y )) 
+}
+
+```
+
 ## Handling of data.frames
+
+Most of the time we will work with with the results of the splicing analysis in data.frame format. There are several nice functions that help with data frames. Some of them are quickly shown in the following.
 
 ### Adding new columns with mutate
 
+The *mutate()* function is an easy way to add new columns to a data.frame.
+
+```{r}
+# mutate can write the same word in every row
+regulationDataFrame %>% mutate(newColumn = "new")
+
+# duplicate another row
+regulationDataFrame %>% mutate(newColumn = gene)
+
+# or modify an existing column.
+regulationDataFrame %>% 
+  mutate(newColumn = paste0(regulation, "-regulation"))
+
+```
+
 ### Using case_when to mutate conditionally
+
+*mutate()* can also be use conditionally by combining it with the *case_when()* function.
+
+```{r}
+
+regulationDataFrame %>% 
+  mutate(change = case_when( regulation == "no" ~ "no change",
+                             T ~ "change")
+         )
+
+
+```
 
 ### Picking only certain rows (subset) or columns (select)
 
+We can subset a data.frame to only the certein rows with the *subset()* function. For this we need to pass a logical argument to the subset function. 
+
+Quick reminder: A logical statement will output a vector of TRUE or FALSE. Typical logical operators in R are *==* for is equal and *!=* for is not equal. Another nice one is *%in%*, which checks if a value is inside a vector.
+
+```{r}
+# logical statements
+regulationDataFrame$regulation == "up"
+regulationDataFrame$regulation != "up"
+regulationDataFrame$regulation %in% c("up", "down")
+
+
+# subsetting for specific rows
+regulationDataFrame %>% subset(regulation == "up")
+
+```
+
+### Extract certain patterns with grepl()
+
+The *grepl()* function also returns a logical vector. It can be used to search for a specific pattern within a vector. This can then also be used together with subset, to subset a data.frame for the rows that contains this pattern in a specific row.
+
+```{r}
+
+grepl(regulationDataFrame$type, pattern = "protein-coding")
+grepl(regulationDataFrame$type, pattern = "protein")
+
+subset(regulationDataFrame, grepl(regulationDataFrame$type, pattern = "protein-coding"))
+
+```
+
 ### Arranging data.frames
+data.frames can be sorted by a speciffic coulmn or also by multiple columns with the *arrange()* function. *arrange()* sorts character columns by alphabetical order and numeric columns from lowest to highest. the function *desc()* can be used to sort from highest to lowest instead.
+
+```{r}
+# arranging a data.frame by a character column
+regulationDataFrame %>% arrange(type)
+
+# arranging a data.frame by a numeric column
+regulationDataFrame$someNumber <- c(1,5,8,2,2,4,3,5)
+regulationDataFrame %>% arrange(someNumber)
+
+# arranging by two columns
+regulationDataFrame %>% arrange(type, someNumber)
+
+# arranging from highest to lowest
+regulationDataFrame %>% arrange(desc(someNumber))
+
+```
+
 
 ### Grouping data.frames
 
+```{r}
 
+regulationDataFrame %>% group_by(regulation) %>% arrange(desc(someNumber), .by_group = T) 
 
+```
 
-With the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output.
 
 

@@ -61,8 +61,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -213,12 +211,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Please do the following tasks always after the corresponding session. We will look at your results and problems that occurred always in the beginning of the next session.</p>
-<p>At the end of the course make a protocol of all your splicing analyses in form of a quarto report (.qmd) and render it to pdf or html.</p>
+<p>At the end of the course make a protocol of all your splicing analyses in form of a quarto or rmarkdown report (.qmd/.rmd) and render it to pdf or html. Include all tasks below in the protocol.</p>
 <section id="tasks-for-part-1---visualisation" class="level1">
 <h1>Tasks for part 1 - Visualisation</h1>
 <p>Instructions for screening AS events in the VOILA GUI and verification via Sashimi Plots in IGV can be found in <em>part1_GUI_and_SashimiPlots.pdf</em>.</p>
 <ol type="1">
-<li>For one of your comparisons search for binary LSVs with |deltaPSI| <span class="math inline">\(\ge\)</span> 0.1 and Confidence Threshold <span class="math inline">\(\ge\)</span> 0.9. If you can’t find events lower the deltaPSI threshold.</li>
+<li>For one of your comparisons search for binary LSVs with |deltaPSI| &gt; 0.1 and Confidence Threshold &gt; 0.9. If you can’t find events lower the deltaPSI threshold. The screenshots should include the Gene Name, the LSV ID, the LSV Schema and the violin plot of the dPSI values.</li>
 </ol>
 <ul>
 <li>Take a screenshot of 1 LSV representing an exon skipping event.</li>
@@ -227,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Take a screenshot of 1 LSV representing an alternative 3’ splice site event.</li>
 </ul>
 <ol start="2" type="1">
-<li>Take for each of the five LSVs also screenshots for your other comparison(s) (use the LSV identifier).</li>
+<li>Take for each of the five LSVs also screenshots for your other data set (e.g.&nbsp;your other cell line). You can use the LSV identifier to find them. If you can’t find the same events lower the deltaPSI and confidence threshold. You can lower both thresholds to 0 to see all detected LSVs. If you still cannot find them use take screenshots of other events.</li>
 <li>Compare the regulation of the five LSVs between the two comparisons.</li>
 <li>Take one of your five LSVs and create a sashimi plot including all of your comparisons in IGV.</li>
 </ol>
@@ -241,11 +239,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="tasks-for-part-2---analyzing-as-at-the-level-of-lsvs" class="level1">
 <h1>Tasks for part 2 - Analyzing AS at the level of LSVs</h1>
-<p>Do the global analysis part for both your data sets.</p>
+<ul>
+<li><p>Repeat or revisit the functions in the”useful R” section. (This part does not have to be included in the proctocol in the end.)</p></li>
+<li><p>Analyse both of you data sets following the steps of the “Global analysis” section.</p></li>
+<li><p>How many LSVs are detected in each data set? How many are significantly regulated?</p></li>
+<li><p>What are the top regulated LSVs in each data set?</p></li>
+<li><p>Do the data sets have a similar depth? (Are the numbers of detected and regukated LSVS similar?)</p></li>
+<li><p>What is the most common splicing class for your protein? Do a small literature research on the protein, that was knocked down / knocked out in you data set. Which types of splicing would you expect? Is this also what the data shows?</p></li>
+</ul>
 </section>
 <section id="tasks-for-part-3---analyzing-as-at-the-level-of-as-events" class="level1">
 <h1>Tasks for part 3 - Analyzing AS at the level of AS events</h1>
-<p>Repeat the analyses in part3_AS_at_ASevent_level.pdf for your comparisons.</p>
+<p>Compare the splicing in both your data sets using steps from the “Comparison of data sets” section.</p>
 
 
 </section>

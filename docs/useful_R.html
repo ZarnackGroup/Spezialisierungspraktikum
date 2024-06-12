@@ -220,7 +220,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link active" data-scroll-target="#the-pipe-operator">The pipe operator %&gt;%</a></li>
   <li><a href="#count-the-number-of-occurences-with-the-table-function" id="toc-count-the-number-of-occurences-with-the-table-function" class="nav-link" data-scroll-target="#count-the-number-of-occurences-with-the-table-function">Count the number of occurences with the table function</a></li>
   <li><a href="#use-kable-to-make-a-table-or-data.frame-output-look-nicer" id="toc-use-kable-to-make-a-table-or-data.frame-output-look-nicer" class="nav-link" data-scroll-target="#use-kable-to-make-a-table-or-data.frame-output-look-nicer">Use kable to make a table or data.frame output look nicer</a></li>
-  <li><a href="#extract-certain-patterns-with-grepl" id="toc-extract-certain-patterns-with-grepl" class="nav-link" data-scroll-target="#extract-certain-patterns-with-grepl">Extract certain patterns with grepl()</a></li>
   <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops">for loops</a></li>
   <li><a href="#handling-of-data.frames" id="toc-handling-of-data.frames" class="nav-link" data-scroll-target="#handling-of-data.frames">Handling of data.frames</a></li>
   </ul>
@@ -329,30 +328,269 @@ down   no   up
 </section>
 <section id="use-kable-to-make-a-table-or-data.frame-output-look-nicer" class="level2">
 <h2 class="anchored" data-anchor-id="use-kable-to-make-a-table-or-data.frame-output-look-nicer">Use kable to make a table or data.frame output look nicer</h2>
-</section>
-<section id="extract-certain-patterns-with-grepl" class="level2">
-<h2 class="anchored" data-anchor-id="extract-certain-patterns-with-grepl">Extract certain patterns with grepl()</h2>
+<p>The <em>kable()</em> function from the knitr package makes tables look nicer in the html/pdf reports.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(regulationDataFrame<span class="sc">$</span>type, regulationDataFrame<span class="sc">$</span>regulation) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">down</th>
+<th style="text-align: right;">no</th>
+<th style="text-align: right;">up</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">miRNA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">protein-coding</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rRNA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="for-loops" class="level2">
 <h2 class="anchored" data-anchor-id="for-loops">for loops</h2>
+<p><em>For</em> loops are the basic loop function in R. We will use it to loop over lists.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(i, <span class="st">"+ 3 ="</span>, y )) </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1 + 3 = 4"
+[1] "2 + 3 = 5"
+[1] "3 + 3 = 6"
+[1] "4 + 3 = 7"
+[1] "5 + 3 = 8"</code></pre>
+</div>
+</div>
 </section>
 <section id="handling-of-data.frames" class="level2">
 <h2 class="anchored" data-anchor-id="handling-of-data.frames">Handling of data.frames</h2>
+<p>Most of the time we will work with with the results of the splicing analysis in data.frame format. There are several nice functions that help with data frames. Some of them are quickly shown in the following.</p>
 <section id="adding-new-columns-with-mutate" class="level3">
 <h3 class="anchored" data-anchor-id="adding-new-columns-with-mutate">Adding new columns with mutate</h3>
+<p>The <em>mutate()</em> function is an easy way to add new columns to a data.frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mutate can write the same word in every row</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">newColumn =</span> <span class="st">"new"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type newColumn
+1    A         up protein-coding       new
+2    B       down           rRNA       new
+3    C         up protein-coding       new
+4    D         no          miRNA       new
+5    E         no          miRNA       new
+6    F       down           rRNA       new
+7    G         up protein-coding       new
+8    H         up protein-coding       new</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicate another row</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">newColumn =</span> gene)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type newColumn
+1    A         up protein-coding         A
+2    B       down           rRNA         B
+3    C         up protein-coding         C
+4    D         no          miRNA         D
+5    E         no          miRNA         E
+6    F       down           rRNA         F
+7    G         up protein-coding         G
+8    H         up protein-coding         H</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or modify an existing column.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">newColumn =</span> <span class="fu">paste0</span>(regulation, <span class="st">"-regulation"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type       newColumn
+1    A         up protein-coding   up-regulation
+2    B       down           rRNA down-regulation
+3    C         up protein-coding   up-regulation
+4    D         no          miRNA   no-regulation
+5    E         no          miRNA   no-regulation
+6    F       down           rRNA down-regulation
+7    G         up protein-coding   up-regulation
+8    H         up protein-coding   up-regulation</code></pre>
+</div>
+</div>
 </section>
 <section id="using-case_when-to-mutate-conditionally" class="level3">
 <h3 class="anchored" data-anchor-id="using-case_when-to-mutate-conditionally">Using case_when to mutate conditionally</h3>
+<p><em>mutate()</em> can also be use conditionally by combining it with the <em>case_when()</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change =</span> <span class="fu">case_when</span>( regulation <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"no change"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                             T <span class="sc">~</span> <span class="st">"change"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type    change
+1    A         up protein-coding    change
+2    B       down           rRNA    change
+3    C         up protein-coding    change
+4    D         no          miRNA no change
+5    E         no          miRNA no change
+6    F       down           rRNA    change
+7    G         up protein-coding    change
+8    H         up protein-coding    change</code></pre>
+</div>
+</div>
 </section>
 <section id="picking-only-certain-rows-subset-or-columns-select" class="level3">
 <h3 class="anchored" data-anchor-id="picking-only-certain-rows-subset-or-columns-select">Picking only certain rows (subset) or columns (select)</h3>
+<p>We can subset a data.frame to only the certein rows with the <em>subset()</em> function. For this we need to pass a logical argument to the subset function.</p>
+<p>Quick reminder: A logical statement will output a vector of TRUE or FALSE. Typical logical operators in R are <em>==</em> for is equal and <em>!=</em> for is not equal. Another nice one is <em>%in%</em>, which checks if a value is inside a vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># logical statements</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame<span class="sc">$</span>regulation <span class="sc">==</span> <span class="st">"up"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>regulationDataFrame<span class="sc">$</span>regulation <span class="sc">!=</span> <span class="st">"up"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>regulationDataFrame<span class="sc">$</span>regulation <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"up"</span>, <span class="st">"down"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subsetting for specific rows</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">subset</span>(regulation <span class="sc">==</span> <span class="st">"up"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type
+1    A         up protein-coding
+3    C         up protein-coding
+7    G         up protein-coding
+8    H         up protein-coding</code></pre>
+</div>
+</div>
+</section>
+<section id="extract-certain-patterns-with-grepl" class="level3">
+<h3 class="anchored" data-anchor-id="extract-certain-patterns-with-grepl">Extract certain patterns with grepl()</h3>
+<p>The <em>grepl()</em> function also returns a logical vector. It can be used to search for a specific pattern within a vector. This can then also be used together with subset, to subset a data.frame for the rows that contains this pattern in a specific row.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(regulationDataFrame<span class="sc">$</span>type, <span class="at">pattern =</span> <span class="st">"protein-coding"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(regulationDataFrame<span class="sc">$</span>type, <span class="at">pattern =</span> <span class="st">"protein"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(regulationDataFrame, <span class="fu">grepl</span>(regulationDataFrame<span class="sc">$</span>type, <span class="at">pattern =</span> <span class="st">"protein-coding"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type
+1    A         up protein-coding
+3    C         up protein-coding
+7    G         up protein-coding
+8    H         up protein-coding</code></pre>
+</div>
+</div>
 </section>
 <section id="arranging-data.frames" class="level3">
 <h3 class="anchored" data-anchor-id="arranging-data.frames">Arranging data.frames</h3>
+<p>data.frames can be sorted by a speciffic coulmn or also by multiple columns with the <em>arrange()</em> function. <em>arrange()</em> sorts character columns by alphabetical order and numeric columns from lowest to highest. the function <em>desc()</em> can be used to sort from highest to lowest instead.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging a data.frame by a character column</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type
+1    D         no          miRNA
+2    E         no          miRNA
+3    A         up protein-coding
+4    C         up protein-coding
+5    G         up protein-coding
+6    H         up protein-coding
+7    B       down           rRNA
+8    F       down           rRNA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging a data.frame by a numeric column</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame<span class="sc">$</span>someNumber <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(someNumber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type someNumber
+1    A         up protein-coding          1
+2    D         no          miRNA          2
+3    E         no          miRNA          2
+4    G         up protein-coding          3
+5    F       down           rRNA          4
+6    B       down           rRNA          5
+7    H         up protein-coding          5
+8    C         up protein-coding          8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging by two columns</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(type, someNumber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type someNumber
+1    D         no          miRNA          2
+2    E         no          miRNA          2
+3    A         up protein-coding          1
+4    G         up protein-coding          3
+5    H         up protein-coding          5
+6    C         up protein-coding          8
+7    F       down           rRNA          4
+8    B       down           rRNA          5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arranging from highest to lowest</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(someNumber))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gene regulation           type someNumber
+1    C         up protein-coding          8
+2    B       down           rRNA          5
+3    H         up protein-coding          5
+4    F       down           rRNA          4
+5    G         up protein-coding          3
+6    D         no          miRNA          2
+7    E         no          miRNA          2
+8    A         up protein-coding          1</code></pre>
+</div>
+</div>
 </section>
 <section id="grouping-data.frames" class="level3">
 <h3 class="anchored" data-anchor-id="grouping-data.frames">Grouping data.frames</h3>
-<p>With the new operator and functions we learned in this section, we are well prepared for the processing of the MAJIQ output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>regulationDataFrame <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(regulation) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(someNumber), <span class="at">.by_group =</span> T) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+# Groups:   regulation [3]
+  gene  regulation type           someNumber
+  &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
+1 B     down       rRNA                    5
+2 F     down       rRNA                    4
+3 D     no         miRNA                   2
+4 E     no         miRNA                   2
+5 C     up         protein-coding          8
+6 H     up         protein-coding          5
+7 G     up         protein-coding          3
+8 A     up         protein-coding          1</code></pre>
+</div>
+</div>
 
 
 </section>
