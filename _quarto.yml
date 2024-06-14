@@ -31,6 +31,8 @@ website:
         text: Useful R functions
       - href: global_splicing.qmd
         text: Global analysis
+      - href: comparison_two_datasets.qmd
+        text: Comparing data sets
       - href: tasks.qmd
         text: Tasks
       

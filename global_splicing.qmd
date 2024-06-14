@@ -52,7 +52,7 @@ First, we load the TSV-files as data.frames into R. We are only look at the most
 # --------------------
 
 # path to the folder that contains the .tsv files
-in_path <- "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/"
+in_path <- "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_K562_Control-SFPQ_K562_shRNA/"
 
 # These are the splicing classes we want to look at.
 # We make a list with the file names, and give each object in the list a name
@@ -175,10 +175,10 @@ cols <- c("gene_name",
   "lsv_id", 
   "complex",
   "junction_coord",
-  "SFPQ_HepG2_Control_median_psi", 
-  "SFPQ_HepG2_shRNA_median_psi", 
-  "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi",
-  "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing",
+  "SFPQ_K562_Control_median_psi", 
+  "SFPQ_K562_shRNA_median_psi", 
+  "SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi",
+  "SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing",
   "class")
 ```
 
@@ -279,7 +279,7 @@ splice_results %>%
 Here we save the cleaned data.frame of the splicing results for the comparison in the next session.
 
 ```{r eval=F}
-saveRDS(splice_results, "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds")
+saveRDS(splice_results, "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds")
 
 ```
 
@@ -401,6 +401,7 @@ highest_junction_per_lsv <- splice_results %>%
   ungroup()
 
 highest_junction_per_lsv %>% head() %>% kable()
+
 ```
 From this we can easily get the number of detected LSVs
 
@@ -458,7 +459,7 @@ We now create a scatter plot in which we plot for each LSV the maximal deltaPSI 
   
 ```
 
-We can see that that in the HepG2 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.
+We can see that that in the K562 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.
 
 ## Regulated LSVs
 
@@ -480,6 +481,8 @@ table(highest_junction_per_lsv$sign)  %>% kable()
 t <- table(highest_junction_per_lsv$sign) 
 
 (t/sum(t)) %>% kable()
+
+saveRDS(highest_junction_per_lsv, "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds")
 
 ```
 

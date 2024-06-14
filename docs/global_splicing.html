@@ -152,6 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Global analysis</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./comparison_two_datasets.html" rel="" target="">
+ <span class="dropdown-text">Comparing data sets</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./tasks.html" rel="" target="">
  <span class="dropdown-text">Tasks</span></a>
   </li>  
@@ -202,6 +206,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./global_splicing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Global analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comparison_two_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparing data sets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -303,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># path to the folder that contains the .tsv files</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>in_path <span class="ot">&lt;-</span> <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>in_path <span class="ot">&lt;-</span> <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_K562_Control-SFPQ_K562_shRNA/"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the splicing classes we want to look at.</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We make a list with the file names, and give each object in the list a name</span></span>
@@ -392,7 +402,7 @@ $intron_retention
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(in_path, interesting_classes[[<span class="dv">3</span>]]) <span class="co"># the path to the third tsv file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_HepG2_Control-SFPQ_HepG2_shRNA/cassette.tsv"</code></pre>
+<pre><code>[1] "/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/modulise/SFPQ_K562_Control-SFPQ_K562_shRNA/cassette.tsv"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(splice_results_list[[<span class="dv">3</span>]])  <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="co"># the third object in the splice results list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -403,7 +413,7 @@ $intron_retention
 <col style="width: 1%">
 <col style="width: 1%">
 <col style="width: 1%">
-<col style="width: 7%">
+<col style="width: 8%">
 <col style="width: 5%">
 <col style="width: 1%">
 <col style="width: 1%">
@@ -418,8 +428,8 @@ $intron_retention
 <col style="width: 3%">
 <col style="width: 5%">
 <col style="width: 5%">
-<col style="width: 9%">
-<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 10%">
 <col style="width: 11%">
 </colgroup>
 <thead>
@@ -442,163 +452,163 @@ $intron_retention
 <th style="text-align: left;">event_non_changing</th>
 <th style="text-align: left;">event_changing</th>
 <th style="text-align: left;">junction_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+<th style="text-align: right;">SFPQ_K562_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_non_changing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ENSG00000122557.11_1</td>
-<td style="text-align: left;">ENSG00000122557.11</td>
-<td style="text-align: left;">HERPUD2</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000122557.11:s:35694184-35694627</td>
-<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:na-126917922</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_1</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">-1-126917922</td>
 <td style="text-align: left;">C2</td>
-<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">126953025-126953184</td>
 <td style="text-align: left;">C1_C2</td>
-<td style="text-align: left;">35670328-35694184</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: left;">126917922-126953025</td>
+<td style="text-align: right;">119</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.080</td>
-<td style="text-align: right;">0.055</td>
-<td style="text-align: right;">-0.015</td>
-<td style="text-align: right;">0.486</td>
-<td style="text-align: right;">0.212</td>
+<td style="text-align: right;">0.539</td>
+<td style="text-align: right;">0.430</td>
+<td style="text-align: right;">-0.070</td>
+<td style="text-align: right;">0.696</td>
+<td style="text-align: right;">0.036</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ENSG00000122557.11_1</td>
-<td style="text-align: left;">ENSG00000122557.11</td>
-<td style="text-align: left;">HERPUD2</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000122557.11:s:35694184-35694627</td>
-<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:s:na-126917922</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_1</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">-1-126917922</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: left;">35673201-35673278</td>
+<td style="text-align: left;">126947773-126947891</td>
 <td style="text-align: left;">C1_A</td>
-<td style="text-align: left;">35673278-35694184</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: left;">126917922-126947773</td>
+<td style="text-align: right;">119</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.862</td>
-<td style="text-align: right;">0.934</td>
-<td style="text-align: right;">0.050</td>
-<td style="text-align: right;">0.644</td>
-<td style="text-align: right;">0.079</td>
+<td style="text-align: right;">0.192</td>
+<td style="text-align: right;">0.408</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">0.011</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ENSG00000122557.11_1</td>
-<td style="text-align: left;">ENSG00000122557.11</td>
-<td style="text-align: left;">HERPUD2</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000122557.11:t:35670215-35670328</td>
-<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:t:126953025-126953184</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_1</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">126953025-126953184</td>
 <td style="text-align: left;">C1</td>
-<td style="text-align: left;">35694184-35694627</td>
+<td style="text-align: left;">-1-126917922</td>
 <td style="text-align: left;">C2_C1</td>
-<td style="text-align: left;">35670328-35694184</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: left;">126917922-126953025</td>
+<td style="text-align: right;">119</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">0.032</td>
-<td style="text-align: right;">0.002</td>
-<td style="text-align: right;">0.280</td>
-<td style="text-align: right;">0.586</td>
+<td style="text-align: right;">0.749</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">-0.247</td>
+<td style="text-align: right;">0.899</td>
+<td style="text-align: right;">0.003</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ENSG00000122557.11_1</td>
-<td style="text-align: left;">ENSG00000122557.11</td>
-<td style="text-align: left;">HERPUD2</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000122557.11:t:35670215-35670328</td>
-<td style="text-align: left;">ENSG00000122557.11_1_CE_1</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000159685.11:t:126953025-126953184</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_1</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">35670215-35670328</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">126953025-126953184</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: left;">35673201-35673278</td>
+<td style="text-align: left;">126947773-126947891</td>
 <td style="text-align: left;">C2_A</td>
-<td style="text-align: left;">35670328-35673201</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: left;">126947891-126953025</td>
+<td style="text-align: right;">119</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.974</td>
-<td style="text-align: right;">0.968</td>
-<td style="text-align: right;">-0.002</td>
-<td style="text-align: right;">0.280</td>
-<td style="text-align: right;">0.586</td>
+<td style="text-align: right;">0.227</td>
+<td style="text-align: right;">0.456</td>
+<td style="text-align: right;">0.160</td>
+<td style="text-align: right;">0.821</td>
+<td style="text-align: right;">0.010</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ENSG00000011426.11_1</td>
-<td style="text-align: left;">ENSG00000011426.11</td>
-<td style="text-align: left;">ANLN</td>
-<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000011426.11:s:36415758-36415885</td>
-<td style="text-align: left;">ENSG00000011426.11_1_CE_1</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">36415758-36415884</td>
+<td style="text-align: left;">ENSG00000159685.11:s:na-126917922</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_2</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">-1-126917922</td>
 <td style="text-align: left;">C2</td>
-<td style="text-align: left;">36419244-36419479</td>
+<td style="text-align: left;">126957416-126957551</td>
 <td style="text-align: left;">C1_C2</td>
-<td style="text-align: left;">36415884-36419244</td>
-<td style="text-align: right;">111</td>
+<td style="text-align: left;">126917922-126957416</td>
+<td style="text-align: right;">160</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.237</td>
-<td style="text-align: right;">0.163</td>
-<td style="text-align: right;">-0.052</td>
-<td style="text-align: right;">0.707</td>
-<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.261</td>
+<td style="text-align: right;">0.169</td>
+<td style="text-align: right;">-0.064</td>
+<td style="text-align: right;">0.706</td>
+<td style="text-align: right;">0.049</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ENSG00000011426.11_1</td>
-<td style="text-align: left;">ENSG00000011426.11</td>
-<td style="text-align: left;">ANLN</td>
-<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">ENSG00000159685.11_2</td>
+<td style="text-align: left;">ENSG00000159685.11</td>
+<td style="text-align: left;">CHCHD6</td>
+<td style="text-align: left;">chr3</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000011426.11:s:36415758-36415885</td>
-<td style="text-align: left;">ENSG00000011426.11_1_CE_1</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">36415758-36415884</td>
+<td style="text-align: left;">ENSG00000159685.11:s:na-126917922</td>
+<td style="text-align: left;">ENSG00000159685.11_2_CE_2</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">-1-126917922</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: left;">36417080-36417190</td>
+<td style="text-align: left;">126953025-126953184</td>
 <td style="text-align: left;">C1_A</td>
-<td style="text-align: left;">36415884-36417080</td>
-<td style="text-align: right;">111</td>
+<td style="text-align: left;">126917922-126953025</td>
+<td style="text-align: right;">160</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.763</td>
-<td style="text-align: right;">0.837</td>
-<td style="text-align: right;">0.052</td>
-<td style="text-align: right;">0.707</td>
-<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.539</td>
+<td style="text-align: right;">0.430</td>
+<td style="text-align: right;">-0.070</td>
+<td style="text-align: right;">0.696</td>
+<td style="text-align: right;">0.036</td>
 </tr>
 </tbody>
 </table>
@@ -626,7 +636,7 @@ $intron_retention
 <col style="width: 1%">
 <col style="width: 1%">
 <col style="width: 7%">
-<col style="width: 4%">
+<col style="width: 5%">
 <col style="width: 1%">
 <col style="width: 1%">
 <col style="width: 4%">
@@ -664,163 +674,163 @@ $intron_retention
 <th style="text-align: left;">event_non_changing</th>
 <th style="text-align: left;">event_changing</th>
 <th style="text-align: left;">junction_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+<th style="text-align: right;">SFPQ_K562_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_non_changing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ENSG00000159685.11_1</td>
-<td style="text-align: left;">ENSG00000159685.11</td>
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">ENSG00000064961.19_3</td>
+<td style="text-align: left;">ENSG00000064961.19</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
-<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
+<td style="text-align: left;">ENSG00000064961.19_3_A3_1</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">3575651-3575660</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">3576261-3576307</td>
 <td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">126733222-126852644</td>
+<td style="text-align: left;">3575660-3576261</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.435</td>
-<td style="text-align: right;">0.283</td>
+<td style="text-align: right;">0.938</td>
+<td style="text-align: right;">0.930</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">0.436</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ENSG00000159685.11_1</td>
-<td style="text-align: left;">ENSG00000159685.11</td>
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">ENSG00000064961.19_3</td>
+<td style="text-align: left;">ENSG00000064961.19</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
-<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
+<td style="text-align: left;">ENSG00000064961.19_3_A3_1</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">3575651-3575660</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">3576261-3576307</td>
 <td style="text-align: left;">Distal</td>
-<td style="text-align: left;">126733222-126852647</td>
+<td style="text-align: left;">3575660-3576264</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.950</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">0.436</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000116786.13_2</td>
+<td style="text-align: left;">ENSG00000116786.13</td>
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">ENSG00000116786.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731192-15731257</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15731889-15732048</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">15731257-15731889</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.869</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: right;">0.201</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000116786.13_2</td>
+<td style="text-align: left;">ENSG00000116786.13</td>
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">ENSG00000116786.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731192-15731257</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15731889-15732048</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">15731257-15731950</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.131</td>
+<td style="text-align: right;">0.106</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: right;">0.201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000065526.13_2</td>
+<td style="text-align: left;">ENSG00000065526.13</td>
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
+<td style="text-align: left;">ENSG00000065526.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15876202-15876678</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15909321-15909481</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">15876678-15909321</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
 <td style="text-align: right;">0.940</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.935</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.457</td>
 <td style="text-align: right;">0.270</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">ENSG00000197841.15_1</td>
-<td style="text-align: left;">ENSG00000197841.15</td>
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
+<tr class="even">
+<td style="text-align: left;">ENSG00000065526.13_2</td>
+<td style="text-align: left;">ENSG00000065526.13</td>
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
-<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
+<td style="text-align: left;">ENSG00000065526.13_2_A3_1</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">15876202-15876678</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">34739523-34739621</td>
-<td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">34739268-34739523</td>
+<td style="text-align: left;">15909321-15909481</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">15876678-15909324</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.446</td>
-<td style="text-align: right;">0.451</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: right;">0.079</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ENSG00000197841.15_1</td>
-<td style="text-align: left;">ENSG00000197841.15</td>
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
-<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">34739148-34739268</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">34739523-34739621</td>
-<td style="text-align: left;">Distal</td>
-<td style="text-align: left;">34739268-34739526</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.554</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">-0.011</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: right;">0.079</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ENSG00000076685.19_4</td>
-<td style="text-align: left;">ENSG00000076685.19</td>
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">103101045-103101102</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">103100752-103100964</td>
-<td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">103100964-103101045</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.505</td>
-<td style="text-align: right;">0.223</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ENSG00000076685.19_4</td>
-<td style="text-align: left;">ENSG00000076685.19</td>
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">103101045-103101102</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">103100752-103100964</td>
-<td style="text-align: left;">Distal</td>
-<td style="text-align: left;">103100943-103101045</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.645</td>
-<td style="text-align: right;">0.096</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.457</td>
+<td style="text-align: right;">0.270</td>
 </tr>
 </tbody>
 </table>
@@ -850,7 +860,7 @@ $intron_retention
 <col style="width: 3%">
 <col style="width: 2%">
 <col style="width: 3%">
-<col style="width: 1%">
+<col style="width: 2%">
 <col style="width: 3%">
 <col style="width: 2%">
 <col style="width: 3%">
@@ -858,7 +868,7 @@ $intron_retention
 <col style="width: 5%">
 <col style="width: 8%">
 <col style="width: 10%">
-<col style="width: 11%">
+<col style="width: 10%">
 <col style="width: 5%">
 </colgroup>
 <thead>
@@ -881,169 +891,169 @@ $intron_retention
 <th style="text-align: left;">event_non_changing</th>
 <th style="text-align: left;">event_changing</th>
 <th style="text-align: left;">junction_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing</th>
+<th style="text-align: right;">SFPQ_K562_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_non_changing</th>
 <th style="text-align: left;">class</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ENSG00000159685.11_1</td>
-<td style="text-align: left;">ENSG00000159685.11</td>
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">ENSG00000064961.19_3</td>
+<td style="text-align: left;">ENSG00000064961.19</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
-<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
+<td style="text-align: left;">ENSG00000064961.19_3_A3_1</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">3575651-3575660</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">3576261-3576307</td>
 <td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">126733222-126852644</td>
+<td style="text-align: left;">3575660-3576261</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.435</td>
-<td style="text-align: right;">0.283</td>
+<td style="text-align: right;">0.938</td>
+<td style="text-align: right;">0.930</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">0.436</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ENSG00000159685.11_1</td>
-<td style="text-align: left;">ENSG00000159685.11</td>
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">ENSG00000064961.19_3</td>
+<td style="text-align: left;">ENSG00000064961.19</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
-<td style="text-align: left;">ENSG00000159685.11_1_A3_1</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
+<td style="text-align: left;">ENSG00000064961.19_3_A3_1</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">126733078-126733222</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">3575651-3575660</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">126852644-126852730</td>
+<td style="text-align: left;">3576261-3576307</td>
 <td style="text-align: left;">Distal</td>
-<td style="text-align: left;">126733222-126852647</td>
+<td style="text-align: left;">3575660-3576264</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.950</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: right;">0.436</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000116786.13_2</td>
+<td style="text-align: left;">ENSG00000116786.13</td>
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">ENSG00000116786.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731192-15731257</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15731889-15732048</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">15731257-15731889</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.869</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: right;">0.201</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000116786.13_2</td>
+<td style="text-align: left;">ENSG00000116786.13</td>
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">ENSG00000116786.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731192-15731257</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15731889-15732048</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">15731257-15731950</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: right;">0.131</td>
+<td style="text-align: right;">0.106</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: right;">0.201</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000065526.13_2</td>
+<td style="text-align: left;">ENSG00000065526.13</td>
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
+<td style="text-align: left;">ENSG00000065526.13_2_A3_1</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15876202-15876678</td>
+<td style="text-align: left;">E2</td>
+<td style="text-align: left;">15909321-15909481</td>
+<td style="text-align: left;">Proximal</td>
+<td style="text-align: left;">15876678-15909321</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">False</td>
 <td style="text-align: right;">0.940</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.445</td>
+<td style="text-align: right;">0.935</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.457</td>
 <td style="text-align: right;">0.270</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">ENSG00000197841.15_1</td>
-<td style="text-align: left;">ENSG00000197841.15</td>
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
+<tr class="even">
+<td style="text-align: left;">ENSG00000065526.13_2</td>
+<td style="text-align: left;">ENSG00000065526.13</td>
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
-<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
+<td style="text-align: left;">ENSG00000065526.13_2_A3_1</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">34739148-34739268</td>
+<td style="text-align: left;">15876202-15876678</td>
 <td style="text-align: left;">E2</td>
-<td style="text-align: left;">34739523-34739621</td>
-<td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">34739268-34739523</td>
+<td style="text-align: left;">15909321-15909481</td>
+<td style="text-align: left;">Distal</td>
+<td style="text-align: left;">15876678-15909324</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: right;">0.446</td>
-<td style="text-align: right;">0.451</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ENSG00000197841.15_1</td>
-<td style="text-align: left;">ENSG00000197841.15</td>
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
-<td style="text-align: left;">ENSG00000197841.15_1_A3_1</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">34739148-34739268</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">34739523-34739621</td>
-<td style="text-align: left;">Distal</td>
-<td style="text-align: left;">34739268-34739526</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.554</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">-0.011</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ENSG00000076685.19_4</td>
-<td style="text-align: left;">ENSG00000076685.19</td>
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">103101045-103101102</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">103100752-103100964</td>
-<td style="text-align: left;">Proximal</td>
-<td style="text-align: left;">103100964-103101045</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.505</td>
-<td style="text-align: right;">0.223</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ENSG00000076685.19_4</td>
-<td style="text-align: left;">ENSG00000076685.19</td>
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">ENSG00000076685.19_4_A3_1</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">103101045-103101102</td>
-<td style="text-align: left;">E2</td>
-<td style="text-align: left;">103100752-103100964</td>
-<td style="text-align: left;">Distal</td>
-<td style="text-align: left;">103100943-103101045</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.645</td>
-<td style="text-align: right;">0.096</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.457</td>
+<td style="text-align: right;">0.270</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 </tbody>
@@ -1083,30 +1093,30 @@ $intron_retention
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">##########################</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(splice_results_list<span class="sc">$</span>alternative_3_prime_splice_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "module_id"                                                   
- [2] "gene_id"                                                     
- [3] "gene_name"                                                   
- [4] "seqid"                                                       
- [5] "strand"                                                      
- [6] "lsv_id"                                                      
- [7] "event_id"                                                    
- [8] "complex"                                                     
- [9] "denovo"                                                      
-[10] "reference_exon_coord"                                        
-[11] "spliced_with"                                                
-[12] "spliced_with_coord"                                          
-[13] "junction_name"                                               
-[14] "junction_coord"                                              
-[15] "event_size"                                                  
-[16] "event_non_changing"                                          
-[17] "event_changing"                                              
-[18] "junction_changing"                                           
-[19] "SFPQ_HepG2_Control_median_psi"                               
-[20] "SFPQ_HepG2_shRNA_median_psi"                                 
-[21] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi"             
-[22] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing"    
-[23] "SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_non_changing"
-[24] "class"                                                       </code></pre>
+<pre><code> [1] "module_id"                                                 
+ [2] "gene_id"                                                   
+ [3] "gene_name"                                                 
+ [4] "seqid"                                                     
+ [5] "strand"                                                    
+ [6] "lsv_id"                                                    
+ [7] "event_id"                                                  
+ [8] "complex"                                                   
+ [9] "denovo"                                                    
+[10] "reference_exon_coord"                                      
+[11] "spliced_with"                                              
+[12] "spliced_with_coord"                                        
+[13] "junction_name"                                             
+[14] "junction_coord"                                            
+[15] "event_size"                                                
+[16] "event_non_changing"                                        
+[17] "event_changing"                                            
+[18] "junction_changing"                                         
+[19] "SFPQ_K562_Control_median_psi"                              
+[20] "SFPQ_K562_shRNA_median_psi"                                
+[21] "SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi"             
+[22] "SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing"    
+[23] "SFPQ_K562_shRNA.SFPQ_K562_Control_probability_non_changing"
+[24] "class"                                                     </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene_name"</span>, </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"seqid"</span>, </span>
@@ -1114,10 +1124,10 @@ $intron_retention
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lsv_id"</span>, </span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"complex"</span>,</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"junction_coord"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_Control_median_psi"</span>, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA_median_psi"</span>, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_K562_Control_median_psi"</span>, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_K562_shRNA_median_psi"</span>, </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing"</span>,</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In order to do that to all objects in the list (all splicing classes), we use a <strong>for loop</strong> again.</p>
@@ -1172,90 +1182,90 @@ $intron_retention
 <th style="text-align: left;">lsv_id</th>
 <th style="text-align: left;">complex</th>
 <th style="text-align: left;">junction_coord</th>
-<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_K562_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing</th>
 <th style="text-align: left;">class</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">126733222-126852644</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.056</td>
-<td style="text-align: right;">0.007</td>
-<td style="text-align: right;">0.435</td>
+<td style="text-align: left;">3575660-3576261</td>
+<td style="text-align: right;">0.938</td>
+<td style="text-align: right;">0.930</td>
+<td style="text-align: right;">-0.004</td>
+<td style="text-align: right;">0.355</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">CHCHD6</td>
-<td style="text-align: left;">chr3</td>
+<td style="text-align: left;">HMG20B</td>
+<td style="text-align: left;">chr19</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000159685.11:s:126733078-126733222</td>
+<td style="text-align: left;">ENSG00000064961.19:s:3575651-3575660</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">126733222-126852647</td>
-<td style="text-align: right;">0.950</td>
+<td style="text-align: left;">3575660-3576264</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">0.070</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.355</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731257-15731889</td>
+<td style="text-align: right;">0.869</td>
+<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PLEKHM2</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000116786.13:s:15731192-15731257</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15731257-15731950</td>
+<td style="text-align: right;">0.131</td>
+<td style="text-align: right;">0.106</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.512</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">15876678-15909321</td>
 <td style="text-align: right;">0.940</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.445</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">34739268-34739523</td>
-<td style="text-align: right;">0.446</td>
-<td style="text-align: right;">0.451</td>
-<td style="text-align: right;">0.011</td>
-<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.935</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">0.457</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ZNF181</td>
-<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">SPEN</td>
+<td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000197841.15:s:34739148-34739268</td>
+<td style="text-align: left;">ENSG00000065526.13:s:15876202-15876711</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">34739268-34739526</td>
-<td style="text-align: right;">0.554</td>
-<td style="text-align: right;">0.549</td>
-<td style="text-align: right;">-0.011</td>
-<td style="text-align: right;">0.625</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">103100964-103101045</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.505</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NT5C2</td>
-<td style="text-align: left;">chr10</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">103100943-103101045</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.645</td>
+<td style="text-align: left;">15876678-15909324</td>
+<td style="text-align: right;">0.060</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.457</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 </tbody>
@@ -1269,14 +1279,14 @@ $intron_retention
 <col style="width: 3%">
 <col style="width: 2%">
 <col style="width: 2%">
-<col style="width: 13%">
+<col style="width: 14%">
 <col style="width: 2%">
 <col style="width: 6%">
 <col style="width: 10%">
 <col style="width: 9%">
 <col style="width: 16%">
 <col style="width: 19%">
-<col style="width: 10%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1287,96 +1297,96 @@ $intron_retention
 <th style="text-align: left;">lsv_id</th>
 <th style="text-align: left;">complex</th>
 <th style="text-align: left;">junction_coord</th>
-<th style="text-align: right;">SFPQ_HepG2_Control_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA_median_psi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_median_dpsi</th>
-<th style="text-align: right;">SFPQ_HepG2_shRNA.SFPQ_HepG2_Control_probability_changing</th>
+<th style="text-align: right;">SFPQ_K562_Control_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA_median_psi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_median_dpsi</th>
+<th style="text-align: right;">SFPQ_K562_shRNA.SFPQ_K562_Control_probability_changing</th>
 <th style="text-align: left;">class</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: left;">2223</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100964-103101045</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.388</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6</td>
+<td style="text-align: left;">2224</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100943-103101045</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.500</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12423</td>
+<td style="text-align: left;">10839</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100019-103101045</td>
-<td style="text-align: right;">0.877</td>
-<td style="text-align: right;">0.790</td>
-<td style="text-align: right;">-0.070</td>
-<td style="text-align: right;">0.756</td>
+<td style="text-align: right;">0.897</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.540</td>
 <td style="text-align: left;">cassette_exons</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">12424</td>
+<td style="text-align: left;">10840</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100943-103101045</td>
-<td style="text-align: right;">0.079</td>
-<td style="text-align: right;">0.148</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.500</td>
 <td style="text-align: left;">cassette_exons</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">12427</td>
+<td style="text-align: left;">10843</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100019-103101045</td>
-<td style="text-align: right;">0.877</td>
-<td style="text-align: right;">0.790</td>
-<td style="text-align: right;">-0.070</td>
-<td style="text-align: right;">0.756</td>
+<td style="text-align: right;">0.897</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">0.540</td>
 <td style="text-align: left;">cassette_exons</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">12428</td>
+<td style="text-align: left;">10844</td>
 <td style="text-align: left;">NT5C2</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000076685.19:s:103101045-103101102</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">103100964-103101045</td>
-<td style="text-align: right;">0.029</td>
-<td style="text-align: right;">0.059</td>
-<td style="text-align: right;">0.017</td>
-<td style="text-align: right;">0.505</td>
+<td style="text-align: right;">0.052</td>
+<td style="text-align: right;">0.014</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.388</td>
 <td style="text-align: left;">cassette_exons</td>
 </tr>
 </tbody>
@@ -1422,17 +1432,17 @@ $intron_retention
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 6%">
+<col style="width: 5%">
 <col style="width: 3%">
-<col style="width: 4%">
-<col style="width: 23%">
+<col style="width: 3%">
+<col style="width: 21%">
 <col style="width: 4%">
 <col style="width: 10%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 4%">
-<col style="width: 12%">
-<col style="width: 10%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 11%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1456,12 +1466,12 @@ $intron_retention
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">50936262-50942031</td>
-<td style="text-align: right;">0.235</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">-0.051</td>
-<td style="text-align: right;">0.772</td>
-<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">50940955-50942031</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.297</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DPM1</td>
@@ -1470,24 +1480,50 @@ $intron_retention
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">50940933-50942031</td>
-<td style="text-align: right;">0.711</td>
-<td style="text-align: right;">0.710</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.491</td>
-<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">-0.064</td>
+<td style="text-align: right;">0.773</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50940958-50942031</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.330</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">DPM1</td>
 <td style="text-align: left;">chr20</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">50940933-50942031</td>
-<td style="text-align: right;">0.711</td>
-<td style="text-align: right;">0.710</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.491</td>
-<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">-0.064</td>
+<td style="text-align: right;">0.773</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50940958-50942031</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.330</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DPM1</td>
@@ -1495,38 +1531,12 @@ $intron_retention
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">50941209-50942031</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.062</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.676</td>
-<td style="text-align: left;">cassette_exons</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANKIB1</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">92345067-92347946</td>
-<td style="text-align: right;">0.174</td>
-<td style="text-align: right;">0.175</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.622</td>
-<td style="text-align: left;">intron_retention</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ANKIB1</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">92345066-92350950</td>
-<td style="text-align: right;">0.819</td>
-<td style="text-align: right;">0.801</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">0.627</td>
-<td style="text-align: left;">intron_retention</td>
+<td style="text-align: left;">50940955-50942031</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.297</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
 </tr>
 </tbody>
 </table>
@@ -1548,16 +1558,16 @@ $intron_retention
 <colgroup>
 <col style="width: 4%">
 <col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 17%">
+<col style="width: 2%">
+<col style="width: 16%">
 <col style="width: 3%">
 <col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 3%">
-<col style="width: 9%">
-<col style="width: 7%">
-<col style="width: 25%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 2%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1582,13 +1592,13 @@ $intron_retention
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">50936262-50942031</td>
-<td style="text-align: right;">0.235</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">-0.051</td>
-<td style="text-align: right;">0.772</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+<td style="text-align: left;">50940955-50942031</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.297</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50940955-50942031</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DPM1</td>
@@ -1597,11 +1607,11 @@ $intron_retention
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
 <td style="text-align: left;">50940933-50942031</td>
-<td style="text-align: right;">0.711</td>
-<td style="text-align: right;">0.710</td>
-<td style="text-align: right;">-0.004</td>
-<td style="text-align: right;">0.491</td>
-<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">-0.064</td>
+<td style="text-align: right;">0.773</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50940933-50942031</td>
 </tr>
 <tr class="odd">
@@ -1610,55 +1620,55 @@ $intron_retention
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
+<td style="text-align: left;">50940958-50942031</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.042</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.330</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50940958-50942031</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">50936262-50942031</td>
+<td style="text-align: right;">0.241</td>
+<td style="text-align: right;">0.186</td>
+<td style="text-align: right;">-0.047</td>
+<td style="text-align: right;">0.703</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DPM1</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
+<td style="text-align: left;">True</td>
 <td style="text-align: left;">50941209-50942031</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">0.062</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.676</td>
+<td style="text-align: right;">0.082</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.924</td>
 <td style="text-align: left;">cassette_exons</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50941209-50942031</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ANKIB1</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">92345067-92347946</td>
-<td style="text-align: right;">0.174</td>
-<td style="text-align: right;">0.175</td>
-<td style="text-align: right;">-0.003</td>
-<td style="text-align: right;">0.622</td>
-<td style="text-align: left;">intron_retention</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066_92345067-92347946</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ANKIB1</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">92345066-92350950</td>
-<td style="text-align: right;">0.819</td>
-<td style="text-align: right;">0.801</td>
-<td style="text-align: right;">-0.008</td>
-<td style="text-align: right;">0.627</td>
-<td style="text-align: left;">intron_retention</td>
-<td style="text-align: left;">ENSG00000001629.10:s:92344978-92345066_92345066-92350950</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">KRIT1</td>
-<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">SCYL3</td>
+<td style="text-align: left;">chr1</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000001631.17:s:92234808-92234923</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">92226682-92234808</td>
-<td style="text-align: right;">0.077</td>
-<td style="text-align: right;">0.024</td>
-<td style="text-align: right;">-0.026</td>
-<td style="text-align: right;">0.509</td>
+<td style="text-align: left;">169854964-169859041</td>
+<td style="text-align: right;">0.655</td>
+<td style="text-align: right;">0.582</td>
+<td style="text-align: right;">-0.028</td>
+<td style="text-align: right;">0.681</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000001631.17:s:92234808-92234923_92226682-92234808</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212_169854964-169859041</td>
 </tr>
 </tbody>
 </table>
@@ -1669,7 +1679,7 @@ $intron_retention
 <h3 class="anchored" data-anchor-id="save-resulting-data.frame-for-comparison">Save resulting data.frame for comparison</h3>
 <p>Here we save the cleaned data.frame of the splicing results for the comparison in the next session.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(splice_results, <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(splice_results, <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -1685,14 +1695,14 @@ $intron_retention
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11306</code></pre>
+<pre><code>[1] 14752</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of splcied genes</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>splice_results<span class="sc">$</span>gene_name <span class="sc">%&gt;%</span> </span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 6166</code></pre>
+<pre><code>[1] 7145</code></pre>
 </div>
 </div>
 </section>
@@ -1706,16 +1716,16 @@ $intron_retention
 <div class="cell-output cell-output-stdout">
 <pre><code>
   ENSG00000000419.14:s:50942031-50943273 
-                                       3 
+                                       5 
   ENSG00000000419.14:s:50945847-50945923 
                                        2 
+ENSG00000000457.14:s:169859041-169859212 
+                                       3 
 ENSG00000000457.14:s:169870255-169870357 
                                        2 
 ENSG00000000460.17:s:169798857-169798958 
                                        2 
-ENSG00000000460.17:s:169850265-169850345 
-                                       2 
-ENSG00000001036.14:s:143503913-143504252 
+ENSG00000000460.17:s:169803169-169803309 
                                        2 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of lsvs with n junctions</span></span>
@@ -1723,8 +1733,8 @@ ENSG00000001036.14:s:143503913-143504252
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>n_junctions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-   2    3    4    5    6    7    9 
-9612 1366  272   41   11    3    1 </code></pre>
+    2     3     4     5     6     7     8 
+12160  2068   407    94    19     3     1 </code></pre>
 </div>
 </div>
 <p>And show these numbers in a bar plot:</p>
@@ -1859,13 +1869,13 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">50936262-50942031</td>
-<td style="text-align: right;">0.235</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">-0.051</td>
-<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">50941209-50942031</td>
+<td style="text-align: right;">0.082</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.924</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50941209-50942031</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DPM1</td>
@@ -1875,9 +1885,9 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">50942126-50945847</td>
 <td style="text-align: right;">0.126</td>
-<td style="text-align: right;">0.109</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.096</td>
+<td style="text-align: right;">-0.021</td>
+<td style="text-align: right;">0.522</td>
 <td style="text-align: left;">cassette_exons</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923_50942126-50945847</td>
 </tr>
@@ -1885,57 +1895,57 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">SCYL3</td>
 <td style="text-align: left;">chr1</td>
 <td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">169855957-169859041</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.164</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.729</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212_169855957-169859041</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCYL3</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">169869128-169870255</td>
-<td style="text-align: right;">0.083</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">-0.031</td>
-<td style="text-align: right;">0.502</td>
+<td style="text-align: right;">0.054</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.478</td>
 <td style="text-align: left;">alternative_3_prime_splice_site</td>
 <td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357_169869128-169870255</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">C1orf112</td>
 <td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
 <td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958</td>
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">169798958-169802621</td>
+<td style="text-align: right;">0.282</td>
 <td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.150</td>
-<td style="text-align: right;">-0.081</td>
-<td style="text-align: right;">0.721</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.587</td>
 <td style="text-align: left;">cassette_exons</td>
 <td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958_169798958-169802621</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">C1orf112</td>
 <td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169803169-169803309</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">169850345-169850438</td>
-<td style="text-align: right;">0.230</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">-0.154</td>
-<td style="text-align: right;">0.898</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345_169850345-169850438</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">FUCA2</td>
-<td style="text-align: left;">chr6</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">143502565-143503913</td>
-<td style="text-align: right;">0.961</td>
-<td style="text-align: right;">0.882</td>
-<td style="text-align: right;">-0.073</td>
-<td style="text-align: right;">0.896</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252_143502565-143503913</td>
+<td style="text-align: left;">169803309-169804075</td>
+<td style="text-align: right;">0.844</td>
+<td style="text-align: right;">0.789</td>
+<td style="text-align: right;">-0.029</td>
+<td style="text-align: right;">0.653</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169803169-169803309_169803309-169804075</td>
 </tr>
 </tbody>
 </table>
@@ -2000,7 +2010,7 @@ ENSG00000001036.14:s:143503913-143504252
 </div>
 </div>
 </div>
-<p>We can see that that in the HepG2 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.</p>
+<p>We can see that that in the K562 comparison we have more LSVs above our probability threshold, which indicates that in this comparison we have more significantly regulated LSVs.</p>
 </section>
 </section>
 <section id="regulated-lsvs" class="level2">
@@ -2054,14 +2064,14 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">50936262-50942031</td>
-<td style="text-align: right;">0.235</td>
-<td style="text-align: right;">0.170</td>
-<td style="text-align: right;">-0.051</td>
-<td style="text-align: right;">0.772</td>
+<td style="text-align: left;">50941209-50942031</td>
+<td style="text-align: right;">0.082</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.083</td>
+<td style="text-align: right;">0.924</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50936262-50942031</td>
-<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">ENSG00000000419.14:s:50942031-50943273_50941209-50942031</td>
+<td style="text-align: left;">TRUE</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DPM1</td>
@@ -2071,9 +2081,9 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">False</td>
 <td style="text-align: left;">50942126-50945847</td>
 <td style="text-align: right;">0.126</td>
-<td style="text-align: right;">0.109</td>
-<td style="text-align: right;">-0.007</td>
-<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.096</td>
+<td style="text-align: right;">-0.021</td>
+<td style="text-align: right;">0.522</td>
 <td style="text-align: left;">cassette_exons</td>
 <td style="text-align: left;">ENSG00000000419.14:s:50945847-50945923_50942126-50945847</td>
 <td style="text-align: left;">FALSE</td>
@@ -2082,60 +2092,60 @@ ENSG00000001036.14:s:143503913-143504252
 <td style="text-align: left;">SCYL3</td>
 <td style="text-align: left;">chr1</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">169869128-169870255</td>
-<td style="text-align: right;">0.083</td>
-<td style="text-align: right;">0.012</td>
-<td style="text-align: right;">-0.031</td>
-<td style="text-align: right;">0.502</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357_169869128-169870255</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">169855957-169859041</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0.164</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">0.729</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169859041-169859212_169855957-169859041</td>
 <td style="text-align: left;">FALSE</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">SCYL3</td>
 <td style="text-align: left;">chr1</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">169798958-169802621</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.150</td>
-<td style="text-align: right;">-0.081</td>
-<td style="text-align: right;">0.721</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958_169798958-169802621</td>
+<td style="text-align: left;">169869128-169870255</td>
+<td style="text-align: right;">0.054</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.478</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000457.14:s:169870255-169870357_169869128-169870255</td>
 <td style="text-align: left;">FALSE</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">C1orf112</td>
 <td style="text-align: left;">chr1</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">169850345-169850438</td>
-<td style="text-align: right;">0.230</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">-0.154</td>
-<td style="text-align: right;">0.898</td>
+<td style="text-align: left;">169798958-169802621</td>
+<td style="text-align: right;">0.282</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.587</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000000460.17:s:169850265-169850345_169850345-169850438</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169798857-169798958_169798958-169802621</td>
 <td style="text-align: left;">FALSE</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">FUCA2</td>
-<td style="text-align: left;">chr6</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252</td>
+<td style="text-align: left;">C1orf112</td>
+<td style="text-align: left;">chr1</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169803169-169803309</td>
 <td style="text-align: left;">False</td>
-<td style="text-align: left;">143502565-143503913</td>
-<td style="text-align: right;">0.961</td>
-<td style="text-align: right;">0.882</td>
-<td style="text-align: right;">-0.073</td>
-<td style="text-align: right;">0.896</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000001036.14:s:143503913-143504252_143502565-143503913</td>
+<td style="text-align: left;">169803309-169804075</td>
+<td style="text-align: right;">0.844</td>
+<td style="text-align: right;">0.789</td>
+<td style="text-align: right;">-0.029</td>
+<td style="text-align: right;">0.653</td>
+<td style="text-align: left;">alternative_3_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000000460.17:s:169803169-169803309_169803309-169804075</td>
 <td style="text-align: left;">FALSE</td>
 </tr>
 </tbody>
@@ -2154,11 +2164,11 @@ ENSG00000001036.14:s:143503913-143504252
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">9932</td>
+<td style="text-align: right;">13191</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">1374</td>
+<td style="text-align: right;">1561</td>
 </tr>
 </tbody>
 </table>
@@ -2178,27 +2188,28 @@ ENSG00000001036.14:s:143503913-143504252
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">0.8784716</td>
+<td style="text-align: right;">0.8941838</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">0.1215284</td>
+<td style="text-align: right;">0.1058162</td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(highest_junction_per_lsv, <span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also plot this information with a stacked bar chart.We add the <em>coord_cartesian()</em> function of ggplot2 to zoom-in the y-axis (0 to 2000), as we do not have so many regulated events. You can adjust the ylim input if you want.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gg_df <span class="ot">&lt;-</span> <span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>sign) <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#coord_cartesian(ylim=(c(0,2000))) +</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">label=</span>Freq), <span class="at">vjust=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>gg_df <span class="ot">&lt;-</span> <span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>sign) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#coord_cartesian(ylim=(c(0,2000))) +</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">label=</span>Freq), <span class="at">vjust=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2209,10 +2220,10 @@ ENSG00000001036.14:s:143503913-143504252
 </div>
 <p>In this plot we can see the absolute number of significant LSVs among all LSVs. Next to the absolute number we could also plot the fraction of significant LSVs among all LSVs. Fraction is similar to percentage when you multiply it by 100. This makes the comparison between comparisons with different number of LSVs more fair.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Comparison"</span>, <span class="at">y=</span><span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2226,12 +2237,12 @@ ENSG00000001036.14:s:143503913-143504252
 <h3 class="anchored" data-anchor-id="colour-significant-changes">Colour significant changes</h3>
 <p>We can also color the significant LSVs in the scatterplot from above:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi), <span class="at">y=</span>probability_changing, <span class="at">color =</span> sign)) <span class="sc">+</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>))<span class="sc">+</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Maximum probability per LSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">abs</span>(dpsi), <span class="at">y=</span>probability_changing, <span class="at">color =</span> sign)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.9</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>))<span class="sc">+</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Maximum deltaPSI per LSV"</span>, <span class="at">y=</span><span class="st">"Maximum probability per LSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2245,11 +2256,11 @@ ENSG00000001036.14:s:143503913-143504252
 <h3 class="anchored" data-anchor-id="top-10-spliced-lsvs">Top 10 spliced LSVs</h3>
 <p>If we want to know the LSVs with the highest changes. We can <em>arrange()</em> the data.frame by the dpsi values and look at the top 10.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> highest_junction_per_lsv <span class="sc">%&gt;%</span> </span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(dpsi))) <span class="sc">%&gt;%</span> </span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>top10 <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> highest_junction_per_lsv <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(dpsi))) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>top10 <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -2286,153 +2297,153 @@ ENSG00000001036.14:s:143503913-143504252
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">SNX27</td>
+<td style="text-align: left;">ENSG00000290385</td>
 <td style="text-align: left;">chr1</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000143376.14:s:151693424-151693483</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">151693483-151693593</td>
-<td style="text-align: right;">0.853</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">-0.821</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: left;">alternative_last_exon</td>
-<td style="text-align: left;">ENSG00000143376.14:s:151693424-151693483_151693483-151693593</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">AGTRAP</td>
-<td style="text-align: left;">chr1</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000177674.16:s:11745801-11745837</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">11745837-11745988</td>
-<td style="text-align: right;">0.807</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">-0.774</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: left;">alternative_3_prime_splice_site</td>
-<td style="text-align: left;">ENSG00000177674.16:s:11745801-11745837_11745837-11745988</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ENSG00000291203</td>
-<td style="text-align: left;">chr4</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000291203.1:s:119497662-119498292</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">119497903-119512351</td>
-<td style="text-align: right;">0.917</td>
-<td style="text-align: right;">0.220</td>
-<td style="text-align: right;">-0.706</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: left;">alternative_last_exon</td>
-<td style="text-align: left;">ENSG00000291203.1:s:119497662-119498292_119497903-119512351</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BCAS3</td>
-<td style="text-align: left;">chr17</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000141376.23:s:61380506-61380572</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">61380571-61391977</td>
-<td style="text-align: right;">0.873</td>
-<td style="text-align: right;">0.186</td>
-<td style="text-align: right;">-0.694</td>
-<td style="text-align: right;">0.999</td>
-<td style="text-align: left;">alternative_last_exon</td>
-<td style="text-align: left;">ENSG00000141376.23:s:61380506-61380572_61380571-61391977</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">GDPD5</td>
-<td style="text-align: left;">chr11</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000158555.15:s:75490237-75490320</td>
+<td style="text-align: left;">ENSG00000290385.1:s:504980-505103</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">75477795-75490237</td>
-<td style="text-align: right;">0.754</td>
-<td style="text-align: right;">0.080</td>
-<td style="text-align: right;">-0.680</td>
+<td style="text-align: left;">502955-504980</td>
+<td style="text-align: right;">0.184</td>
+<td style="text-align: right;">0.833</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">0.999</td>
+<td style="text-align: left;">mutually_exclusive_exons</td>
+<td style="text-align: left;">ENSG00000290385.1:s:504980-505103_502955-504980</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FRG1DP</td>
+<td style="text-align: left;">chr20</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000282870.1:s:29091594-29091719</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">29091719-29092501</td>
+<td style="text-align: right;">0.665</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">-0.640</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000282870.1:s:29091594-29091719_29091719-29092501</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ARVCF</td>
+<td style="text-align: left;">chr22</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000099889.14:s:19971886-19971971</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">19970743-19971886</td>
+<td style="text-align: right;">0.643</td>
+<td style="text-align: right;">0.099</td>
+<td style="text-align: right;">-0.565</td>
 <td style="text-align: right;">1.000</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000158555.15:s:75490237-75490320_75477795-75490237</td>
+<td style="text-align: left;">ENSG00000099889.14:s:19971886-19971971_19970743-19971886</td>
 <td style="text-align: left;">TRUE</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">SVIL-AS1</td>
+<td style="text-align: left;">PCSK6</td>
+<td style="text-align: left;">chr15</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000140479.18:s:101365785-101366332</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">101332031-101366196</td>
+<td style="text-align: right;">0.917</td>
+<td style="text-align: right;">0.368</td>
+<td style="text-align: right;">-0.547</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000140479.18:s:101365785-101366332_101332031-101366196</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAPK8</td>
 <td style="text-align: left;">chr10</td>
 <td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000291093.1:s:29415357-29415412</td>
+<td style="text-align: left;">ENSG00000107643.17:s:48306639-48306821</td>
 <td style="text-align: left;">True</td>
-<td style="text-align: left;">29415412-29420491</td>
-<td style="text-align: right;">0.310</td>
-<td style="text-align: right;">0.944</td>
-<td style="text-align: right;">0.656</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: left;">alternative_last_exon</td>
-<td style="text-align: left;">ENSG00000291093.1:s:29415357-29415412_29415412-29420491</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">RAPGEF2</td>
-<td style="text-align: left;">chr4</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000109756.10:s:159241201-159241368</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">159241368-159304342</td>
-<td style="text-align: right;">0.769</td>
-<td style="text-align: right;">0.112</td>
-<td style="text-align: right;">-0.652</td>
-<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">48306821-48401612</td>
+<td style="text-align: right;">0.773</td>
+<td style="text-align: right;">0.236</td>
+<td style="text-align: right;">-0.528</td>
+<td style="text-align: right;">0.998</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000109756.10:s:159241201-159241368_159241368-159304342</td>
+<td style="text-align: left;">ENSG00000107643.17:s:48306639-48306821_48306821-48401612</td>
 <td style="text-align: left;">TRUE</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">ADAM22</td>
-<td style="text-align: left;">chr7</td>
-<td style="text-align: left;">+</td>
-<td style="text-align: left;">ENSG00000008277.15:s:88181958-88183554</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">88182024-88193116</td>
-<td style="text-align: right;">0.250</td>
-<td style="text-align: right;">0.911</td>
-<td style="text-align: right;">0.643</td>
-<td style="text-align: right;">0.996</td>
-<td style="text-align: left;">alternative_last_exon</td>
-<td style="text-align: left;">ENSG00000008277.15:s:88181958-88183554_88182024-88193116</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PLAGL1</td>
-<td style="text-align: left;">chr6</td>
-<td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000118495.21:s:143960469-143961412</td>
-<td style="text-align: left;">False</td>
-<td style="text-align: left;">143942663-143960469</td>
-<td style="text-align: right;">0.792</td>
-<td style="text-align: right;">0.144</td>
-<td style="text-align: right;">-0.637</td>
-<td style="text-align: right;">0.984</td>
-<td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000118495.21:s:143960469-143961412_143942663-143960469</td>
-<td style="text-align: left;">TRUE</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BRD9</td>
+<td style="text-align: left;">FAM172A</td>
 <td style="text-align: left;">chr5</td>
 <td style="text-align: left;">-</td>
-<td style="text-align: left;">ENSG00000028310.18:s:869245-869404</td>
-<td style="text-align: left;">True</td>
-<td style="text-align: left;">865581-869245</td>
-<td style="text-align: right;">0.881</td>
-<td style="text-align: right;">0.241</td>
-<td style="text-align: right;">-0.634</td>
-<td style="text-align: right;">0.995</td>
+<td style="text-align: left;">ENSG00000113391.19:s:94111511-94111699</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">94053227-94111511</td>
+<td style="text-align: right;">0.905</td>
+<td style="text-align: right;">0.381</td>
+<td style="text-align: right;">-0.528</td>
+<td style="text-align: right;">0.997</td>
 <td style="text-align: left;">cassette_exons</td>
-<td style="text-align: left;">ENSG00000028310.18:s:869245-869404_865581-869245</td>
+<td style="text-align: left;">ENSG00000113391.19:s:94111511-94111699_94053227-94111511</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DHX34</td>
+<td style="text-align: left;">chr19</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000134815.19:s:47376443-47376560</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">47376560-47377100</td>
+<td style="text-align: right;">0.859</td>
+<td style="text-align: right;">0.363</td>
+<td style="text-align: right;">-0.522</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: left;">cassette_exons</td>
+<td style="text-align: left;">ENSG00000134815.19:s:47376443-47376560_47376560-47377100</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CCDC169</td>
+<td style="text-align: left;">chr13</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">ENSG00000242715.8:s:36283469-36283509</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">36281260-36283469</td>
+<td style="text-align: right;">0.177</td>
+<td style="text-align: right;">0.739</td>
+<td style="text-align: right;">0.516</td>
+<td style="text-align: right;">0.985</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000242715.8:s:36283469-36283509_36281260-36283469</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CPQ</td>
+<td style="text-align: left;">chr8</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000104324.16:s:97029403-97029494</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">97029494-97055529</td>
+<td style="text-align: right;">0.542</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">-0.511</td>
+<td style="text-align: right;">0.999</td>
+<td style="text-align: left;">alternative_last_exon</td>
+<td style="text-align: left;">ENSG00000104324.16:s:97029403-97029494_97029494-97055529</td>
+<td style="text-align: left;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ZSCAN25</td>
+<td style="text-align: left;">chr7</td>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">ENSG00000197037.11:s:99619550-99619997</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">99619997-99621373</td>
+<td style="text-align: right;">0.608</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">-0.507</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: left;">alternative_5_prime_splice_site</td>
+<td style="text-align: left;">ENSG00000197037.11:s:99619550-99619997_99619997-99621373</td>
 <td style="text-align: left;">TRUE</td>
 </tr>
 </tbody>
@@ -2446,20 +2457,20 @@ ENSG00000001036.14:s:143503913-143504252
 <h1>Classes of LSVs</h1>
 <p>We now want to know which classes of splicing the significant LSVs belong to. For this we can make a barplot on the class column.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(highest_junction_per_lsv<span class="sc">$</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 alternative_3_prime_splice_site alternative_5_prime_splice_site 
-                           1879                             847 
+                           2158                             981 
           alternative_last_exon                  cassette_exons 
-                           1911                            4330 
+                           2159                            5543 
                intron_retention        mutually_exclusive_exons 
-                           2307                              32 </code></pre>
+                           3879                              32 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x =</span> class))<span class="sc">+</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()<span class="sc">+</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span> <span class="co"># we flip x and y axis, to make the labels better readable</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(highest_junction_per_lsv, <span class="fu">aes</span>(<span class="at">x =</span> class))<span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()<span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span> <span class="co"># we flip x and y axis, to make the labels better readable</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -2473,7 +2484,7 @@ alternative_3_prime_splice_site alternative_5_prime_splice_site
 <h1>Session Information</h1>
 <p>It is always good practice to add the session information in the end of any script to improve reproducibility.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

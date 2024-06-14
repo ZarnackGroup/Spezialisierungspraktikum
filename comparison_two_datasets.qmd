@@ -1,0 +1,177 @@
+---
+title: "Comparison of Splicing in two data sets"
+format: 
+  html: 
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    toc-fold: true
+    number-sections: false
+    toc-title: Contents
+    smooth-scroll: true
+    lightbox: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, results = TRUE, fig.pos = 'h', fig.align = "center", fig.width = 4, fig.height=4)
+```
+
+# Introduction
+
+Now we want to compare the alternative splicing found in the two analysed data sets.
+
+
+# Preparation
+
+## Required packages
+
+```{r}
+library(dplyr) # to easily handle data.frames 
+library(knitr) # beautiful tables
+
+library(ggplot2) # nice plots
+library(ggpubr) # for even more nice plots
+library(eulerr) # for venn diagrams
+library(ggpointdensity)
+
+```
+
+## Load splicing results
+
+```{r}
+HepG2 <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds")
+K562 <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds")
+
+HepG2_highest_junction <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2_highest_junction.rds")
+K562_highest_junction <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds")
+
+```
+
+## Comparison of the dpsi of the strongest regulated junction
+
+```{r}
+combined_lsvs <- full_join(HepG2, K562, by = c("lsv_id", "junction_coord"), suffix = c(".HepG2", ".K562"))
+combined_lsvs
+
+# remove junction that are only in one data set
+combined_lsvs <- combined_lsvs %>% 
+  subset(!is.na(gene_name.HepG2)) %>% 
+  subset(!is.na(gene_name.K562))
+
+# select highest lsv
+combined_lsvs <- combined_lsvs %>% 
+  mutate(max_cond = max(dpsi.HepG2, dpsi.K562)) %>%
+  group_by(lsv_id) %>%
+  arrange(max_cond, .by_group = T) %>%
+  slice(1)
+
+
+```
+
+```{r}
+
+ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
+  geom_point()
+
+ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
+  geom_point()+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
+  theme_bw()
+
+ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
+  ggpointdensity::geom_pointdensity()+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
+  theme_bw()
+
+
+# mark double sign
+combined_lsvs <- combined_lsvs %>% 
+  mutate( both_sign = (probability_changing.HepG2 > 0.9) & (probability_changing.K562 > 0.9))
+
+sig_combined_lsvs <- combined_lsvs %>% subset(both_sign == TRUE)
+
+ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
+  geom_point()+
+  geom_point(data = sig_combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562), color = "blue")+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
+  theme_bw()
+
+# plot only double sign
+ggplot(sig_combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
+  geom_point()+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
+  theme_bw()
+
+```
+
+### Venn diagram of regulated LSVs between the comparisons
+
+Now that we have seen that there is a substantial amount of regulated LSVs in the two comparisons, we want to find out how many of them are shared between the two comparisons. 
+
+We first extract for both data sets the LSV identifiers of the significant LSVs.
+
+```{r }
+combined_lsvs_sign_in_one <- combined_lsvs %>%
+  subset((probability_changing.HepG2 > 0.9) | (probability_changing.K562 > 0.9))
+```
+
+Next, we make a venn diagramm using the eulerr package. For this we first collect all LSV IDs of LSVs that are significant in at least one of the data sets. Then we create a data frame with the information which of the LSVs was significant in which data set. 
+
+We can then use this data frame to caluclate and plot the venn diagramm. In the diagram the area in the circles is proporitional to the number of lsvs in each circle.
+
+```{r venn}
+overlaps <- data.frame( "HepG2" = combined_lsvs_sign_in_one$probability_changing.HepG2 > 0.9,
+                         "K562" = combined_lsvs_sign_in_one$probability_changing.K562 > 0.9 )
+head(overlaps)
+              
+ 
+venn <- eulerr::euler(overlaps)
+plot(venn, quantities = TRUE, fontface = 1)
+
+```
+
+Here we can see only a small number of LSVs is regulated in both data sets, while the vast majority is only regulated in only one of the two comparisons.
+
+### Shared and opposite regulation between the comparisons
+
+So far, we know that there is a small set of shared significantly regulated LSVs between the two comparison. But what we do not know is whether the LSVs show the same regulation in the two comparisons.
+
+
+```{r}
+
+sig_combined_lsvs <- sig_combined_lsvs %>%
+  mutate(comparison = case_when( (dpsi.HepG2 > 0) & (dpsi.K562 > 0) ~ "both up",
+                                 (dpsi.HepG2 < 0) & (dpsi.K562 < 0) ~ "both down",
+                                 T ~ "opposite regulation"),
+         )
+
+table(sig_combined_lsvs$comparison) %>% kable
+
+```
+
+
+The following code creates the pie chart. 
+
+```{r pieChart, eval = F}
+pieChartDataFrame <- regulationDF %>% 
+  dplyr::mutate(csum = rev(cumsum(rev(n))), 
+         pos = n/2 + lead(csum, 1),
+         pos = if_else(is.na(pos), n/2, pos))
+
+ggplot(regulationDF, aes(x = "" ,y = n, fill = fct_inorder(group))) +
+  geom_col(width = 1, color = 1) +
+  coord_polar(theta = "y") +
+  geom_label_repel(data = pieChartDataFrame,
+                   aes(y = pos, label = paste0(n, " LSVs")),
+                   size = 4.5, nudge_x = 1, show.legend = FALSE) +
+  guides(fill = guide_legend(title = "Group")) +
+  theme_void()
+```
