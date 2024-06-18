@@ -23,8 +23,6 @@ website:
       background: light
       collapse-level: 2
       contents:
-      - href: splicing_index.qmd
-        text: Intro
       - href: voila_gui.qmd
         text: Visualize
       - href: useful_R.qmd

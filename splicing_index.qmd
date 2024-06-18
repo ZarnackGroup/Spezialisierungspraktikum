@@ -6,23 +6,3 @@ This is the splicing part of Spezialisierungspraktikum RNA Biology.
 
 In brief, we visualize and explore the output a splicing analysis done with MAJIQ.
 
-
-# You need to know:
-
-## What is splicing?
-
-
-
-## What are splice events and local splice variants (LSVs)?
-
-
-## What are the most common classes of splicing? {#splicing-classes}
-
-## What are PSI and dPSI?
-
-## What is the probability changing?
-
-## How does the majiq workflow look like? {#majiq-workflow}
-
-
-## What are the output files from majiq?
