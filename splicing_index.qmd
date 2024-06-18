@@ -12,6 +12,7 @@ In brief, we visualize and explore the output a splicing analysis done with MAJI
 ## What is splicing?
 
 
+
 ## What are splice events and local splice variants (LSVs)?
 
 

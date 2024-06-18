@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spezialisierungspraktikum RNA Biology - Differential Splicing Analysis</title>
+<title>Spezialisierungspraktikum RNA Biology - How alternative splicing can influence the encoded protein</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -59,6 +93,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -119,12 +154,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Comparing data sets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tasks.html" rel="" target="">
- <span class="dropdown-text">Tasks</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./setting_into_functional_context.html" rel="" target="">
  <span class="dropdown-text">Functional context of AS events</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tasks.html" rel="" target="">
+ <span class="dropdown-text">Tasks</span></a>
   </li>  
     </ul>
   </li>
@@ -139,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./splicing_index.html">Intro</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setting_into_functional_context.html">Functional context of AS events</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -153,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./splicing_index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./splicing_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Intro</span></a>
   </div>
 </li>
@@ -183,14 +218,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tasks</span></a>
+  <a href="./setting_into_functional_context.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Functional context of AS events</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setting_into_functional_context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functional context of AS events</span></a>
+  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tasks</span></a>
   </div>
 </li>
     </ul>
@@ -200,18 +235,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Contents</h2>
    
+  <ul>
+  <li><a href="#are-genes-with-differntial-splicing-also-differntially-expressed" id="toc-are-genes-with-differntial-splicing-also-differntially-expressed" class="nav-link active" data-scroll-target="#are-genes-with-differntial-splicing-also-differntially-expressed">Are genes with differntial splicing also differntially expressed?</a></li>
+  <li><a href="#is-some-functional-evidence-for-these-splicing-events-already-known" id="toc-is-some-functional-evidence-for-these-splicing-events-already-known" class="nav-link" data-scroll-target="#is-some-functional-evidence-for-these-splicing-events-already-known">Is some functional evidence for these splicing events already known?</a>
   <ul class="collapse">
-  <li><a href="#you-need-to-know" id="toc-you-need-to-know" class="nav-link active" data-scroll-target="#you-need-to-know">You need to know:</a>
-  <ul class="collapse">
-  <li><a href="#what-is-splicing" id="toc-what-is-splicing" class="nav-link" data-scroll-target="#what-is-splicing">What is splicing?</a></li>
-  <li><a href="#what-are-splice-events-and-local-splice-variants-lsvs" id="toc-what-are-splice-events-and-local-splice-variants-lsvs" class="nav-link" data-scroll-target="#what-are-splice-events-and-local-splice-variants-lsvs">What are splice events and local splice variants (LSVs)?</a></li>
-  <li><a href="#splicing-classes" id="toc-splicing-classes" class="nav-link" data-scroll-target="#splicing-classes">What are the most common classes of splicing?</a></li>
-  <li><a href="#what-are-psi-and-dpsi" id="toc-what-are-psi-and-dpsi" class="nav-link" data-scroll-target="#what-are-psi-and-dpsi">What are PSI and dPSI?</a></li>
-  <li><a href="#what-is-the-probability-changing" id="toc-what-is-the-probability-changing" class="nav-link" data-scroll-target="#what-is-the-probability-changing">What is the probability changing?</a></li>
-  <li><a href="#majiq-workflow" id="toc-majiq-workflow" class="nav-link" data-scroll-target="#majiq-workflow">How does the majiq workflow look like?</a></li>
-  <li><a href="#what-are-the-output-files-from-majiq" id="toc-what-are-the-output-files-from-majiq" class="nav-link" data-scroll-target="#what-are-the-output-files-from-majiq">What are the output files from majiq?</a></li>
+  <li><a href="#mapt" id="toc-mapt" class="nav-link" data-scroll-target="#mapt">MAPT</a></li>
+  <li><a href="#sat1" id="toc-sat1" class="nav-link" data-scroll-target="#sat1">SAT1</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -221,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Differential Splicing Analysis</h1>
+<h1 class="title">How alternative splicing can influence the encoded protein</h1>
 </div>
 
 
@@ -236,30 +267,69 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This is the splicing part of Spezialisierungspraktikum RNA Biology.</p>
-<p>In brief, we visualize and explore the output a splicing analysis done with MAJIQ.</p>
-<section id="you-need-to-know" class="level1">
-<h1>You need to know:</h1>
-<section id="what-is-splicing" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-splicing">What is splicing?</h2>
+<p>In the final section we want to identify some examples for LSVs with an impact on the resulting protein or expression levels.</p>
+<p>We can look at the top 20 LSVs regulated in both data sets that we identified in the “Comparison of data sets” part and search for some targets with an interesting effect.</p>
+<section id="are-genes-with-differntial-splicing-also-differntially-expressed" class="level1">
+<h1>Are genes with differntial splicing also differntially expressed?</h1>
+<p>First, have a look at your alternative gene expression analysis. Which of the genes from the 20 LSVs are also regulated alternatively? Are there any? Which type of splicing is happening inthese genes?</p>
 </section>
-<section id="what-are-splice-events-and-local-splice-variants-lsvs" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-splice-events-and-local-splice-variants-lsvs">What are splice events and local splice variants (LSVs)?</h2>
+<section id="is-some-functional-evidence-for-these-splicing-events-already-known" class="level1">
+<h1>Is some functional evidence for these splicing events already known?</h1>
+<p>For some alternative splicing events functional evidence is provided in VastDB[https://vastdb.crg.eu/wiki/Main_Page]. Go on the VastDB webpage. You can enter your top 20 genes in the upper right corner and afterwards click on the gene identifier. This leads you to a new page where you can find alternative splicing events in the section called “EVENTS AND AS PROFILES”.</p>
+<p>Check the coordinated of the lsv_id or the junction_coord columns to find your regulated exon. The click on the event, which leads us to a new page that provides additional information about our LSV.</p>
+<p>In the section “Protein Impact” we can see were in the protein the splicing takes palce and if this affects known protein domains or disrupts the ORF. In addition, for some cassette exons in the section “Functional annotations” publications are listed in which the impact of the LSV was analyzed.</p>
+<p>You can also scroll down to “SPECIAL DATASETS” and select the The Cancer Genome Atlas (TCGA). Is there a cancer type, where the PSI of the junction is very different in healty vs tumor samples?</p>
+<p>Your task is now to identify <strong>two interesting events</strong> for which vastDB provides functional annotations (available publications).</p>
+<p>In the following you can find two interesting events from older analyses from an HNRNPH1 knockdown.</p>
+<section id="mapt" class="level2">
+<h2 class="anchored" data-anchor-id="mapt">MAPT</h2>
+<p>The first one is a cassette exon of MAPT (microtubule associated protein tau), which had a deltaPSI of 0.07378649 (7% more incusion in the HNRNPH1 knockdown).</p>
+<p>A look on the vastDB entry of the event shows in the “Protein Impact” section that the inclusion of the exon produces an alternative protein isoforms that carries four instead of three microtubule-binding domains.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example_data/MAPT-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A closer look on the provided publications reveals that the ratio of isoforms containing and lacking the cassette exon is associated to the pathogenesis of several neurodegenerative disorders. This in turn also reveals that HNRNPH1 might be an interesting clinical target as it either directly or indirectly (we do not know this) regulates the inclusion of the cassette exon As the deltaPSI is increasing in the knockdown it likely functions as a repressor.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example_data/MAPT-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="splicing-classes" class="level2">
-<h2 class="anchored" data-anchor-id="splicing-classes">What are the most common classes of splicing?</h2>
-</section>
-<section id="what-are-psi-and-dpsi" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-psi-and-dpsi">What are PSI and dPSI?</h2>
-</section>
-<section id="what-is-the-probability-changing" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-probability-changing">What is the probability changing?</h2>
-</section>
-<section id="majiq-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="majiq-workflow">How does the majiq workflow look like?</h2>
-</section>
-<section id="what-are-the-output-files-from-majiq" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-the-output-files-from-majiq">What are the output files from majiq?</h2>
+<section id="sat1" class="level2">
+<h2 class="anchored" data-anchor-id="sat1">SAT1</h2>
+<p>The second example is a cassette exon of SAT1 (spermidine/spermine N1-acetyltransferase 1), which had a deltaPSI of 0.06929477 (~7% more inclusion in the HNRNPH1 knockdown).</p>
+<p>A closer look on the vastDB entry for this event shows in the “Protein Impact” section that the inclusion of the exon disrupts the ORF, meaning that the inclusion isoform is not encoding for a functional protein.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SAT1-1.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example_data/SAT1-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When further checking the “Functional annotations” section, we can see that the isoform including the cassette exon is called SSATX and is proposed to function as a long non-coding RNA that likely acts as a tumor suppressor (first publication). In addition we can see that that the exon was identified as a poison cassette exon (second publication), which might explain the downregulation I obsered for the SAT1 gene that co-occured with the increased inclusion of the exon. The latter information indicates that HNRNPH1 might regulate the inclusion of this poison exon (as a repressor as the deltaPSI is positive in the knockdown) and therefore regulates SAT1 expression levels.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SAT1-2.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="example_data/SAT1-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -503,4 +573,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

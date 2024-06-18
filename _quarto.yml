@@ -33,8 +33,12 @@ website:
         text: Global analysis
       - href: comparison_two_datasets.qmd
         text: Comparing data sets
+      - href: setting_into_functional_context.qmd
+        text: Functional context of AS events
       - href: tasks.qmd
         text: Tasks
+      
+      
       
       
 

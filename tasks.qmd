@@ -60,6 +60,15 @@ Instructions for screening AS events in the VOILA GUI and verification via Sashi
 
 + What is the most common splicing class for your protein? Do a small literature research on the protein, that was knocked down / knocked out in you data set. Which types of splicing would you expect? Is this also what the data shows?
 
-# Tasks for part 3 - Analyzing AS at the level of AS events
+# Tasks for part 3 - Comparison of both data sets
 
 Compare the splicing in both your data sets using steps from the "Comparison of data sets" section.
+
++ Do the data sets give comparable results? If not, what could be the reasons?
+
+# Tasks for part 4 - Functional context of alternative splicing events
+
++ Have a look at your alternative gene expression analysis. Which of the genes from the top 20 LSVs are also regulated alternatively? Are there any? Which type of splicing is happening inthese genes?
+
++ Identify two interesting alternative splicing events for which vastDB provides functional annotations (available publications).
+Can you see some effect on one or several cancer types?

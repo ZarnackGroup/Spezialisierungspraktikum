@@ -1,5 +1,5 @@
 ---
-title: "Comparison of Splicing in two data sets"
+title: "Comparison of alternative splicing in two data sets"
 format: 
   html: 
     toc: true
@@ -38,16 +38,24 @@ library(ggpointdensity)
 
 ## Load splicing results
 
+First we load the data.frames from the global analysis of both data sets.
+
 ```{r}
+# data.frames containing all junctions per LSV
 HepG2 <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds")
 K562 <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds")
 
+# data.frames containing the highest junction per LSV
 HepG2_highest_junction <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2_highest_junction.rds")
 K562_highest_junction <- readRDS("/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds")
 
 ```
 
 ## Comparison of the dpsi of the strongest regulated junction
+
+Now we combine both data sets with all junctions per LSV into one data set with double the number of columns. The columns get the ending .HepG2 or .K562 to distingish which values come from which data set.
+
+We then remove junctions that were only detected in one of the two data sets. And again select the highest junction per LSV.
 
 ```{r}
 combined_lsvs <- full_join(HepG2, K562, by = c("lsv_id", "junction_coord"), suffix = c(".HepG2", ".K562"))
@@ -68,11 +76,15 @@ combined_lsvs <- combined_lsvs %>%
 
 ```
 
-```{r}
+We can now use this data.frame to plot the dpsi values of both data sets against each other.
 
+```{r}
+# basic plot
 ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   geom_point()
 
+# plot with lines for 0
+# the axis end are determined with coord_catesian
 ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   geom_point()+
   geom_hline(yintercept = 0)+
@@ -80,6 +92,7 @@ ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
   theme_bw()
 
+# using a point_density to see were most points are located
 ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   ggpointdensity::geom_pointdensity()+
   geom_hline(yintercept = 0)+
@@ -88,7 +101,7 @@ ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   theme_bw()
 
 
-# mark double sign
+# mark dpsis significant in both data sets
 combined_lsvs <- combined_lsvs %>% 
   mutate( both_sign = (probability_changing.HepG2 > 0.9) & (probability_changing.K562 > 0.9))
 
@@ -102,7 +115,7 @@ ggplot(combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   coord_cartesian(xlim = c(-1,1), ylim = c(-1,1))+
   theme_bw()
 
-# plot only double sign
+# plot only dpsis significant in both data sets
 ggplot(sig_combined_lsvs, aes(x = dpsi.HepG2, y = dpsi.K562))+
   geom_point()+
   geom_hline(yintercept = 0)+
@@ -158,20 +171,35 @@ table(sig_combined_lsvs$comparison) %>% kable
 ```
 
 
-The following code creates the pie chart. 
+We can also plot this result in a barchart.
 
-```{r pieChart, eval = F}
-pieChartDataFrame <- regulationDF %>% 
-  dplyr::mutate(csum = rev(cumsum(rev(n))), 
-         pos = n/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), n/2, pos))
+```{r}
+gg_df <- table(sig_combined_lsvs$comparison) %>% 
+  as.data.frame()
 
-ggplot(regulationDF, aes(x = "" ,y = n, fill = fct_inorder(group))) +
-  geom_col(width = 1, color = 1) +
-  coord_polar(theta = "y") +
-  geom_label_repel(data = pieChartDataFrame,
-                   aes(y = pos, label = paste0(n, " LSVs")),
-                   size = 4.5, nudge_x = 1, show.legend = FALSE) +
-  guides(fill = guide_legend(title = "Group")) +
-  theme_void()
+ggplot(gg_df, aes( x = 1, y = Freq, fill=Var1))+
+  geom_col() +
+  #coord_cartesian(ylim=(c(0,2000))) +
+  labs(x="", y="Number of shared significant LSVs") +
+  theme_classic()+
+  geom_text(aes(x = 1, label=Freq), vjust=2, col = "white")+
+  labs(fill = "Direction of regulation \n in the two data sets")
+```
+
+The most interesting targets migh be the ones with shared regulation. Lets look at the top 20.
+
+```{r}
+sig_combined_lsvs %>%
+  subset(comparison != "opposite regulation") %>%
+  arrange(desc(max(dpsi.HepG2, dpsi.K562))) %>%
+  head(n=20)
+
+
+```
+
+
+# Session info
+
+```{r}
+sessionInfo()
 ```

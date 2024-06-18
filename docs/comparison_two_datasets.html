@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Spezialisierungspraktikum RNA Biology - Comparison of Splicing in two data sets</title>
+<title>Spezialisierungspraktikum RNA Biology - Comparison of alternative splicing in two data sets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -157,6 +157,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./tasks.html" rel="" target="">
  <span class="dropdown-text">Tasks</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./setting_into_functional_context.html" rel="" target="">
+ <span class="dropdown-text">Functional context of AS events</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -218,6 +222,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Tasks</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./setting_into_functional_context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functional context of AS events</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -239,6 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#shared-and-opposite-regulation-between-the-comparisons" id="toc-shared-and-opposite-regulation-between-the-comparisons" class="nav-link" data-scroll-target="#shared-and-opposite-regulation-between-the-comparisons">Shared and opposite regulation between the comparisons</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session info</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Comparison of Splicing in two data sets</h1>
+<h1 class="title">Comparison of alternative splicing in two data sets</h1>
 </div>
 
 
@@ -282,16 +293,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-splicing-results" class="level2">
 <h2 class="anchored" data-anchor-id="load-splicing-results">Load splicing results</h2>
+<p>First we load the data.frames from the global analysis of both data sets.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>HepG2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>K562 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>HepG2_highest_junction <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2_highest_junction.rds"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>K562_highest_junction <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.frames containing all junctions per LSV</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>HepG2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2.rds"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>K562 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562.rds"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data.frames containing the highest junction per LSV</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>HepG2_highest_junction <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_HepG2_highest_junction.rds"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>K562_highest_junction <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"/Users/melinaklostermann/Documents/projects/students/majiq-course/spezi_scripts_website/example_data/SFPQ_K562_highest_junction.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="comparison-of-the-dpsi-of-the-strongest-regulated-junction" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-of-the-dpsi-of-the-strongest-regulated-junction">Comparison of the dpsi of the strongest regulated junction</h2>
+<p>Now we combine both data sets with all junctions per LSV into one data set with double the number of columns. The columns get the ending .HepG2 or .K562 to distingish which values come from which data set.</p>
+<p>We then remove junctions that were only detected in one of the two data sets. And again select the highest junction per LSV.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_lsvs <span class="ot">&lt;-</span> <span class="fu">full_join</span>(HepG2, K562, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"lsv_id"</span>, <span class="st">"junction_coord"</span>), <span class="at">suffix =</span> <span class="fu">c</span>(<span class="st">".HepG2"</span>, <span class="st">".K562"</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>combined_lsvs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -330,9 +346,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(max_cond, <span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We can now use this data.frame to plot the dpsi values of both data sets against each other.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic plot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -340,12 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with lines for 0</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the axis end are determined with coord_catesian</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -353,12 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  ggpointdensity<span class="sc">::</span><span class="fu">geom_pointdensity</span>()<span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using a point_density to see were most points are located</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  ggpointdensity<span class="sc">::</span><span class="fu">geom_pointdensity</span>()<span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -366,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mark double sign</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mark dpsis significant in both data sets</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>combined_lsvs <span class="ot">&lt;-</span> combined_lsvs <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">both_sign =</span> (probability_changing.HepG2 <span class="sc">&gt;</span> <span class="fl">0.9</span>) <span class="sc">&amp;</span> (probability_changing.K562 <span class="sc">&gt;</span> <span class="fl">0.9</span>))</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -386,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot only double sign</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot only dpsis significant in both data sets</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sig_combined_lsvs, <span class="fu">aes</span>(<span class="at">x =</span> dpsi.HepG2, <span class="at">y =</span> dpsi.K562))<span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
@@ -468,26 +489,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<p>The following code creates the pie chart.</p>
+<p>We can also plot this result in a barchart.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pieChartDataFrame <span class="ot">&lt;-</span> regulationDF <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">csum =</span> <span class="fu">rev</span>(<span class="fu">cumsum</span>(<span class="fu">rev</span>(n))), </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">pos =</span> n<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">lead</span>(csum, <span class="dv">1</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">pos =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(pos), n<span class="sc">/</span><span class="dv">2</span>, pos))</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(regulationDF, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span> ,<span class="at">y =</span> n, <span class="at">fill =</span> <span class="fu">fct_inorder</span>(group))) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> pieChartDataFrame,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">y =</span> pos, <span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">" LSVs"</span>)),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">nudge_x =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Group"</span>)) <span class="sc">+</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gg_df <span class="ot">&lt;-</span> <span class="fu">table</span>(sig_combined_lsvs<span class="sc">$</span>comparison) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_df, <span class="fu">aes</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> Freq, <span class="at">fill=</span>Var1))<span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#coord_cartesian(ylim=(c(0,2000))) +</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">"Number of shared significant LSVs"</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">label=</span>Freq), <span class="at">vjust=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Direction of regulation </span><span class="sc">\n</span><span class="st"> in the two data sets"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="comparison_two_datasets_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The most interesting targets migh be the ones with shared regulation. Lets look at the top 20.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sig_combined_lsvs <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(comparison <span class="sc">!=</span> <span class="st">"opposite regulation"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">max</span>(dpsi.HepG2, dpsi.K562))) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 25
+# Groups:   lsv_id [20]
+   gene_name.HepG2 seqid.HepG2 strand.HepG2 lsv_id  complex.HepG2 junction_coord
+   &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;         
+ 1 RHBDD2          chr7        +            ENSG00… False         75879260-7588…
+ 2 CDK11A          chr1        -            ENSG00… False         1704655-17049…
+ 3 AKAP8L          chr19       -            ENSG00… True          15397855-1539…
+ 4 NCAPH2          chr22       +            ENSG00… True          50519320-5052…
+ 5 PHKA2           chrX        -            ENSG00… False         18948826-1895…
+ 6 ZC3H11A         chr1        +            ENSG00… True          203795794-203…
+ 7 YBX3            chr12       -            ENSG00… True          10704148-1071…
+ 8 GPBP1           chr5        +            ENSG00… False         57236032-5724…
+ 9 KARS1           chr16       -            ENSG00… False         75641723-7564…
+10 PDIA5           chr3        +            ENSG00… False         123124343-123…
+11 MTHFD2          chr2        +            ENSG00… True          74198742-7420…
+12 NFYC            chr1        +            ENSG00… False         40769415-4077…
+13 PPP2R5C         chr14       +            ENSG00… True          101912473-101…
+14 PCM1            chr8        +            ENSG00… True          17972687-1798…
+15 EPB41L2         chr6        -            ENSG00… False         130869944-130…
+16 MRPL22          chr5        +            ENSG00… False         154941265-154…
+17 AGBL5           chr2        +            ENSG00… False         27069707-2707…
+18 HUWE1           chrX        -            ENSG00… True          53542539-5354…
+19 UIMC1           chr5        -            ENSG00… False         176968755-176…
+20 ANKRD10         chr13       -            ENSG00… True          110905234-110…
+# ℹ 19 more variables: ctrl_median_psi.HepG2 &lt;dbl&gt;,
+#   cond_median_psi.HepG2 &lt;dbl&gt;, dpsi.HepG2 &lt;dbl&gt;,
+#   probability_changing.HepG2 &lt;dbl&gt;, class.HepG2 &lt;chr&gt;,
+#   unique_juction_id.HepG2 &lt;chr&gt;, gene_name.K562 &lt;chr&gt;, seqid.K562 &lt;chr&gt;,
+#   strand.K562 &lt;chr&gt;, complex.K562 &lt;chr&gt;, ctrl_median_psi.K562 &lt;dbl&gt;,
+#   cond_median_psi.K562 &lt;dbl&gt;, dpsi.K562 &lt;dbl&gt;,
+#   probability_changing.K562 &lt;dbl&gt;, class.K562 &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="session-info" class="level1">
+<h1>Session info</h1>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Berlin
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices datasets  utils     methods   base     
+
+other attached packages:
+[1] ggpointdensity_0.1.0 eulerr_7.0.2         ggpubr_0.6.0        
+[4] ggplot2_3.5.1        knitr_1.47           dplyr_1.1.4         
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.5      jsonlite_1.8.8    compiler_4.3.3    ggsignif_0.6.4   
+ [5] renv_1.0.7        Rcpp_1.0.12       tidyselect_1.2.1  tidyr_1.3.1      
+ [9] scales_1.3.0      yaml_2.3.8        fastmap_1.2.0     R6_2.5.1         
+[13] labeling_0.4.3    generics_0.1.3    backports_1.5.0   polyclip_1.10-6  
+[17] tibble_3.2.1      car_3.1-2         munsell_0.5.1     polylabelr_0.2.0 
+[21] pillar_1.9.0      rlang_1.1.4       utf8_1.2.4        broom_1.0.6      
+[25] xfun_0.44         cli_3.6.2         withr_3.0.0       magrittr_2.0.3   
+[29] digest_0.6.35     grid_4.3.3        rstudioapi_0.16.0 lifecycle_1.0.4  
+[33] vctrs_0.6.5       rstatix_0.7.2     evaluate_0.24.0   glue_1.7.0       
+[37] farver_2.1.2      abind_1.4-5       carData_3.0-5     fansi_1.0.6      
+[41] colorspace_2.1-0  rmarkdown_2.27    purrr_1.0.2       tools_4.3.3      
+[45] pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
+</div>
 </div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
