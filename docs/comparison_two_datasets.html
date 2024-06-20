@@ -134,10 +134,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-splicing">    
         <li>
-    <a class="dropdown-item" href="./splicing_index.html" rel="" target="">
- <span class="dropdown-text">Intro</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./voila_gui.html" rel="" target="">
  <span class="dropdown-text">Visualize</span></a>
   </li>  
@@ -154,12 +150,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Comparing data sets</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./tasks.html" rel="" target="">
- <span class="dropdown-text">Tasks</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./setting_into_functional_context.html" rel="" target="">
  <span class="dropdown-text">Functional context of AS events</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./tasks.html" rel="" target="">
+ <span class="dropdown-text">Tasks</span></a>
   </li>  
     </ul>
   </li>
@@ -188,12 +184,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./splicing_index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Intro</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./voila_gui.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualize</span></a>
   </div>
@@ -218,14 +208,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tasks</span></a>
+  <a href="./setting_into_functional_context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functional context of AS events</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setting_into_functional_context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functional context of AS events</span></a>
+  <a href="./tasks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tasks</span></a>
   </div>
 </li>
     </ul>
@@ -341,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># select highest lsv</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>combined_lsvs <span class="ot">&lt;-</span> combined_lsvs <span class="sc">%&gt;%</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_cond =</span> <span class="fu">max</span>(dpsi.HepG2, dpsi.K562)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">max_cond =</span> <span class="fu">max</span>(<span class="fu">abs</span>(dpsi.HepG2), <span class="fu">abs</span>(dpsi.K562))) <span class="sc">%&gt;%</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(lsv_id) <span class="sc">%&gt;%</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(max_cond, <span class="at">.by_group =</span> T) <span class="sc">%&gt;%</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -441,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1  TRUE FALSE
 2  TRUE FALSE
 3  TRUE FALSE
-4 FALSE  TRUE
+4  TRUE FALSE
 5  TRUE FALSE
 6  TRUE FALSE</code></pre>
 </div>
@@ -479,9 +469,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">both down</td>
-<td style="text-align: right;">138</td>
+<td style="text-align: right;">50</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">both up</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">opposite regulation</td>
 <td style="text-align: right;">14</td>
 </tr>
@@ -521,25 +515,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    gene_name.HepG2 seqid.HepG2 strand.HepG2 lsv_id  complex.HepG2 junction_coord
    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;         
  1 RHBDD2          chr7        +            ENSG00… False         75879260-7588…
- 2 CDK11A          chr1        -            ENSG00… False         1704655-17049…
+ 2 CDK11A          chr1        -            ENSG00… False         1704761-17049…
  3 AKAP8L          chr19       -            ENSG00… True          15397855-1539…
- 4 NCAPH2          chr22       +            ENSG00… True          50519320-5052…
+ 4 NCAPH2          chr22       +            ENSG00… True          50519321-5051…
  5 PHKA2           chrX        -            ENSG00… False         18948826-1895…
- 6 ZC3H11A         chr1        +            ENSG00… True          203795794-203…
- 7 YBX3            chr12       -            ENSG00… True          10704148-1071…
- 8 GPBP1           chr5        +            ENSG00… False         57236032-5724…
- 9 KARS1           chr16       -            ENSG00… False         75641723-7564…
-10 PDIA5           chr3        +            ENSG00… False         123124343-123…
-11 MTHFD2          chr2        +            ENSG00… True          74198742-7420…
-12 NFYC            chr1        +            ENSG00… False         40769415-4077…
-13 PPP2R5C         chr14       +            ENSG00… True          101912473-101…
-14 PCM1            chr8        +            ENSG00… True          17972687-1798…
-15 EPB41L2         chr6        -            ENSG00… False         130869944-130…
-16 MRPL22          chr5        +            ENSG00… False         154941265-154…
-17 AGBL5           chr2        +            ENSG00… False         27069707-2707…
-18 HUWE1           chrX        -            ENSG00… True          53542539-5354…
-19 UIMC1           chr5        -            ENSG00… False         176968755-176…
-20 ANKRD10         chr13       -            ENSG00… True          110905234-110…
+ 6 GPBP1           chr5        +            ENSG00… False         57236032-5724…
+ 7 PDIA5           chr3        +            ENSG00… False         123124343-123…
+ 8 MTHFD2          chr2        +            ENSG00… True          74198742-7420…
+ 9 NFYC            chr1        +            ENSG00… False         40769415-4077…
+10 PPP2R5C         chr14       +            ENSG00… True          101912473-101…
+11 PCM1            chr8        +            ENSG00… True          17972687-1798…
+12 EPB41L2         chr6        -            ENSG00… False         130869945-130…
+13 MRPL22          chr5        +            ENSG00… False         154941265-154…
+14 AGBL5           chr2        +            ENSG00… False         27069707-2707…
+15 CRLS1           chr20       +            ENSG00… True          6015490-60312…
+16 MAEA            chr4        +            ENSG00… False         1336995-13384…
+17 PPP2R3C         chr14       -            ENSG00… True          35116737-3512…
+18 TOP3B           chr22       -            ENSG00… True          21976187-2198…
+19 ARFGAP1         chr20       +            ENSG00… True          63282851-6328…
+20 VAPA            chr18       +            ENSG00… False         9937066-99503…
 # ℹ 19 more variables: ctrl_median_psi.HepG2 &lt;dbl&gt;,
 #   cond_median_psi.HepG2 &lt;dbl&gt;, dpsi.HepG2 &lt;dbl&gt;,
 #   probability_changing.HepG2 &lt;dbl&gt;, class.HepG2 &lt;chr&gt;,

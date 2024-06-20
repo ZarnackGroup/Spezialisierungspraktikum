@@ -68,7 +68,7 @@ combined_lsvs <- combined_lsvs %>%
 
 # select highest lsv
 combined_lsvs <- combined_lsvs %>% 
-  mutate(max_cond = max(dpsi.HepG2, dpsi.K562)) %>%
+  mutate(max_cond = max(abs(dpsi.HepG2), abs(dpsi.K562))) %>%
   group_by(lsv_id) %>%
   arrange(max_cond, .by_group = T) %>%
   slice(1)
