@@ -20,9 +20,9 @@ In the final section we want to identify some examples for LSVs with an impact o
 
 We can look at the top 20 LSVs regulated in both data sets that we identified in the "Comparison of data sets" part and search for some targets with an interesting effect. 
 
-# Are genes with differntial splicing also differntially expressed?
+# Are genes with differential splicing also differentially expressed?
 
-First, have a look at your alternative gene expression analysis. Which of the genes from the 20 LSVs are also regulated alternatively? Are there any? Which type of splicing is happening inthese genes?
+First, have a look at your alternative gene expression analysis. Which of the genes from the 20 LSVs are also regulated alternatively? Are there any? Which type of splicing is happening in these genes?
 
 
 # Is some functional evidence for these splicing events already known?
